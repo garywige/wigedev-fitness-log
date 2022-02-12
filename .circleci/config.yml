@@ -21,3 +21,7 @@ jobs:
           name: Lint Check
           command: |
             npm run lint
+      - run:
+          name: Unit Tests
+          command: |
+            npm run test:nowatch
