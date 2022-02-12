@@ -5,7 +5,13 @@ h1 {
 
 table {
   text-align: left;
-  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+}
+
+.center {
+  text-align: center;
 }
 
 .float-right {
