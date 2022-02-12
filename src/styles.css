@@ -3,3 +3,11 @@
 body {
   margin: 0;
 }
+
+.flex {
+  display: flex;
+}
+
+.spacer {
+  flex-grow: 1;
+}
