@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutsCalendarComponent implements OnInit {
 
+  title: string = ''
+
   constructor() { }
 
   ngOnInit(): void {
+    const today = new Date()
+    this.title = `${today.toLocaleString('default', {month: 'long'})} ${today.getFullYear()}`
   }
 
 }
