@@ -16,3 +16,8 @@
 .content{
   margin: 16px;
 }
+
+.active {
+  border: solid gray 1px;
+  padding: 4px;
+}
