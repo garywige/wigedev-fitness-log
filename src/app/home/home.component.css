@@ -1,0 +1,17 @@
+h1 {
+  clear: both;
+  text-align: center;
+}
+
+table {
+  text-align: left;
+  align-content: center;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
