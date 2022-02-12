@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FreeModule } from './free/free.module';
 import { ProModule } from './pro/pro.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule],
   providers: [],
   bootstrap: [AppComponent],
