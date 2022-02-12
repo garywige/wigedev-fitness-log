@@ -9,6 +9,11 @@ table {
   margin-right: auto;
   margin-bottom: 1em;
   border: solid black 1px;
+  padding: 8px;
+}
+
+td {
+  padding-right: 8px;
 }
 
 .center {
