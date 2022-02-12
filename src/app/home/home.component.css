@@ -16,8 +16,10 @@ table {
 
 .float-right {
   float: right;
+  margin-left: 16px;
 }
 
 .float-left {
   float: left;
+  margin-right: 16px;
 }
