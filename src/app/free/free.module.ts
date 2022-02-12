@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { FreeRoutingModule } from './free-routing.module';
 import { WorkoutsComponent } from './workouts/workouts.component';
+import { WorkoutsCalendarComponent } from './workouts-calendar/workouts-calendar.component';
 
 
 @NgModule({
   declarations: [
-    WorkoutsComponent
+    WorkoutsComponent,
+    WorkoutsCalendarComponent
   ],
   imports: [
     CommonModule,
