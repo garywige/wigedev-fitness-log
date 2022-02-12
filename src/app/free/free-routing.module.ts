@@ -5,7 +5,7 @@ import { WorkoutsCalendarComponent } from './workouts-calendar/workouts-calendar
 import { WorkoutsComponent } from './workouts/workouts.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/free/workouts', pathMatch: 'full'},
+  { path: '', redirectTo: '/free/workouts/calendar', pathMatch: 'full'},
   { path: 'workouts', component: WorkoutsComponent, children: [
     { path: 'calendar', component: WorkoutsCalendarComponent}
   ]}
