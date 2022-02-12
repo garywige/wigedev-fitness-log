@@ -1,0 +1,14 @@
+.header, .footer {
+  border: solid black 1px;
+  padding: 8px;
+}
+
+.navigation {
+  float: right;
+  list-style: none;
+}
+
+.navigation li {
+  display: inline;
+  margin-right: 16px;
+}
