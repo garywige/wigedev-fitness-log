@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+button {
+  margin-top: 16px;
+}
+
+input.text {
+  display: block;
+  margin-top: 16px;
+}
+
+.form {
+  border: solid black 1px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 120px;
+  padding: 16px;
+}
+
