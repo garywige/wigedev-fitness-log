@@ -11,3 +11,8 @@ body {
 .spacer {
   flex-grow: 1;
 }
+
+.active {
+  border: solid gray 1px;
+  padding: 4px;
+}
