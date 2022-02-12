@@ -7,9 +7,10 @@ import { FreeModule } from './free/free.module';
 import { ProModule } from './pro/pro.module';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SignInComponent],
   imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule],
   providers: [],
   bootstrap: [AppComponent],
