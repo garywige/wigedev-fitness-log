@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "style": "npx prettier -c src/{,**/}*.{ts,css} --no-error-on-unmatched-pattern"
+    "style": "npx prettier -c src/{,**/}*.{ts,css} --no-error-on-unmatched-pattern",
+    "style:fix": "npx prettier -w src/{,**/}*.{ts,css}"
   },
   "private": true,
   "dependencies": {
