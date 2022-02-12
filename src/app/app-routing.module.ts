@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'signin', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
+  { path: 'free', loadChildren: () => import('./free/free.module').then(result => result.FreeModule)},
   { path: '**', component: PageNotFoundComponent}
 ];
 
