@@ -6,13 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build
-          command: |
-            npm run build
-      - run:
           name: Install NPM Packages
           command: |
             npm install
+      - run:
+          name: Build
+          command: |
+            npm run build
       - run:
           name: Style Check
           command: |
