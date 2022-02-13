@@ -3,16 +3,20 @@ jobs:
   build:
     docker:
       - image: circleci/node:lts-browsers
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - vi-dependencies-{{ checksum "package-lock.json" }}
       - run:
           name: Install NPM Packages
           command: |
-            npm install
-      - run:
-          name: Build
-          command: |
-            npm run build
+            npm ci
+      - save_cache:
+          key: vi-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
       - run:
           name: Style Check
           command: |
@@ -21,6 +25,10 @@ jobs:
           name: Lint Check
           command: |
             npm run lint
+      - run:
+          name: Build
+          command: |
+            npm run build
       - run:
           name: Unit Tests
           command: |

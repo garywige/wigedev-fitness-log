@@ -1,0 +1,18 @@
+.header,
+.footer {
+  border: solid black 1px;
+  padding: 8px;
+}
+
+.navigation {
+  list-style: none;
+}
+
+.navigation li {
+  display: inline;
+  margin-right: 16px;
+}
+
+.content {
+  margin: 16px;
+}

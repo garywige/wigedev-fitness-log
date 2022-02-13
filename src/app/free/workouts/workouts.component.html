@@ -1,0 +1,15 @@
+<h1>Workouts</h1>
+
+<div class="flex">
+  <a routerLink="/free/workouts/calendar" routerLinkActive="active">Calendar</a>
+  <a routerLink="/free/workouts/list" routerLinkActive="active">List</a>
+  <span class="spacer"></span>
+  <label for="cycle">Cycle: </label>
+  <select name="Cycle" id="cycle">
+    <option value="free">Free</option>
+  </select>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.active {
+  border: solid gray 1px;
+  padding: 4px;
+}

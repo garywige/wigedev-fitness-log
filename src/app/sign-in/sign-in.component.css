@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+a {
+  display: block;
+  margin-bottom: 16px;
+}
+
+input {
+  display: block;
+  margin-top: 16px;
+}
+
+.form {
+  border: solid black 1px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 160px;
+  padding: 16px;
+}

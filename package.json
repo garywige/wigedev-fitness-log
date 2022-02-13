@@ -9,8 +9,8 @@
     "test": "ng test",
     "test:nowatch": "ng test --watch=false",
     "lint": "ng lint",
-    "style": "npx prettier -c src/{,**/}*.{ts,css} --no-error-on-unmatched-pattern",
-    "style:fix": "npx prettier -w src/{,**/}*.{ts,css}"
+    "style": "npx prettier -c **/src/**/*.{ts,css}",
+    "style:fix": "npx prettier -w **/src/**/*.{ts,css}"
   },
   "private": true,
   "dependencies": {
@@ -46,7 +46,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "prettier": "^2.5.1",
+    "prettier": "2.5.1",
     "typescript": "~4.4.3"
   }
 }
