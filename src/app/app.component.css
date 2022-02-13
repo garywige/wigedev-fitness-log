@@ -4,6 +4,11 @@
   padding: 8px;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+}
+
 .navigation {
   list-style: none;
 }
@@ -15,4 +20,5 @@
 
 .content {
   margin: 16px;
+  padding-top: 80px;
 }
