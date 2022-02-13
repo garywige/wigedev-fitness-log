@@ -1,10 +1,16 @@
 <h1>Sign In</h1>
 
 <mat-card class="form">
-  <input placeholder="Email" />
-  <input type="password" placeholder="Password" />
-  <a>Forgot password</a>
-  <button routerLink="/free">Login</button>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="lifter@gmail.com">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput>
+  </mat-form-field><br>
+  <a>Forgot password</a><br>
+  <button mat-raised-button routerLink="/free" color="accent">Login</button>
   <p>No WFL account?</p>
-  <button routerLink="/signup">Sign Up</button>
+  <button mat-raised-button routerLink="/signup" color="accent">Sign Up</button>
 </mat-card>
