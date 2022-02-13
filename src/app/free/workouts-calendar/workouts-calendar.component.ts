@@ -18,13 +18,16 @@ export class WorkoutsCalendarComponent implements OnInit {
 
   today: Date = new Date()
   selectedMonth: number = 0
+  selectedYear: number = 0
   months: Array<Month>
   weeks: Array<Array<number>>
 
   constructor() {
+    this.selectedYear = (new Date()).getFullYear()
+
     this.months = [
       new Month('January', 31),
-      new Month('February', (new Date()).getFullYear() % 4 === 0 ? 29 : 28),
+      new Month('February', this.selectedYear % 4 === 0 ? 29 : 28),
       new Month('March', 31),
       new Month('April', 30),
       new Month('May', 31),
@@ -45,10 +48,16 @@ export class WorkoutsCalendarComponent implements OnInit {
     // set current month as selected month
     this.selectedMonth = this.today.getMonth()
 
+    // generate calendar
+    this.generateCalendar()
+  }
+
+  generateCalendar(){
     // determine what day the 1st falls on
-    let first = new Date(this.today.getFullYear(), this.today.getMonth(), 1)
+    let first = new Date(this.selectedYear, this.selectedMonth, 1)
 
     // generate array of weeks that the calendar can use
+    this.weeks = new Array()
     this.weeks.push(new Array(7))
     let day = 1
     for(let i = first.getDay(); i < 7; i++){
@@ -68,4 +77,25 @@ export class WorkoutsCalendarComponent implements OnInit {
     }
   }
 
+  monthBack(){
+    this.selectedMonth--
+
+    if(this.selectedMonth < 0){
+      this.selectedMonth = 11
+      this.selectedYear--
+    }
+
+    this.generateCalendar()
+  }
+
+  monthForward(){
+    this.selectedMonth++
+
+    if(this.selectedMonth > 11){
+      this.selectedMonth = 0
+      this.selectedYear++
+    }
+
+    this.generateCalendar()
+  }
 }
