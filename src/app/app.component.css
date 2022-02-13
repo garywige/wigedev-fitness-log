@@ -1,4 +1,5 @@
-.header, .footer {
+.header,
+.footer {
   border: solid black 1px;
   padding: 8px;
 }
@@ -12,6 +13,6 @@
   margin-right: 16px;
 }
 
-.content{
+.content {
   margin: 16px;
 }
