@@ -9,8 +9,8 @@
     "test": "ng test",
     "test:nowatch": "ng test --watch=false",
     "lint": "ng lint",
-    "style": "./node_modules/.bin/prettier -c src/{,**/}*.{ts,css} --no-error-on-unmatched-pattern --config ./.prettierrc",
-    "style:fix": "npx prettier -w src/{,**/}*.{ts,css}"
+    "style": "npx prettier -c **/src/**/*.{ts,css}",
+    "style:fix": "npx prettier -w **/src/**/*.{ts,css}"
   },
   "private": true,
   "dependencies": {

@@ -8,9 +8,8 @@ describe('WorkoutsCalendarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WorkoutsCalendarComponent ]
-    })
-    .compileComponents();
+      declarations: [WorkoutsCalendarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

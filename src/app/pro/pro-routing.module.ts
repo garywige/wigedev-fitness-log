@@ -4,12 +4,12 @@ import { CyclesComponent } from './cycles/cycles.component';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/pro/cycles', pathMatch: 'full'},
-  {path: 'cycles', component: CyclesComponent}
+  { path: '', redirectTo: '/pro/cycles', pathMatch: 'full' },
+  { path: 'cycles', component: CyclesComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ProRoutingModule { }
+export class ProRoutingModule {}
