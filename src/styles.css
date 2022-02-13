@@ -33,3 +33,12 @@ body {
   border: solid gray 1px;
   padding: 4px;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline,
+.mat-form-field-label {
+  color: white;
+}
+
+.mat-input-element::placeholder {
+  color: #888;
+}
