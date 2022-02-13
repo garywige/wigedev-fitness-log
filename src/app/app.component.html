@@ -8,7 +8,7 @@
   <ul class="navigation">
     <li><matButton routerLink="/pro" routerLinkActive="active">Pro</matButton></li>
     <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
-    <li>Account</li>
+    <li><matButton routerLink="/account"><mat-icon>account_circle</mat-icon></matButton></li>
   </ul>
 </mat-toolbar>
 
@@ -16,6 +16,6 @@
   <router-outlet></router-outlet>
 </div>
 
-<div class="footer">
+<mat-toolbar class="footer" color="primary">
   <p>2022 WigeDev</p>
-</div>
+</mat-toolbar>
