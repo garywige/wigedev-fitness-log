@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  border-bottom: solid black 1px;
+}
+
+td {
+  text-align: center;
+}
