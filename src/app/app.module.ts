@@ -9,10 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SignInComponent, SignUpComponent],
-  imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule],
+  imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule, BrowserAnimationsModule, MaterialModule],
   providers: [],
   bootstrap: [AppComponent],
 })
