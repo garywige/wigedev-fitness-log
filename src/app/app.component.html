@@ -1,16 +1,16 @@
-<div class="header flex">
+<mat-toolbar class="header flex" color="primary">
   <h1>WFL</h1>
   <span class="spacer"></span>
   <ul class="navigation">
-    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/signin" routerLinkActive="active">Sign In</a></li>
+    <li><matButton routerLink="/home" routerLinkActive="active">Home</matButton></li>
+    <li><matButton routerLink="/signin" routerLinkActive="active">Sign In</matButton></li>
   </ul>
   <ul class="navigation">
-    <li><a routerLink="/pro" routerLinkActive="active">Pro</a></li>
-    <li><a routerLink="/free" routerLinkActive="active">Workouts</a></li>
+    <li><matButton routerLink="/pro" routerLinkActive="active">Pro</matButton></li>
+    <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
     <li>Account</li>
   </ul>
-</div>
+</mat-toolbar>
 
 <div class="content">
   <router-outlet></router-outlet>

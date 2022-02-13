@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.horizontal-padding {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .flex {
@@ -9,13 +24,10 @@ body {
 }
 
 .spacer {
-  flex-grow: 1;
+  flex: 1 1 auto;
 }
 
 .active {
   border: solid gray 1px;
   padding: 4px;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
