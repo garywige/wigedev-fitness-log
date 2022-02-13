@@ -3,16 +3,13 @@ jobs:
   build:
     docker:
       - image: circleci/node:lts-browsers
+    working_directory: ~/repo
     steps:
       - checkout
       - run:
           name: Install NPM Packages
           command: |
-            npm install
-      - run:
-          name: Build
-          command: |
-            npm run build
+            npm ci
       - run:
           name: Style Check
           command: |
@@ -21,6 +18,10 @@ jobs:
           name: Lint Check
           command: |
             npm run lint
+      - run:
+          name: Build
+          command: |
+            npm run build
       - run:
           name: Unit Tests
           command: |
