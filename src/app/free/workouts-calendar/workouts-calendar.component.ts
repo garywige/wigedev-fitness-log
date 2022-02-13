@@ -16,7 +16,6 @@ class Month {
 })
 export class WorkoutsCalendarComponent implements OnInit {
 
-  title: string = ''
   today: Date = new Date()
   selectedMonth: number = 0
   months: Array<Month>
@@ -42,7 +41,6 @@ export class WorkoutsCalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.title = `${this.today.toLocaleString('default', {month: 'long'})} ${this.today.getFullYear()}`
 
     // set current month as selected month
     this.selectedMonth = this.today.getMonth()
