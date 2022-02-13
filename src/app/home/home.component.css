@@ -20,11 +20,6 @@ td {
   text-align: center;
 }
 
-.button {
-  border: solid black 1px;
-  padding: 4px;
-}
-
 .float-right {
   float: right;
   margin-left: 16px;
