@@ -7,6 +7,10 @@ a {
   margin-bottom: 16px;
 }
 
+p {
+  text-align: center;
+}
+
 mat-form-field {
   width: 100%;
 }
@@ -30,4 +34,12 @@ button {
 
 .mat-stroked-button {
   border: solid white 1px;
+}
+
+.small-button {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -32px;
 }
