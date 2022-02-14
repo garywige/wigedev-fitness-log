@@ -11,7 +11,7 @@ label {
 }
 
 .active {
-  border: solid white 1px;
+  border: solid #b2fff7 1px;
 }
 
 .mat-button {
