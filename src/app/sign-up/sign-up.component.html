@@ -14,11 +14,9 @@
     <input type="password" matInput>
   </mat-form-field><br>
   <p>Subscription:</p>
-  <div>
-    <input type="radio" id="pro" >
-    <label for="pro">WFL Pro ($1/month)</label><br>
-    <input type="radio" id="free">
-    <label for="free">WFL Free</label>
-  </div>
+  <mat-radio-group aria-label="Subscription">
+    <mat-radio-button value="pro">WFL Pro ($1/month)</mat-radio-button><br>
+    <mat-radio-button value="free">WFL Free</mat-radio-button>
+  </mat-radio-group>
   <button mat-raised-button color="accent">Create Account</button>
 </div>
