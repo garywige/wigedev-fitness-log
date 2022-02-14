@@ -11,7 +11,10 @@ label {
 }
 
 .active {
-  border-bottom: solid white 1px;
-  border-radius: 0;
-  padding: 4px;
+  border: solid white 1px;
+}
+
+.mat-button {
+  height: 32px;
+  margin-top: 16px;
 }
