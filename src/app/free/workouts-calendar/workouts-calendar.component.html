@@ -1,9 +1,9 @@
 <div class="flex border">
-  <a class="month" (click)="monthBack()">&lt;</a>
+  <button mat-fab class="month" (click)="monthBack()"><mat-icon>arrow_back</mat-icon></button>
   <span class="spacer"></span>
   <h2>{{ months[selectedMonth].name }} {{ selectedYear }}</h2>
   <span class="spacer"></span>
-  <a class="month" (click)="monthForward()">&gt;</a>
+  <button mat-fab class="month" (click)="monthForward()"><mat-icon>arrow_forward</mat-icon></button>
 </div>
 <div>
   <table>
