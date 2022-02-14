@@ -1,9 +1,18 @@
 <h1>Sign Up</h1>
 
 <div class="form">
-  <input placeholder="Email" class="text"/>
-  <input type="password" placeholder="Password" class="text"/>
-  <input type="password" placeholder="Confirm Password" class="text"/>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput placeholder="lifter@gmail.com">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput>
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm Password</mat-label>
+    <input type="password" matInput>
+  </mat-form-field><br>
   <p>Subscription:</p>
   <div>
     <input type="radio" id="pro" >
@@ -11,5 +20,5 @@
     <input type="radio" id="free">
     <label for="free">WFL Free</label>
   </div>
-  <button>Create Account</button>
+  <button mat-raised-button color="accent">Create Account</button>
 </div>
