@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProRoutingModule } from './pro-routing.module';
 import { CyclesComponent } from './cycles/cycles.component';
+import { MaterialModule } from '../material/material.module';
+import { NgModule } from '@angular/core';
+import { ProRoutingModule } from './pro-routing.module';
 
 @NgModule({
   declarations: [CyclesComponent],
-  imports: [CommonModule, ProRoutingModule],
+  imports: [CommonModule, ProRoutingModule, MaterialModule],
 })
 export class ProModule {}
