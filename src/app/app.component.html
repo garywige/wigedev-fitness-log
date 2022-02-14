@@ -6,7 +6,13 @@
     <li><matButton routerLink="/signin" routerLinkActive="active">Sign In</matButton></li>
   </ul>
   <ul class="navigation">
-    <li><matButton routerLink="/pro" routerLinkActive="active">Pro</matButton></li>
+    <li>
+      <button mat-button [matMenuTriggerFor]="proMenu" class="nav-button">Pro</button>
+      <mat-menu #proMenu="matMenu">
+        <button mat-menu-item routerLink="/pro/cycles" routerLinkActive="active">Cycles</button>
+        <button mat-menu-item routerLink="/pro/exercises" routerLinkActive="active">Exercises</button>
+      </mat-menu>
+    </li>
     <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
     <li><matButton routerLink="/account"><mat-icon>account_circle</mat-icon></matButton></li>
   </ul>
