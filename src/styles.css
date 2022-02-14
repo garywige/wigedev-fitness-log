@@ -30,7 +30,7 @@ body {
 }
 
 .active {
-  border-bottom: solid white 1px;
+  border-bottom: solid #b2fff7 2px;
   padding: 4px;
 }
 
