@@ -46,3 +46,8 @@ body {
 .mat-select-value {
   color: white;
 }
+
+.menu {
+  background: #8b6b61;
+  border: solid white 1px;
+}

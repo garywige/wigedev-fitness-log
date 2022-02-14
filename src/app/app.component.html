@@ -11,7 +11,7 @@
   <ul class="navigation">
     <li>
       <button mat-button [matMenuTriggerFor]="proMenu" class="nav-button">Pro</button>
-      <mat-menu #proMenu="matMenu">
+      <mat-menu #proMenu="matMenu" class="menu">
         <button mat-menu-item routerLink="/pro/cycles" routerLinkActive="active">Cycles</button>
         <button mat-menu-item routerLink="/pro/exercises" routerLinkActive="active">Exercises</button>
       </mat-menu>
@@ -19,7 +19,7 @@
     <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
     <li>
       <button mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></button>
-      <mat-menu #accountMenu="matMenu">
+      <mat-menu #accountMenu="matMenu" class="menu">
         <button mat-menu-item routerLink="/free/myaccount" routerLinkActive="active">My Account</button>
         <button mat-menu-item routerLink="/free/logout">Logout</button>
       </mat-menu>
