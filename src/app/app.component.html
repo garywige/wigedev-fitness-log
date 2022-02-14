@@ -14,7 +14,13 @@
       </mat-menu>
     </li>
     <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
-    <li><matButton routerLink="/account"><mat-icon>account_circle</mat-icon></matButton></li>
+    <li>
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></button>
+      <mat-menu #accountMenu="matMenu">
+        <button mat-menu-item routerLink="/free/myaccount" routerLinkActive="active">My Account</button>
+        <button mat-menu-item routerLink="/free/logout">Logout</button>
+      </mat-menu>
+    </li>
   </ul>
 </mat-toolbar>
 
