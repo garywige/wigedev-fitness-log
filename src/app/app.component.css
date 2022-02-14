@@ -12,15 +12,19 @@ caption {
 
 .header,
 .footer {
-  border: solid black 1px;
   padding: 8px;
-  box-shadow: 20px 5px 5px #3E272388;
 }
 
 .header {
   position: fixed;
   top: 0;
   z-index: 1;
+  border-bottom: solid white 1px;
+  box-shadow: 0 12px 6px #0008;
+}
+
+.footer {
+  border-top: solid white 1px;
 }
 
 .navigation {
