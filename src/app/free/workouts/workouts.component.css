@@ -9,3 +9,9 @@ a {
 label {
   margin-right: 16px;
 }
+
+.active {
+  border-bottom: solid white 1px;
+  border-radius: 0;
+  padding: 4px;
+}

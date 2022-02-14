@@ -30,7 +30,7 @@ body {
 }
 
 .active {
-  border: solid gray 1px;
+  border-bottom: solid white 1px;
   padding: 4px;
 }
 
@@ -41,4 +41,8 @@ body {
 
 .mat-input-element::placeholder {
   color: #888;
+}
+
+.mat-select-value {
+  color: white;
 }
