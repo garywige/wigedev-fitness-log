@@ -17,7 +17,8 @@ mat-form-field {
   margin-bottom: 80px;
   padding: 16px;
   color: white;
-  background-color: #444;
+  background-color: #8b6b61;
+  border: solid white 1px;
 }
 
 .mat-radio-button {

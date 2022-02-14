@@ -20,8 +20,9 @@ button {
 }
 
 .form {
-  background-color: #444;
+  background-color: #8b6b61;
   color: white;
+  border: solid white 1px;
   margin-left: 20%;
   margin-right: 20%;
   margin-bottom: 80px;
