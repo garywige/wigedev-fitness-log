@@ -27,3 +27,7 @@ button {
 .bottom-margin {
   margin-bottom: 24px;
 }
+
+.mat-stroked-button {
+  border: solid white 1px;
+}
