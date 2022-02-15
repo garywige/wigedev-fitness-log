@@ -1,5 +1,12 @@
-body {
-  background: black;
+span {
+  margin-right: 4px;
+  margin-top: 12px;
+}
+
+input.completed-reps {
+  border: solid white 1px;
+  width: 36px;
+  text-align: center;
 }
 
 .mat-raised-button {
