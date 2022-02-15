@@ -7,9 +7,10 @@ import { WorkoutsComponent } from './workouts/workouts.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
 import { EditWorkoutComponent } from './edit-workout/edit-workout.component';
 import { EditSetComponent } from './edit-set/edit-set.component';
+import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component';
 
 @NgModule({
-  declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent, EditWorkoutComponent, EditSetComponent],
+  declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent, EditWorkoutComponent, EditSetComponent, DeleteWorkoutComponent],
   imports: [CommonModule, FreeRoutingModule, MaterialModule],
 })
 export class FreeModule {}

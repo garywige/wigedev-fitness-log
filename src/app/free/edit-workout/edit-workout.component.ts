@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DeleteWorkoutComponent } from '../delete-workout/delete-workout.component';
 import { EditSetComponent } from '../edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,5 +15,9 @@ export class EditWorkoutComponent {
 
   openDialog(){
     this.dialog.open(EditSetComponent)
+  }
+
+  openDeleteDialog(){
+    this.dialog.open(DeleteWorkoutComponent)
   }
 }
