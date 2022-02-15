@@ -30,7 +30,8 @@ export class EditWorkoutComponent {
   openSetDialog(){
     let dialogRef = this.dialog.open(EditSetComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.addSet(result)
+      if(result)
+        this.addSet(result)
     })
   }
 
@@ -42,18 +43,13 @@ export class EditWorkoutComponent {
     // add to sets
     this.sets.push(set)
 
-    // reconstruct exercise groups
-    this.groups = []
-    this.sets.forEach(set => {
-      if(this.groups.filter(group => group.name === set.exercise).length === 0){
-        // group doesn't exist yet
-        this.groups.push(new ExerciseGroup(set.exercise, [set]))
-      }
-      else {
-        // group exists, push this set into it
-        this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
-      }
-    })
+    if(this.groups.filter(group => group.name === set.exercise).length === 0){
+      // add new group
+      this.groups.push(new ExerciseGroup(set.exercise, [set]))
+    } else {
+      // add to existing group
+      this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
+    }
 
     console.log(JSON.stringify(this.groups))
   }
