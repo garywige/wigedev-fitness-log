@@ -1,7 +1,6 @@
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms'
 
-import { Component } from '@angular/core';
-
+import { Component } from '@angular/core'
 interface set {
   exercise: string,
   weight: number,
@@ -16,10 +15,10 @@ interface set {
 })
 export class EditSetComponent {
   form = new FormGroup({
-    exercise: new FormControl(''),
-    weight: new FormControl(''),
-    unit: new FormControl(''),
-    reps: new FormControl('')
+    exercise: new FormControl('', Validators.required),
+    weight: new FormControl('', Validators.required),
+    unit: new FormControl('', Validators.required),
+    reps: new FormControl('', Validators.required)
   })
 
   output: set = <set>{}
