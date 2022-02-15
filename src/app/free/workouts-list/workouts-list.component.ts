@@ -12,6 +12,6 @@ export class WorkoutsListComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog(){
-    this.dialog.open(EditWorkoutComponent, { width: '400px'})
+    this.dialog.open(EditWorkoutComponent, { width: '80%'})
   }
 }
