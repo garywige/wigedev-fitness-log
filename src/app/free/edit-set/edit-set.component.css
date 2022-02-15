@@ -5,3 +5,12 @@
 .mat-raised-button {
   width: 100%;
 }
+
+.weight {
+  width: 70%;
+  margin-right: 5%;
+}
+
+.weight-suffix {
+  width: 25%;
+}
