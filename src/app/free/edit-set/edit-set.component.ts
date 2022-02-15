@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './edit-set.component.html',
   styleUrls: ['./edit-set.component.css']
 })
-export class EditSetComponent implements OnInit {
+export class EditSetComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
