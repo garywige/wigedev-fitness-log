@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { WorkoutsCalendarComponent } from './workouts-calendar/workouts-calendar.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { WorkoutsListComponent } from './workouts-list/workouts-list.component';
+import { EditWorkoutComponent } from './edit-workout/edit-workout.component';
 
 @NgModule({
-  declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent],
+  declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent, EditWorkoutComponent],
   imports: [CommonModule, FreeRoutingModule, MaterialModule],
 })
 export class FreeModule {}
