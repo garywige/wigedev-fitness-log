@@ -2,12 +2,7 @@ import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/f
 import { ValidateInt, ValidateWeight } from 'src/app/validators/validators'
 
 import { Component } from '@angular/core'
-interface set {
-  exercise: string,
-  weight: number,
-  unit: string,
-  reps: number
-}
+import { Set } from '../set'
 
 @Component({
   selector: 'app-edit-set',
@@ -22,7 +17,7 @@ export class EditSetComponent {
     reps: new FormControl('', [ValidateInt(), Validators.required])
   })
 
-  output: set = <set>{}
+  output: Set = <Set>{}
   constructor() { }
 
   onSubmit(){
