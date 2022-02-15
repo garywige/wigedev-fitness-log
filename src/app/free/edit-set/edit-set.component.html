@@ -1,28 +1,30 @@
-<mat-form-field appearance="outline" color="accent">
-  <mat-label>Exercise</mat-label>
-  <mat-select>
-    <mat-option value="Bench Press">Bench Press</mat-option>
-    <mat-option value="Squat">Squat</mat-option>
-    <mat-option value="Deadlift">Deadlift</mat-option>
-  </mat-select>
-</mat-form-field><br>
-<div>
-  <mat-form-field appearance="outline" color="accent" class="weight">
-    <mat-label>Weight</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="outline" color="accent" class="weight-suffix">
-    <mat-label>kg/lbs</mat-label>
-    <mat-select>
-      <mat-option value="lbs">LBS</mat-option>
-      <mat-option value="kg">KG</mat-option>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Exercise</mat-label>
+    <mat-select formControlName="exercise">
+      <mat-option value="Bench Press">Bench Press</mat-option>
+      <mat-option value="Squat">Squat</mat-option>
+      <mat-option value="Deadlift">Deadlift</mat-option>
     </mat-select>
-  </mat-form-field>
-</div>
-<mat-form-field appearance="outline" color="accent">
-  <mat-label>Reps</mat-label>
-  <input matInput>
-</mat-form-field><br>
-<hr>
-<button mat-raised-button color="accent">Save</button><br>
-<button mat-button mat-dialog-close>Cancel</button>
+  </mat-form-field><br>
+  <div>
+    <mat-form-field appearance="outline" color="accent" class="weight">
+      <mat-label>Weight</mat-label>
+      <input matInput formControlName="weight">
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="accent" class="weight-suffix">
+      <mat-label>kg/lbs</mat-label>
+      <mat-select formControlName="unit">
+        <mat-option value="lbs">LBS</mat-option>
+        <mat-option value="kg">KG</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Reps</mat-label>
+    <input matInput formControlName="reps">
+  </mat-form-field><br>
+  <hr>
+  <button type="submit" mat-raised-button color="accent" mat-dialog-close="true">Save</button><br>
+  <button mat-button mat-dialog-close>Cancel</button>
+</form>
