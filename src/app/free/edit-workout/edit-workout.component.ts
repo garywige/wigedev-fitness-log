@@ -4,6 +4,7 @@ import { DeleteWorkoutComponent } from '../delete-workout/delete-workout.compone
 import { EditSetComponent } from '../edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Set } from '../set';
+import { tap } from 'rxjs'
 
 @Component({
   selector: 'app-edit-workout',
@@ -19,12 +20,15 @@ export class EditWorkoutComponent {
   openSetDialog(){
     let dialogRef = this.dialog.open(EditSetComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.sets.push(result)
-      console.log(JSON.stringify(this.sets))
+      this.addSet(result)
     })
   }
 
   openDeleteDialog(){
     this.dialog.open(DeleteWorkoutComponent)
+  }
+
+  addSet(set: Set){
+    this.sets.push(set)
   }
 }
