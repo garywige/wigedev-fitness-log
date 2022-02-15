@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'
 
 export function ValidateRegExp(regexp: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    return regexp.test(control.value) ? null : {invalid: {value: control.value}}
+    return regexp.test(control.value) ? null : {nomatch: {value: control.value}}
   }
 }
 
