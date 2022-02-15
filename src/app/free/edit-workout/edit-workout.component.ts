@@ -13,8 +13,11 @@ export class EditWorkoutComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  openDialog(){
-    this.dialog.open(EditSetComponent)
+  openSetDialog(){
+    let dialogRef = this.dialog.open(EditSetComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+    })
   }
 
   openDeleteDialog(){
