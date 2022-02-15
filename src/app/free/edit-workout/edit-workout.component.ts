@@ -4,7 +4,16 @@ import { DeleteWorkoutComponent } from '../delete-workout/delete-workout.compone
 import { EditSetComponent } from '../edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Set } from '../set';
-import { tap } from 'rxjs'
+
+class ExerciseGroup {
+  name: string = ''
+  sets: Set[] = []
+
+  constructor(exercise: string, sets: Set[]){
+    this.name = exercise
+    this.sets = sets
+  }
+}
 
 @Component({
   selector: 'app-edit-workout',
@@ -14,6 +23,7 @@ import { tap } from 'rxjs'
 export class EditWorkoutComponent {
 
   sets: Set[] = []
+  groups: ExerciseGroup[] = []
 
   constructor(public dialog: MatDialog) { }
 
@@ -29,6 +39,22 @@ export class EditWorkoutComponent {
   }
 
   addSet(set: Set){
+    // add to sets
     this.sets.push(set)
+
+    // reconstruct exercise groups
+    this.groups = []
+    this.sets.forEach(set => {
+      if(this.groups.filter(group => group.name === set.exercise).length === 0){
+        // group doesn't exist yet
+        this.groups.push(new ExerciseGroup(set.exercise, [set]))
+      }
+      else {
+        // group exists, push this set into it
+        this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
+      }
+    })
+
+    console.log(JSON.stringify(this.groups))
   }
 }
