@@ -60,3 +60,9 @@ img {
   background: #8b6b61;
   border: solid white 1px;
 }
+
+.snackbar {
+  background: #8b6b61;
+  border: solid white 1px;
+  color: white;
+}
