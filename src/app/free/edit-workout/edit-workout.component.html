@@ -16,25 +16,27 @@
     </span>
   </div>
   <div *ngFor="let group of groups">
-    <mat-divider></mat-divider>
-    <p>{{group.name}}</p>
-    <div *ngFor="let set of group.sets" class="flex">
-      <button mat-icon-button color="accent"><mat-icon>delete</mat-icon></button>
-      <span>
-        {{set.weight}}
-      </span>
-      <span>
-        {{set.unit}}
-      </span>
-      <span class="spacer"></span>
-      <span>
-        {{set.reps}}
-      </span>
-      <span>
-        reps
-      </span>
-      <span class="spacer"></span>
-      <input matInput class="completed-reps">
+    <div *ngIf="group.sets.length > 0">
+      <mat-divider></mat-divider>
+      <p>{{group.name}}</p>
+      <div *ngFor="let set of group.sets; index as i" class="flex">
+        <button mat-icon-button color="accent" (click)="group.sets.splice(i, 1)"><mat-icon>delete</mat-icon></button>
+        <span>
+          {{set.weight}}
+        </span>
+        <span>
+          {{set.unit}}
+        </span>
+        <span class="spacer"></span>
+        <span>
+          {{set.reps}}
+        </span>
+        <span>
+          reps
+        </span>
+        <span class="spacer"></span>
+        <input matInput class="completed-reps">
+      </div>
     </div>
   </div>
   <button mat-mini-fab (click)="openSetDialog()"><mat-icon>add</mat-icon></button>
