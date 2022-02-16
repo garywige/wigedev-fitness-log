@@ -12,9 +12,10 @@ import { ProModule } from './pro/pro.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpVerificationComponent } from './sign-up/sign-up-verification/sign-up-verification.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SignInComponent, SignUpComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SignInComponent, SignUpComponent, SignUpVerificationComponent],
   imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule, BrowserAnimationsModule,
     MaterialModule, FlexLayoutModule, ReactiveFormsModule],
   providers: [],
