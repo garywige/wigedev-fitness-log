@@ -36,7 +36,14 @@ export class EditWorkoutComponent {
   }
 
   openDeleteDialog(){
-    this.dialog.open(DeleteWorkoutComponent)
+    let dialogRef = this.dialog.open(DeleteWorkoutComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        // TODO: implement delete workout & close the workout window
+        console.log('Deleting workout...')
+        this.dialog.closeAll()
+      }
+    })
   }
 
   addSet(set: Set){
@@ -48,7 +55,5 @@ export class EditWorkoutComponent {
       // add to existing group
       this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
     }
-
-    console.log(JSON.stringify(this.groups))
   }
 }
