@@ -1,22 +1,22 @@
 <h1>Sign Up</h1>
 
-<mat-card class="form">
+<mat-card class="form" [formGroup]="form">
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Email</mat-label>
-    <input type="email" matInput placeholder="lifter@gmail.com">
+    <input type="email" matInput placeholder="lifter@gmail.com" formControlName="email">
   </mat-form-field><br>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Password</mat-label>
-    <input type="password" matInput>
+    <input type="password" matInput formControlName="password">
   </mat-form-field><br>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Confirm Password</mat-label>
-    <input type="password" matInput>
+    <input type="password" matInput formControlName="confirm">
   </mat-form-field><br>
   <p>Subscription:</p>
-  <mat-radio-group aria-label="Subscription">
+  <mat-radio-group aria-label="Subscription" formControlName="type">
     <mat-radio-button value="pro">WFL Pro ($1/month)</mat-radio-button><br>
     <mat-radio-button value="free">WFL Free</mat-radio-button>
   </mat-radio-group>
-  <button mat-raised-button color="accent">Create Account</button>
+  <button mat-raised-button color="accent" [disabled]="form.invalid">Create Account</button>
 </mat-card>

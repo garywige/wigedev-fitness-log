@@ -9,13 +9,14 @@ import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProModule } from './pro/pro.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent, SignInComponent, SignUpComponent],
   imports: [BrowserModule, AppRoutingModule, FreeModule, ProModule, BrowserAnimationsModule,
-    MaterialModule, FlexLayoutModule],
+    MaterialModule, FlexLayoutModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
