@@ -42,6 +42,13 @@ export class SignUpComponent {
     }
 
     // send data
+    const output = {
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value,
+      type: this.form.get('type')?.value
+    }
+
+    console.log(output)
   }
 
   openSnackBar(message: string, action: string){
