@@ -22,7 +22,6 @@ class ExerciseGroup {
 })
 export class EditWorkoutComponent {
 
-  sets: Set[] = []
   groups: ExerciseGroup[] = []
 
   constructor(public dialog: MatDialog) { }
@@ -40,8 +39,6 @@ export class EditWorkoutComponent {
   }
 
   addSet(set: Set){
-    // add to sets
-    this.sets.push(set)
 
     if(this.groups.filter(group => group.name === set.exercise).length === 0){
       // add new group
