@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms'
 import { ValidateInt, ValidateWeight } from 'src/app/validators/validators'
 
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Set } from '../set'
 
 @Component({
@@ -9,7 +9,7 @@ import { Set } from '../set'
   templateUrl: './edit-set.component.html',
   styleUrls: ['./edit-set.component.css']
 })
-export class EditSetComponent {
+export class EditSetComponent implements OnInit{
   form = new FormGroup({
     exercise: new FormControl('', Validators.required),
     weight: new FormControl('', [ValidateWeight(), Validators.required]),
@@ -18,7 +18,22 @@ export class EditSetComponent {
   })
 
   output: Set = <Set>{}
+  exercises: string[] = []
+
   constructor() { }
+
+  ngOnInit() {
+      this.loadExercises()
+  }
+
+  loadExercises(){
+    this.exercises = [
+      'Bench Press',
+      'Squat',
+      'Deadlift',
+      'Overhead Press'
+    ]
+  }
 
   onSubmit(){
     this.output.exercise = this.form.get('exercise')?.value

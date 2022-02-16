@@ -2,9 +2,7 @@
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Exercise</mat-label>
     <mat-select formControlName="exercise">
-      <mat-option value="Bench Press">Bench Press</mat-option>
-      <mat-option value="Squat">Squat</mat-option>
-      <mat-option value="Deadlift">Deadlift</mat-option>
+      <mat-option *ngFor="let exercise of exercises" [value]="exercise">{{ exercise }}</mat-option>
     </mat-select>
   </mat-form-field><br>
   <div>
