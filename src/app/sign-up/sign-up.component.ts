@@ -53,7 +53,7 @@ export class SignUpComponent {
 
     console.log(output)
 
-    let ref = this.dialog.open(SignUpVerificationComponent, {width: '420px'})
+    let ref = this.dialog.open(SignUpVerificationComponent, {width: '420px', data: {email: output.email}})
     ref.afterClosed().subscribe(result => {
       if(result){
         // navigate to Sign In

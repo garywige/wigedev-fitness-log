@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-up-verification',
@@ -9,6 +10,8 @@ export class SignUpVerificationComponent {
 
   email: string = ''
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) data: {email: string}) {
+    this.email = data.email
+  }
 
 }
