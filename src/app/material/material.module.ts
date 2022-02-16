@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatSelectModule } from '@angular/material/select'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { NgModule } from '@angular/core';
 
@@ -24,7 +25,8 @@ const modules = [
   MatDialogModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSnackBarModule
 ]
 
 
