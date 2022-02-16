@@ -100,6 +100,6 @@ export class WorkoutsCalendarComponent implements OnInit {
   }
 
   openWorkoutDialog() {
-    this.dialog.open(EditWorkoutComponent, {width: '80%'})
+    this.dialog.open(EditWorkoutComponent, {width: '600px'})
   }
 }
