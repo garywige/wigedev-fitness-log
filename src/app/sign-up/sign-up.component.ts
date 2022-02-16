@@ -1,6 +1,7 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,5 +17,34 @@ export class SignUpComponent {
     type: new FormControl('', Validators.required)
   })
 
-  constructor() {}
+  constructor(private snackbar: MatSnackBar) {}
+
+  onSubmit(){
+    let password: string = this.form.get('password')?.value
+    const regexLowercase = new RegExp(/[a-z]+/)
+    const regexUppercase = new RegExp(/[A-Z]+/)
+    const regexNumber = new RegExp(/[0-9]+/)
+    const regexSymbol = new RegExp(/[^a-zA-Z0-9]/)
+
+    // verify that passwords match
+    if(password !== this.form.get('confirm')?.value){
+      this.openSnackBar('Passwords do not match', 'Close')
+      return
+    }
+
+    // verify that password is complex
+    if(!regexSymbol.test(password) ||
+       !regexLowercase.test(password) ||
+       !regexUppercase.test(password) ||
+       !regexNumber.test(password)){
+      this.openSnackBar('Password must contain lowercase, uppercase, number, and symbol characters.', 'Close')
+      return
+    }
+
+    // send data
+  }
+
+  openSnackBar(message: string, action: string){
+    this.snackbar.open(message, action, {duration: 3000, panelClass: 'snackbar'})
+  }
 }
