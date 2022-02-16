@@ -12,6 +12,10 @@ body {
   color: white;
 }
 
+img {
+  border: solid white 1px;
+}
+
 .margin-top {
   margin-top: 16px;
 }
