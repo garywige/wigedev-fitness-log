@@ -4,11 +4,13 @@
     <mat-select formControlName="exercise">
       <mat-option *ngFor="let exercise of exercises" [value]="exercise">{{ exercise }}</mat-option>
     </mat-select>
+    <mat-error>Exercise is required.</mat-error>
   </mat-form-field><br>
   <div>
     <mat-form-field appearance="outline" color="accent" class="weight">
       <mat-label>Weight</mat-label>
       <input matInput formControlName="weight">
+      <mat-error>Weight is required and can contain one decimal place.</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" color="accent" class="weight-suffix">
       <mat-label>kg/lbs</mat-label>
@@ -16,11 +18,13 @@
         <mat-option value="lbs">LBS</mat-option>
         <mat-option value="kg">KG</mat-option>
       </mat-select>
+      <mat-error>Unit is required.</mat-error>
     </mat-form-field>
   </div>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Reps</mat-label>
     <input matInput formControlName="reps">
+    <mat-error>Reps is required and must be a whole integer.</mat-error>
   </mat-form-field><br>
   <hr>
   <button type="submit" mat-raised-button color="accent" [mat-dialog-close]="output" [disabled]="form.invalid">Save</button><br>

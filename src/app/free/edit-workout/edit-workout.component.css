@@ -23,3 +23,7 @@ input.completed-reps {
 input.ng-invalid {
   border: solid red 1px;
 }
+
+.mat-error {
+  color: white;
+}

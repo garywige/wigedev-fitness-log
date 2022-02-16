@@ -14,3 +14,7 @@
 .weight-suffix {
   width: 25%;
 }
+
+.mat-error {
+  color: white;
+}
