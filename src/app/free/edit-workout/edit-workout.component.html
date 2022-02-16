@@ -1,5 +1,5 @@
 
-<form mat-dialog-content #myForm="ngForm">
+<form mat-dialog-content #myForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-form-field color="accent">
     <mat-label>Workout Date</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required>
@@ -39,9 +39,9 @@
       </div>
     </div>
   </div>
-  <button mat-mini-fab (click)="openSetDialog()"><mat-icon>add</mat-icon></button>
+  <button type="button" mat-mini-fab (click)="openSetDialog()"><mat-icon>add</mat-icon></button>
   <mat-divider></mat-divider>
-  <button mat-raised-button color="accent" [disabled]="myForm.invalid">Save</button>
-  <button mat-raised-button color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete Workout</button>
+  <button type="submit" mat-raised-button color="accent" [disabled]="myForm.invalid" mat-dialog-close="output">Save</button>
+  <button type="button" mat-raised-button color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete Workout</button>
   <button mat-button mat-dialog-close>Cancel</button>
 </form>

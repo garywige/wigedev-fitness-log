@@ -24,6 +24,7 @@ export class EditWorkoutComponent {
 
   date: Date = new Date()
   groups: ExerciseGroup[] = []
+  output: {date: Date, sets: Set[]} | null = null
 
   constructor(public dialog: MatDialog) { }
 
@@ -55,5 +56,22 @@ export class EditWorkoutComponent {
       // add to existing group
       this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
     }
+  }
+
+  onSubmit(){
+    // flatten the data
+    this.output = {
+      date: this.date,
+      sets: []
+    }
+
+    this.groups.forEach(group => {
+      group.sets.forEach(set => {
+        this.output?.sets.push(set)
+      })
+    })
+
+    // send the data to outer space
+    console.log(this.output)
   }
 }
