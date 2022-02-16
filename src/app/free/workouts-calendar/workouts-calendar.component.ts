@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
+import { MatDialog } from '@angular/material/dialog';
+
 class Month {
   name: string;
   days: number;
@@ -21,7 +24,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   months: Array<Month>;
   weeks: Array<Array<number>>;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.selectedYear = new Date().getFullYear();
 
     this.months = [
@@ -94,5 +97,9 @@ export class WorkoutsCalendarComponent implements OnInit {
     }
 
     this.generateCalendar();
+  }
+
+  openWorkoutDialog() {
+    this.dialog.open(EditWorkoutComponent, {width: '80%'})
   }
 }

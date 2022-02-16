@@ -32,7 +32,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let week of weeks">
-        <td *ngFor="let day of week">{{ day }}</td>
+        <td *ngFor="let day of week">
+          <div>
+            {{ day }}<br>
+            <button *ngIf="selectedMonth === today.getMonth() && day === today.getDate() && selectedYear === today.getFullYear()" mat-mini-fab color="accent" (click)="openWorkoutDialog()"><mat-icon>add</mat-icon></button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
