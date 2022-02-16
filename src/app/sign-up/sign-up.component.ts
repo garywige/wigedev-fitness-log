@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +20,7 @@ export class SignUpComponent {
     type: new FormControl('', Validators.required)
   })
 
-  constructor(private snackbar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private snackbar: MatSnackBar, private dialog: MatDialog, private router: Router) {}
 
   onSubmit(){
     let password: string = this.form.get('password')?.value
@@ -56,6 +57,7 @@ export class SignUpComponent {
     ref.afterClosed().subscribe(result => {
       if(result){
         // navigate to Sign In
+        this.router.navigate(['/signin'])
       }
     })
   }
