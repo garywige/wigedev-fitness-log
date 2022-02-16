@@ -66,3 +66,7 @@ img {
   border: solid white 1px;
   color: white;
 }
+
+.mat-error {
+  color: white;
+}

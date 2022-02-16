@@ -4,14 +4,17 @@
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Email</mat-label>
     <input type="email" matInput placeholder="lifter@gmail.com" formControlName="email">
+    <mat-error>Must be an email address.</mat-error>
   </mat-form-field><br>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Password</mat-label>
     <input type="password" matInput formControlName="password">
+    <mat-error>Minimum 8 characters and at least 1 lowercase, uppercase, number, and symbol</mat-error>
   </mat-form-field><br>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Confirm Password</mat-label>
     <input type="password" matInput formControlName="confirm">
+    <mat-error>Must match password.</mat-error>
   </mat-form-field><br>
   <p>Subscription:</p>
   <mat-radio-group aria-label="Subscription" formControlName="type">
