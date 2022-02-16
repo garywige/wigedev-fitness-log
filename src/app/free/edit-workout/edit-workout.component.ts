@@ -22,6 +22,7 @@ class ExerciseGroup {
 })
 export class EditWorkoutComponent {
 
+  date: Date = new Date()
   groups: ExerciseGroup[] = []
 
   constructor(public dialog: MatDialog) { }

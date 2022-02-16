@@ -18,3 +18,7 @@ input.completed-reps {
 .col-header {
   font-weight: bold;
 }
+
+input.ng-invalid {
+  border: solid red 1px;
+}
