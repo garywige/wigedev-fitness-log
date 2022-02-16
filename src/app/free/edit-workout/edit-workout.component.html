@@ -35,7 +35,7 @@
           reps
         </span>
         <span class="spacer"></span>
-        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise + i">
+        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise + i" pattern="^\d+$">
       </div>
     </div>
   </div>
