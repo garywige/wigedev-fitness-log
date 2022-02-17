@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EditCycleComponent } from './edit-cycle/edit-cycle.component';
 
 @Component({
   selector: 'app-cycles',
@@ -6,5 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cycles.component.css'],
 })
 export class CyclesComponent {
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
+
+  openCycleDialog(){
+    this.dialog.open(EditCycleComponent, {width: '400px'})
+  }
 }
