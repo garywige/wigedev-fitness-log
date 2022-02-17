@@ -20,8 +20,7 @@
     <li>
       <button mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #accountMenu="matMenu" class="menu">
-        <button mat-menu-item routerLink="/free/myaccount" routerLinkActive="active">My Account</button>
-        <button mat-menu-item routerLink="/free/logout">Logout</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
     </li>
   </ul>
