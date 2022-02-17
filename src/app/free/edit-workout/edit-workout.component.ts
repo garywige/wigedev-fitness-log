@@ -4,16 +4,7 @@ import { DeleteWorkoutComponent } from '../delete-workout/delete-workout.compone
 import { EditSetComponent } from '../edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Set } from '../set';
-
-class ExerciseGroup {
-  name: string = ''
-  sets: Set[] = []
-
-  constructor(exercise: string, sets: Set[]){
-    this.name = exercise
-    this.sets = sets
-  }
-}
+import { ExerciseGroup } from './exercise-group';
 
 @Component({
   selector: 'app-edit-workout',
