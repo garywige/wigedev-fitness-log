@@ -15,7 +15,14 @@ export class SignUpComponent {
 
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(8)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/[a-z]+/),
+      Validators.pattern(/[A-Z]+/),
+      Validators.pattern(/[0-9]+/),
+      Validators.pattern(/[^a-zA-Z0-9]+/)
+    ]),
     confirm: new FormControl('', [Validators.required, Validators.minLength(8)]),
     type: new FormControl('', Validators.required)
   })
@@ -23,24 +30,10 @@ export class SignUpComponent {
   constructor(private snackbar: MatSnackBar, private dialog: MatDialog, private router: Router) {}
 
   onSubmit(){
-    let password: string = this.form.get('password')?.value
-    const regexLowercase = new RegExp(/[a-z]+/)
-    const regexUppercase = new RegExp(/[A-Z]+/)
-    const regexNumber = new RegExp(/[0-9]+/)
-    const regexSymbol = new RegExp(/[^a-zA-Z0-9]/)
 
     // verify that passwords match
-    if(password !== this.form.get('confirm')?.value){
+    if(this.form.get('password')?.value !== this.form.get('confirm')?.value){
       this.openSnackBar('Passwords do not match', 'Close')
-      return
-    }
-
-    // verify that password is complex
-    if(!regexSymbol.test(password) ||
-       !regexLowercase.test(password) ||
-       !regexUppercase.test(password) ||
-       !regexNumber.test(password)){
-      this.openSnackBar('Password must contain lowercase, uppercase, number, and symbol characters.', 'Close')
       return
     }
 
