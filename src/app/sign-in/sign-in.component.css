@@ -44,3 +44,7 @@ button {
   position: relative;
   top: -32px;
 }
+
+.pw-error {
+  margin-top: 24px;
+}
