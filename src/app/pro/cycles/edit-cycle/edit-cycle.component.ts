@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteCycleComponent } from '../delete-cycle/delete-cycle.component';
+import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
 
 @Component({
   selector: 'app-edit-cycle',

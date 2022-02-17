@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DeleteWorkoutComponent } from '../delete-workout/delete-workout.component';
-import { EditSetComponent } from '../edit-set/edit-set.component';
+import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component';
+import { EditSetComponent } from './edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Set } from '../set';
+import { Set } from './set';
 import { ExerciseGroup } from './exercise-group';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

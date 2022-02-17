@@ -1,4 +1,4 @@
-import {Set} from '../set'
+import {Set} from './set'
 
 export class ExerciseGroup {
   name: string = ''
