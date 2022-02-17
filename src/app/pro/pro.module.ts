@@ -5,9 +5,10 @@ import { NgModule } from '@angular/core';
 import { ProRoutingModule } from './pro-routing.module';
 import { EditCycleComponent } from './cycles/edit-cycle/edit-cycle.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteCycleComponent } from './cycles/delete-cycle/delete-cycle.component';
 
 @NgModule({
-  declarations: [CyclesComponent, EditCycleComponent],
+  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent],
   imports: [CommonModule, ProRoutingModule, MaterialModule, ReactiveFormsModule],
 })
 export class ProModule {}
