@@ -70,3 +70,8 @@ img {
 .mat-error {
   color: white;
 }
+
+.mat-table {
+  background: #8b6b61;
+  border: solid white 1px;
+}

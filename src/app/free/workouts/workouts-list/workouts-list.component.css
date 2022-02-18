@@ -1,3 +1,9 @@
-button {
-  margin-bottom: 240px;
+div {
+  width: 80%;
+  margin-left: 10%;
+}
+
+table {
+  width: 100%;
+  margin-top: 16px;
 }
