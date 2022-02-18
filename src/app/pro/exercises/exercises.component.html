@@ -1,0 +1,19 @@
+<h1>Exercises</h1>
+
+<div>
+  <button mat-raised-button color="accent"><mat-icon>add</mat-icon></button>
+  <mat-table [dataSource]="exercises">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let exercise">{{ exercise.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="workoutCount">
+      <mat-header-cell *matHeaderCellDef>Workout Count</mat-header-cell>
+      <mat-cell *matCellDef="let exercise">{{ exercise.workoutCount }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

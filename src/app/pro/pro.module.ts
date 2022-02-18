@@ -6,9 +6,10 @@ import { ProRoutingModule } from './pro-routing.module';
 import { EditCycleComponent } from './cycles/edit-cycle/edit-cycle.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteCycleComponent } from './cycles/edit-cycle/delete-cycle/delete-cycle.component';
+import { ExercisesComponent } from './exercises/exercises.component';
 
 @NgModule({
-  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent],
+  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent, ExercisesComponent],
   imports: [CommonModule, ProRoutingModule, MaterialModule, ReactiveFormsModule],
 })
 export class ProModule {}
