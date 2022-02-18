@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Workout {
+  id: number
   date: Date
   setCount: number
 }
@@ -27,12 +28,12 @@ export class WorkoutsListComponent implements OnInit{
 
   loadData(){
     for(let i = 0; i < 20; i++){
-      this.workouts.push({date: new Date(Date.UTC(2022, 1, i + 1)), setCount: 10})
+      this.workouts.push({id: i + 1, date: new Date(Date.UTC(2022, 1, i + 1)), setCount: 10})
     }
   }
 
-  openDialog(){
-    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px'})
+  openDialog(id: number){
+    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id})
     ref.afterClosed().subscribe(result => {
       if(result){
         this.openSnackBar('Workout Saved!', 'Close')
