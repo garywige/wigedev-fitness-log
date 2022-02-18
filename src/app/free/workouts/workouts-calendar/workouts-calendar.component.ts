@@ -100,8 +100,8 @@ export class WorkoutsCalendarComponent implements OnInit {
     this.generateCalendar();
   }
 
-  openWorkoutDialog() {
-    let ref = this.dialog.open(EditWorkoutComponent, {width: '600px'})
+  openWorkoutDialog(id: number) {
+    let ref = this.dialog.open(EditWorkoutComponent, {width: '600px', data: id})
     ref.afterClosed().subscribe(result => {
       if(result){
         this.openSnackBar('Workout Saved!', 'Close')
