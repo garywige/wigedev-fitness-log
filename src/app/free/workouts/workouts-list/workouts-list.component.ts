@@ -14,15 +14,22 @@ interface Workout {
   templateUrl: './workouts-list.component.html',
   styleUrls: ['./workouts-list.component.css'],
 })
-export class WorkoutsListComponent {
+export class WorkoutsListComponent implements OnInit{
   displayedColumns: string[] = ['date', 'setCount']
 
-  workouts: Workout[] = [
-    {date: new Date(Date.UTC(2022, 1, 10)), setCount: 12},
-    {date: new Date(Date.UTC(2022, 1, 12)), setCount: 12}
-  ]
+  workouts: Workout[] = []
 
   constructor(public dialog: MatDialog, private snackbar: MatSnackBar) {}
+
+  ngOnInit(): void {
+      this.loadData()
+  }
+
+  loadData(){
+    for(let i = 0; i < 20; i++){
+      this.workouts.push({date: new Date(Date.UTC(2022, 1, i + 1)), setCount: 10})
+    }
+  }
 
   openDialog(){
     let ref = this.dialog.open(EditWorkoutComponent, { width: '600px'})
