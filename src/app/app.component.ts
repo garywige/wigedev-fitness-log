@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'wigedev-fitness-log';
 
-  constructor(private router: Router, private snackbar: MatSnackBar){}
+  constructor(private router: Router, private snackbar: MatSnackBar) {}
 
-  logout(){
+  logout() {
     // TODO: invalidate token
 
     // inform that logout was successful
-    this.snackbar.open('Logout Successful!', 'Close', {duration: 3000, panelClass: 'snackbar'})
+    this.snackbar.open('Logout Successful!', 'Close', { duration: 3000, panelClass: 'snackbar' });
 
     // navigate to login
-    this.router.navigate(['/signin'])
+    this.router.navigate(['/signin']);
   }
 }

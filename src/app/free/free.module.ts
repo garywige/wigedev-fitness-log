@@ -12,7 +12,14 @@ import { WorkoutsComponent } from './workouts/workouts.component';
 import { WorkoutsListComponent } from './workouts/workouts-list/workouts-list.component';
 
 @NgModule({
-  declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent, EditWorkoutComponent, EditSetComponent, DeleteWorkoutComponent],
+  declarations: [
+    WorkoutsComponent,
+    WorkoutsCalendarComponent,
+    WorkoutsListComponent,
+    EditWorkoutComponent,
+    EditSetComponent,
+    DeleteWorkoutComponent,
+  ],
   imports: [CommonModule, FreeRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
 })
 export class FreeModule {}

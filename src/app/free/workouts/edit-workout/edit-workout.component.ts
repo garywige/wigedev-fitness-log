@@ -10,60 +10,57 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-edit-workout',
   templateUrl: './edit-workout.component.html',
-  styleUrls: ['./edit-workout.component.css']
+  styleUrls: ['./edit-workout.component.css'],
 })
 export class EditWorkoutComponent {
+  date: Date = new Date();
+  groups: ExerciseGroup[] = [];
+  output: { date: Date; sets: Set[] } | null = null;
 
-  date: Date = new Date()
-  groups: ExerciseGroup[] = []
-  output: {date: Date, sets: Set[]} | null = null
+  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) { }
-
-  openSetDialog(){
-    let dialogRef = this.dialog.open(EditSetComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      if(result)
-        this.addSet(result)
-    })
+  openSetDialog() {
+    let dialogRef = this.dialog.open(EditSetComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.addSet(result);
+    });
   }
 
-  openDeleteDialog(){
-    let dialogRef = this.dialog.open(DeleteWorkoutComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
+  openDeleteDialog() {
+    let dialogRef = this.dialog.open(DeleteWorkoutComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         // TODO: implement delete workout & close the workout window
-        this.snackbar.open('Workout Deleted!', 'Close', {duration: 3000, panelClass: 'snackbar'})
-        this.dialog.closeAll()
+        this.snackbar.open('Workout Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.dialog.closeAll();
       }
-    })
+    });
   }
 
-  addSet(set: Set){
-
-    if(this.groups.filter(group => group.name === set.exercise).length === 0){
+  addSet(set: Set) {
+    if (this.groups.filter((group) => group.name === set.exercise).length === 0) {
       // add new group
-      this.groups.push(new ExerciseGroup(set.exercise, [set]))
+      this.groups.push(new ExerciseGroup(set.exercise, [set]));
     } else {
       // add to existing group
-      this.groups.filter(group => group.name === set.exercise)[0]?.sets?.push(set)
+      this.groups.filter((group) => group.name === set.exercise)[0]?.sets?.push(set);
     }
   }
 
-  onSubmit(){
+  onSubmit() {
     // flatten the data
     this.output = {
       date: this.date,
-      sets: []
-    }
+      sets: [],
+    };
 
-    this.groups.forEach(group => {
-      group.sets.forEach(set => {
-        this.output?.sets.push(set)
-      })
-    })
+    this.groups.forEach((group) => {
+      group.sets.forEach((set) => {
+        this.output?.sets.push(set);
+      });
+    });
 
     // send the data to outer space
-    console.log(this.output)
+    console.log(this.output);
   }
 }

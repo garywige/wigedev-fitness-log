@@ -8,9 +8,8 @@ describe('DeleteWorkoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteWorkoutComponent ]
-    })
-    .compileComponents();
+      declarations: [DeleteWorkoutComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

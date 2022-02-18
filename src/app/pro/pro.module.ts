@@ -11,7 +11,14 @@ import { EditExerciseComponent } from './exercises/edit-exercise/edit-exercise.c
 import { DeleteExerciseComponent } from './exercises/edit-exercise/delete-exercise/delete-exercise.component';
 
 @NgModule({
-  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent, ExercisesComponent, EditExerciseComponent, DeleteExerciseComponent],
+  declarations: [
+    CyclesComponent,
+    EditCycleComponent,
+    DeleteCycleComponent,
+    ExercisesComponent,
+    EditExerciseComponent,
+    DeleteExerciseComponent,
+  ],
   imports: [CommonModule, ProRoutingModule, MaterialModule, ReactiveFormsModule],
 })
 export class ProModule {}

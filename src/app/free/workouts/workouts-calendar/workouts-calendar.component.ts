@@ -93,15 +93,15 @@ export class WorkoutsCalendarComponent implements OnInit {
   }
 
   openWorkoutDialog(id: number) {
-    let ref = this.dialog.open(EditWorkoutComponent, {width: '600px', data: id})
-    ref.afterClosed().subscribe(result => {
-      if(result){
-        this.openSnackBar('Workout Saved!', 'Close')
+    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id });
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        this.openSnackBar('Workout Saved!', 'Close');
       }
-    })
+    });
   }
 
-  openSnackBar(message: string, action: string){
-    this.snackbar.open(message, action, { duration: 3000, panelClass: 'snackbar'})
+  openSnackBar(message: string, action: string) {
+    this.snackbar.open(message, action, { duration: 3000, panelClass: 'snackbar' });
   }
 }

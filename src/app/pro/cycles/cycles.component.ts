@@ -9,25 +9,25 @@ import { Cycle } from './cycle';
   styleUrls: ['./cycles.component.css'],
 })
 export class CyclesComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'modified', 'workoutCount']
-  cycles: Cycle[] = []
+  displayedColumns: string[] = ['name', 'modified', 'workoutCount'];
+  cycles: Cycle[] = [];
 
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit(){
-      this.loadData()
+  ngOnInit() {
+    this.loadData();
   }
 
-  loadData(){
+  loadData() {
     this.cycles = [
-      {id: 1, name: 'Free', modified: new Date(), workoutCount: 24},
-      {id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 20},
-      {id: 3, name: 'Texas Method', modified: new Date(), workoutCount: 32},
-      {id: 4, name: 'Bigger Leaner Stronger', modified: new Date(), workoutCount: 12}
-    ]
+      { id: 1, name: 'Free', modified: new Date(), workoutCount: 24 },
+      { id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 20 },
+      { id: 3, name: 'Texas Method', modified: new Date(), workoutCount: 32 },
+      { id: 4, name: 'Bigger Leaner Stronger', modified: new Date(), workoutCount: 12 },
+    ];
   }
 
-  openCycleDialog(id: number){
-    this.dialog.open(EditCycleComponent, {width: '400px', data: id})
+  openCycleDialog(id: number) {
+    this.dialog.open(EditCycleComponent, { width: '400px', data: id });
   }
 }
