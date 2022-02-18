@@ -3,16 +3,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Month } from './month';
 
-class Month {
-  name: string;
-  days: number;
-
-  constructor(name: string, days: number) {
-    this.name = name;
-    this.days = days;
-  }
-}
 @Component({
   selector: 'app-workouts-calendar',
   templateUrl: './workouts-calendar.component.html',
