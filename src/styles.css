@@ -75,3 +75,10 @@ img {
   background: #8b6b61;
   border: solid white 1px;
 }
+
+.clickable:hover,
+.clickable:focus {
+  color: #80cbc4;
+  font-size: 110%;
+  transition-duration: 200ms;
+}

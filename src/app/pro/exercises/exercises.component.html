@@ -5,7 +5,7 @@
   <mat-table [dataSource]="exercises">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let exercise">{{ exercise.name }}</mat-cell>
+      <mat-cell *matCellDef="let exercise" class="clickable">{{ exercise.name }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="workoutCount">
