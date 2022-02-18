@@ -22,3 +22,7 @@ label {
   border: solid #b2fff7 2px;
   background: #80ccc4;
 }
+
+.mobile-fix {
+  width: 90px;
+}

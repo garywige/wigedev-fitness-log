@@ -7,14 +7,18 @@
 }
 
 .weight {
-  width: 70%;
+  width: 60%;
   margin-right: 5%;
 }
 
 .weight-suffix {
-  width: 25%;
+  width: 35%;
 }
 
 .mat-error {
   color: white;
+}
+
+.mobile-fix {
+  width: 120px;
 }
