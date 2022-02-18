@@ -34,7 +34,7 @@ export class ExercisesComponent implements OnInit {
   }
 
   openExerciseDialog(id: number){
-    this.dialog.open(EditExerciseComponent, {width: '380px', data: id})
+    this.dialog.open(EditExerciseComponent, {width: '420px',  data: id})
   }
 
 }
