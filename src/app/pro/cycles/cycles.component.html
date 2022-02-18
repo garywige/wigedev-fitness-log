@@ -7,7 +7,7 @@
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-    <mat-cell *matCellDef="let cycle" (click)="openCycleDialog(cycle.id)">{{ cycle.name }}</mat-cell>
+    <mat-cell *matCellDef="let cycle" (click)="openCycleDialog(cycle.id)" class="cycle-name">{{ cycle.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="modified">

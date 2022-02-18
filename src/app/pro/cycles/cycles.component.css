@@ -2,12 +2,19 @@ h1 {
   text-align: center;
 }
 
+div {
+  margin-left: 10%;
+  width: 80%;
+}
+
 .mat-table {
   width: 100%;
   margin-top: 16px;
 }
 
-div {
-  margin-left: 10%;
-  width: 80%;
+.cycle-name:hover,
+.cycle-name:focus {
+  color: #80cbc4;
+  font-size: 110%;
+  transition-duration: 200ms;
 }
