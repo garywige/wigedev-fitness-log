@@ -21,11 +21,13 @@ export class CyclesComponent implements OnInit {
   loadData(){
     this.cycles = [
       {id: 1, name: 'Free', modified: new Date(), workoutCount: 24},
-      {id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 2}
+      {id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 20},
+      {id: 3, name: 'Texas Method', modified: new Date(), workoutCount: 32},
+      {id: 4, name: 'Bigger Leaner Stronger', modified: new Date(), workoutCount: 12}
     ]
   }
 
-  openCycleDialog(){
-    this.dialog.open(EditCycleComponent, {width: '400px'})
+  openCycleDialog(id: number){
+    this.dialog.open(EditCycleComponent, {width: '400px', data: id})
   }
 }

@@ -2,12 +2,12 @@
 
 <div>
 
-<button mat-raised-button color="accent" (click)="openCycleDialog()"><mat-icon>add</mat-icon></button>
+<button mat-raised-button color="accent" (click)="openCycleDialog(0)"><mat-icon>add</mat-icon></button>
 <mat-table [dataSource]="cycles">
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-    <mat-cell *matCellDef="let cycle">{{ cycle.name }}</mat-cell>
+    <mat-cell *matCellDef="let cycle" (click)="openCycleDialog(cycle.id)">{{ cycle.name }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="modified">
