@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 
 interface Exercise {
   id: number
@@ -17,7 +19,7 @@ export class ExercisesComponent implements OnInit {
 
   exercises: Exercise[] = []
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(){
     this.loadData()
@@ -29,6 +31,10 @@ export class ExercisesComponent implements OnInit {
       {id: 2, name: 'Squat', workoutCount: 20},
       {id: 3, name: 'Deadlift', workoutCount: 10}
     ]
+  }
+
+  openExerciseDialog(id: number){
+    this.dialog.open(EditExerciseComponent, {width: '380px', data: id})
   }
 
 }

@@ -7,9 +7,10 @@ import { EditCycleComponent } from './cycles/edit-cycle/edit-cycle.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteCycleComponent } from './cycles/edit-cycle/delete-cycle/delete-cycle.component';
 import { ExercisesComponent } from './exercises/exercises.component';
+import { EditExerciseComponent } from './exercises/edit-exercise/edit-exercise.component';
 
 @NgModule({
-  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent, ExercisesComponent],
+  declarations: [CyclesComponent, EditCycleComponent, DeleteCycleComponent, ExercisesComponent, EditExerciseComponent],
   imports: [CommonModule, ProRoutingModule, MaterialModule, ReactiveFormsModule],
 })
 export class ProModule {}
