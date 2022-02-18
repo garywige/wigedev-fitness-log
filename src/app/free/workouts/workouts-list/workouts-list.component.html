@@ -9,7 +9,7 @@
 
     <ng-container matColumnDef="setCount">
       <th mat-header-cell *matHeaderCellDef>No. of Sets</th>
-      <td mat-cell *matCellDef="let workout">{{ workout.setCount }}</td>
+      <td mat-cell *matCellDef="let workout" class="fixed">{{ workout.setCount }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
