@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Role } from './auth.enum';
-import { IUser } from '../user/user/user';
+import { IUser, User } from '../user/user/user';
 import { Observable } from 'rxjs';
 
 export interface IAuthStatus{
@@ -29,7 +29,20 @@ export interface IAuthService {
 }
 
 @Injectable()
-export class AuthService {
+export abstract class AuthService implements IAuthService {
+
+  readonly authStatus$ = new BehaviorSubject<IAuthStatus>(defaultAuthStatus)
+  readonly currentUser$ = new BehaviorSubject<IUser>(new User())
 
   constructor() { }
+
+  login(email: string, password: string): Observable<void> {
+    throw new Error('Method not implemented.');
+  }
+  logout(clearToken?: boolean): void {
+    throw new Error('Method not implemented.');
+  }
+  getToken(): string {
+    throw new Error('Method not implemented.');
+  }
 }
