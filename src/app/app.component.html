@@ -18,7 +18,7 @@
     </li>
     <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
     <li>
-      <button mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></button>
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu" aria-label="Account"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #accountMenu="matMenu" class="menu">
         <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
