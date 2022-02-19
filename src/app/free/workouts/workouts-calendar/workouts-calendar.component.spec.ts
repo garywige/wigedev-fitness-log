@@ -23,4 +23,14 @@ describe('WorkoutsCalendarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('generateCalendar()', () => {
+    beforeEach(() => {
+      component.generateCalendar()
+    })
+
+    it('should should populate weeks array', () => {
+      expect(component.weeks.length).toBeGreaterThan(0)
+    })
+  })
 });

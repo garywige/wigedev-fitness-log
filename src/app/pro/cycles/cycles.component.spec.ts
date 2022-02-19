@@ -23,4 +23,14 @@ describe('CyclesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('loadData()', () => {
+    beforeEach(() => {
+      component.loadData()
+    })
+
+    it('should populate cycles array', () => {
+      expect(component.cycles.length).toBeGreaterThan(0)
+    })
+  })
 });

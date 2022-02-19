@@ -23,4 +23,14 @@ describe('WorkoutsListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('loadData()', () => {
+    beforeEach(() => {
+      component.loadData()
+    })
+
+    it('should populate workouts array', () => {
+      expect(component.workouts.length).toBeGreaterThan(0)
+    })
+  })
 });

@@ -21,4 +21,15 @@ describe('EditSetComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+
+  describe('loadExercises()', () => {
+
+    beforeEach(() => {
+      component.loadExercises()
+    })
+
+    it('should populate exercises array', () => {
+      expect(component.exercises?.length).toBeGreaterThan(0)
+    })
+  })
+})
