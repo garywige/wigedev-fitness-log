@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingModule } from 'src/app/testing/testing.module';
 
 import { DeleteCycleComponent } from './delete-cycle.component';
 
@@ -9,6 +10,7 @@ describe('DeleteCycleComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DeleteCycleComponent],
+      imports: [TestingModule]
     }).compileComponents();
   });
 

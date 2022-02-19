@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingModule } from 'src/app/testing/testing.module';
 
 import { DeleteWorkoutComponent } from './delete-workout.component';
 
@@ -9,6 +10,7 @@ describe('DeleteWorkoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DeleteWorkoutComponent],
+      imports: [TestingModule]
     }).compileComponents();
   });
 
