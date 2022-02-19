@@ -1,7 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #321911;
+  color: white;
+}
+
+img {
+  border: solid white 1px;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+
+.horizontal-padding {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .flex {
@@ -9,10 +30,55 @@ body {
 }
 
 .spacer {
-  flex-grow: 1;
+  flex: 1 1 auto;
 }
 
 .active {
-  border: solid gray 1px;
+  border-bottom: solid #b2fff7 2px;
   padding: 4px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline,
+.mat-form-field-label {
+  color: white;
+}
+
+.mat-input-element::placeholder {
+  color: #888;
+}
+
+.mat-select-value {
+  color: white;
+}
+
+.menu {
+  background: #8b6b61;
+  border: solid white 1px;
+}
+
+.mat-dialog-container {
+  background: #8b6b61;
+  border: solid white 1px;
+}
+
+.snackbar {
+  background: #8b6b61;
+  border: solid white 1px;
+  color: white;
+}
+
+.mat-error {
+  color: white;
+}
+
+.mat-table {
+  background: #8b6b61;
+  border: solid white 1px;
+}
+
+.clickable:hover,
+.clickable:focus {
+  color: #80cbc4;
+  font-size: 110%;
+  transition-duration: 200ms;
 }

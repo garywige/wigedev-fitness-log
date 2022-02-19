@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingModule } from 'src/app/testing/testing.module';
 
 import { WorkoutsCalendarComponent } from './workouts-calendar.component';
 
@@ -9,6 +10,7 @@ describe('WorkoutsCalendarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsCalendarComponent],
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -20,5 +22,15 @@ describe('WorkoutsCalendarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('generateCalendar()', () => {
+    beforeEach(() => {
+      component.generateCalendar();
+    });
+
+    it('should should populate weeks array', () => {
+      expect(component.weeks.length).toBeGreaterThan(0);
+    });
   });
 });

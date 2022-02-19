@@ -9,20 +9,22 @@ a.month {
 
 table {
   width: 100%;
-  border: solid black 1px;
+  border: solid white 1px;
   text-align: center;
+  background: #8b6b61;
 }
 
 td {
   width: 14%;
   height: 4em;
+  vertical-align: top;
 }
 
 .border {
-  border: solid black 1px;
+  border: solid white 1px;
   padding: 8px;
 }
 
-.today {
-  border: solid black 1px;
+.month-selector {
+  background: #8b6b61;
 }

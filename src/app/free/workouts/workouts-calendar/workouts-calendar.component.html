@@ -1,0 +1,44 @@
+<div class="flex border month-selector">
+  <button mat-fab class="month" (click)="monthBack()"><mat-icon>arrow_back</mat-icon></button>
+  <span class="spacer"></span>
+  <h2>{{ months[selectedMonth].name }} {{ selectedYear }}</h2>
+  <span class="spacer"></span>
+  <button mat-fab class="month" (click)="monthForward()"><mat-icon>arrow_forward</mat-icon></button>
+</div>
+<div>
+  <table>
+    <thead>
+      <th>
+        Su
+      </th>
+      <th>
+        Mo
+      </th>
+      <th>
+        Tu
+      </th>
+      <th>
+        We
+      </th>
+      <th>
+        Th
+      </th>
+      <th>
+        Fr
+      </th>
+      <th>
+        Sa
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of weeks">
+        <td *ngFor="let day of week">
+          <div>
+            {{ day }}<br>
+            <button *ngIf="selectedMonth === today.getMonth() && day === today.getDate() && selectedYear === today.getFullYear()" mat-mini-fab color="accent" (click)="openWorkoutDialog(0)"><mat-icon>add</mat-icon></button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

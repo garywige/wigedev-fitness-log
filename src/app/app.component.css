@@ -1,7 +1,30 @@
+h1 {
+  font-size: 32px;
+  letter-spacing: 8px;
+  line-height: 4px;
+  margin-top: 16px;
+}
+
+caption {
+  font-size: 12px;
+  margin: 0;
+}
+
 .header,
 .footer {
-  border: solid black 1px;
   padding: 8px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  border-bottom: solid white 1px;
+  box-shadow: 0 12px 6px #0008;
+}
+
+.footer {
+  border-top: solid white 1px;
 }
 
 .navigation {
@@ -15,4 +38,14 @@
 
 .content {
   margin: 16px;
+  padding-top: 80px;
+}
+
+.nav-button {
+  font-size: 20px;
+}
+
+.title {
+  text-align: center;
+  margin: 8px;
 }

@@ -1,34 +1,27 @@
 <h1>Cycles</h1>
 
-<table>
-  <thead>
-    <th>
-      Name
-    </th>
-    <th>
-      Modified Date
-    </th>
-    <th>
-      Workouts #
-    </th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        Free
-      </td>
-      <td>
-        Feb 12, 2022
-      </td>
-      <td>
-        2
-      </td>
-    </tr>
-    <tr>
-      <td><button>+</button></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+<div>
 
+<button mat-raised-button color="accent" (click)="openCycleDialog(0)"><mat-icon>add</mat-icon></button>
+<mat-table [dataSource]="cycles">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let cycle" (click)="openCycleDialog(cycle.id)" class="clickable">{{ cycle.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="modified">
+    <mat-header-cell *matHeaderCellDef>Modified Date</mat-header-cell>
+    <mat-cell *matCellDef="let cycle">{{ cycle.modified | date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="workoutCount">
+    <mat-header-cell *matHeaderCellDef>Workout Count</mat-header-cell>
+    <mat-cell *matCellDef="let cycle">{{ cycle.workoutCount }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+</div>

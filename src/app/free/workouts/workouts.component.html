@@ -1,13 +1,15 @@
 <h1>Workouts</h1>
 
 <div class="flex">
-  <a routerLink="/free/workouts/calendar" routerLinkActive="active">Calendar</a>
-  <a routerLink="/free/workouts/list" routerLinkActive="active">List</a>
+  <button mat-button routerLink="/free/workouts/calendar" routerLinkActive="active" class="mobile-fix">Calendar</button>
+  <button mat-button routerLink="/free/workouts/list" routerLinkActive="active">List</button>
   <span class="spacer"></span>
-  <label for="cycle">Cycle: </label>
-  <select name="Cycle" id="cycle">
-    <option value="free">Free</option>
-  </select>
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Cycle</mat-label>
+    <mat-select>
+      <mat-option value="free">Free</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
 <div>

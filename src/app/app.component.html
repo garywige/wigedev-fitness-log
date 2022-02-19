@@ -1,21 +1,35 @@
-<div class="header flex">
-  <h1>WFL</h1>
+<mat-toolbar class="header flex" color="primary">
+  <div class="title">
+    <h1>WFL</h1>
+    <caption>WigeDev Fitness Log</caption>
+  </div>
   <span class="spacer"></span>
   <ul class="navigation">
-    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-    <li><a routerLink="/signin" routerLinkActive="active">Sign In</a></li>
+    <li><matButton routerLink="/home" routerLinkActive="active">Home</matButton></li>
+    <li><matButton routerLink="/signin" routerLinkActive="active">Sign In</matButton></li>
   </ul>
   <ul class="navigation">
-    <li><a routerLink="/pro" routerLinkActive="active">Pro</a></li>
-    <li><a routerLink="/free" routerLinkActive="active">Workouts</a></li>
-    <li>Account</li>
+    <li>
+      <button mat-button [matMenuTriggerFor]="proMenu" class="nav-button">Pro</button>
+      <mat-menu #proMenu="matMenu" class="menu">
+        <button mat-menu-item routerLink="/pro/cycles" routerLinkActive="active">Cycles</button>
+        <button mat-menu-item routerLink="/pro/exercises" routerLinkActive="active">Exercises</button>
+      </mat-menu>
+    </li>
+    <li><matButton routerLink="/free" routerLinkActive="active">Workouts</matButton></li>
+    <li>
+      <button mat-icon-button [matMenuTriggerFor]="accountMenu"><mat-icon>account_circle</mat-icon></button>
+      <mat-menu #accountMenu="matMenu" class="menu">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </li>
   </ul>
-</div>
+</mat-toolbar>
 
 <div class="content">
   <router-outlet></router-outlet>
 </div>
 
-<div class="footer">
-  <p>2022 WigeDev</p>
-</div>
+<mat-toolbar class="footer" color="primary">
+  <p>&copy;2022 Wige Development Services</p>
+</mat-toolbar>

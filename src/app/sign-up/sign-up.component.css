@@ -4,17 +4,24 @@ h1 {
 
 button {
   margin-top: 16px;
+  width: 100%;
 }
 
-input.text {
-  display: block;
-  margin-top: 16px;
+mat-form-field {
+  width: 100%;
 }
 
 .form {
-  border: solid black 1px;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 120px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 80px;
   padding: 16px;
+  color: white;
+  background-color: #8b6b61;
+  border: solid white 1px;
+}
+
+.mat-radio-button {
+  margin-left: 16px;
+  margin-bottom: 16px;
 }

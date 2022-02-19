@@ -1,0 +1,24 @@
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-raised-button {
+  width: 100%;
+}
+
+.weight {
+  width: 60%;
+  margin-right: 5%;
+}
+
+.weight-suffix {
+  width: 35%;
+}
+
+.mat-error {
+  color: white;
+}
+
+.mobile-fix {
+  width: 120px;
+}

@@ -9,3 +9,20 @@ a {
 label {
   margin-right: 16px;
 }
+
+.mat-button {
+  height: 32px;
+  margin-top: 16px;
+  background: #4f9b94;
+  color: black;
+  margin-right: 8px;
+}
+
+.active {
+  border: solid #b2fff7 2px;
+  background: #80ccc4;
+}
+
+.mobile-fix {
+  width: 90px;
+}

@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
-class Month {
-  name: string;
-  days: number;
+import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Month } from './month';
 
-  constructor(name: string, days: number) {
-    this.name = name;
-    this.days = days;
-  }
-}
 @Component({
   selector: 'app-workouts-calendar',
   templateUrl: './workouts-calendar.component.html',
@@ -21,7 +17,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   months: Array<Month>;
   weeks: Array<Array<number>>;
 
-  constructor() {
+  constructor(public dialog: MatDialog, private snackbar: MatSnackBar) {
     this.selectedYear = new Date().getFullYear();
 
     this.months = [
@@ -94,5 +90,18 @@ export class WorkoutsCalendarComponent implements OnInit {
     }
 
     this.generateCalendar();
+  }
+
+  openWorkoutDialog(id: number) {
+    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id });
+    ref.afterClosed().subscribe((result) => {
+      if (result) {
+        this.openSnackBar('Workout Saved!', 'Close');
+      }
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackbar.open(message, action, { duration: 3000, panelClass: 'snackbar' });
   }
 }

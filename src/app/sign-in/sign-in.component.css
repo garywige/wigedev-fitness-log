@@ -7,15 +7,44 @@ a {
   margin-bottom: 16px;
 }
 
-input {
-  display: block;
-  margin-top: 16px;
+p {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
 }
 
 .form {
-  border: solid black 1px;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-bottom: 160px;
+  background-color: #8b6b61;
+  color: white;
+  border: solid white 1px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 80px;
   padding: 16px;
+}
+
+.bottom-margin {
+  margin-bottom: 24px;
+}
+
+.mat-stroked-button {
+  border: solid white 1px;
+}
+
+.small-button {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: -32px;
+}
+
+.pw-error {
+  margin-top: 24px;
 }

@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Exercise Name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error>Name must contain at least one character (no symbols or numbers)</mat-error>
+  </mat-form-field>
+  <br>
+  <button type="submit" mat-raised-button color="accent" [disabled]="form.invalid" mat-dialog-close>Save</button>
+  <br>
+  <button type="button" mat-raised-button type="button" color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete</button>
+  <button type="button" mat-button mat-dialog-close>Cancel</button>
+</form>
