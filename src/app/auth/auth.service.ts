@@ -45,4 +45,8 @@ export abstract class AuthService implements IAuthService {
   getToken(): string {
     throw new Error('Method not implemented.');
   }
+
+  protected abstract authProvider(email: string, password: string): Observable<IServerAuthResponse>
+  protected abstract transformJwtToken(token: unknown): IAuthStatus
+  protected abstract getCurrentUser(): Observable<User>
 }
