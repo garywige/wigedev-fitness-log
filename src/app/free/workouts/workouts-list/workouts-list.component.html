@@ -1,5 +1,5 @@
 <div>
-  <button mat-fab color="accent" (click)="openDialog(0)"><mat-icon>add</mat-icon></button>
+  <button mat-fab color="accent" (click)="openDialog(0)" aria-label="add workout"><mat-icon>add</mat-icon></button>
   <table mat-table [dataSource]="workouts" class="mat-elevation-z8">
 
     <ng-container matColumnDef="date">
