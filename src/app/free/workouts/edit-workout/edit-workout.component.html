@@ -21,7 +21,7 @@
       <mat-divider></mat-divider>
       <p>{{group.name}}</p>
       <div *ngFor="let set of group.sets; index as i" class="flex">
-        <button mat-icon-button color="accent" (click)="group.sets.splice(i, 1)"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="accent" (click)="group.sets.splice(i, 1)" aria-label="delete set"><mat-icon>delete</mat-icon></button>
         <span>
           {{set.weight}}
         </span>
@@ -36,11 +36,11 @@
           reps
         </span>
         <span class="spacer"></span>
-        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise + i" pattern="^\d+$">
+        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise + i" pattern="^\d+$" aria-label="completed reps">
       </div>
     </div>
   </div>
-  <button type="button" mat-mini-fab (click)="openSetDialog()"><mat-icon>add</mat-icon></button>
+  <button type="button" mat-mini-fab (click)="openSetDialog()" aria-label="add set"><mat-icon>add</mat-icon></button>
   <mat-divider></mat-divider>
   <button type="submit" mat-raised-button color="accent" [disabled]="myForm.invalid" mat-dialog-close="output">Save</button>
   <button type="button" mat-raised-button color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete Workout</button>
