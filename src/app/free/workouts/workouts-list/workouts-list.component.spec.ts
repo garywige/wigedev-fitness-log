@@ -10,7 +10,7 @@ describe('WorkoutsListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsListComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -26,11 +26,11 @@ describe('WorkoutsListComponent', () => {
 
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData()
-    })
+      component.loadData();
+    });
 
     it('should populate workouts array', () => {
-      expect(component.workouts.length).toBeGreaterThan(0)
-    })
-  })
+      expect(component.workouts.length).toBeGreaterThan(0);
+    });
+  });
 });

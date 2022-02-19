@@ -10,7 +10,7 @@ describe('WorkoutsCalendarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsCalendarComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -26,11 +26,11 @@ describe('WorkoutsCalendarComponent', () => {
 
   describe('generateCalendar()', () => {
     beforeEach(() => {
-      component.generateCalendar()
-    })
+      component.generateCalendar();
+    });
 
     it('should should populate weeks array', () => {
-      expect(component.weeks.length).toBeGreaterThan(0)
-    })
-  })
+      expect(component.weeks.length).toBeGreaterThan(0);
+    });
+  });
 });

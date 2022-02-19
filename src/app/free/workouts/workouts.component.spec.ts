@@ -10,7 +10,7 @@ describe('WorkoutsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 

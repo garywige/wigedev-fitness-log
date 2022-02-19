@@ -10,7 +10,7 @@ describe('EditCycleComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditCycleComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 

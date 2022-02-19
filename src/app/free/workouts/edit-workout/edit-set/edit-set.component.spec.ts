@@ -10,7 +10,7 @@ describe('EditSetComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditSetComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -25,13 +25,12 @@ describe('EditSetComponent', () => {
   });
 
   describe('loadExercises()', () => {
-
     beforeEach(() => {
-      component.loadExercises()
-    })
+      component.loadExercises();
+    });
 
     it('should populate exercises array', () => {
-      expect(component.exercises?.length).toBeGreaterThan(0)
-    })
-  })
-})
+      expect(component.exercises?.length).toBeGreaterThan(0);
+    });
+  });
+});

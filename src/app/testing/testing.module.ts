@@ -13,11 +13,11 @@ const modules = [
   FormsModule,
   ReactiveFormsModule,
   FlexLayoutModule,
-  CommonModule
-]
+  CommonModule,
+];
 
 @NgModule({
   imports: modules,
-  exports: modules
+  exports: modules,
 })
-export class TestingModule { }
+export class TestingModule {}

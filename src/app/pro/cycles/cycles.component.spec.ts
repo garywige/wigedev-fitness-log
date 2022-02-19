@@ -10,7 +10,7 @@ describe('CyclesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CyclesComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -26,11 +26,11 @@ describe('CyclesComponent', () => {
 
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData()
-    })
+      component.loadData();
+    });
 
     it('should populate cycles array', () => {
-      expect(component.cycles.length).toBeGreaterThan(0)
-    })
-  })
+      expect(component.cycles.length).toBeGreaterThan(0);
+    });
+  });
 });

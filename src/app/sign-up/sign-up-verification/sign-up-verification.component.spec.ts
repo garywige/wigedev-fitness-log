@@ -12,9 +12,7 @@ describe('SignUpVerificationComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SignUpVerificationComponent],
       imports: [TestingModule],
-      providers: [
-        { provide: MAT_DIALOG_DATA, useValue: { email: 'test@test.com' }}
-      ]
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: { email: 'test@test.com' } }],
     }).compileComponents();
   });
 

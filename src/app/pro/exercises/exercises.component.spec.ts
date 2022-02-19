@@ -10,7 +10,7 @@ describe('ExercisesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ExercisesComponent],
-      imports: [TestingModule]
+      imports: [TestingModule],
     }).compileComponents();
   });
 
@@ -26,11 +26,11 @@ describe('ExercisesComponent', () => {
 
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData()
-    })
+      component.loadData();
+    });
 
     it('should populate exercises array', () => {
-      expect(component.exercises.length).toBeGreaterThan(0)
-    })
-  })
+      expect(component.exercises.length).toBeGreaterThan(0);
+    });
+  });
 });
