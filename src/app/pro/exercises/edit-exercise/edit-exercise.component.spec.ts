@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestingModule } from 'src/app/testing/testing.module';
 
 import { EditExerciseComponent } from './edit-exercise.component';
 
@@ -9,6 +10,7 @@ describe('EditExerciseComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditExerciseComponent],
+      imports: [TestingModule]
     }).compileComponents();
   });
 

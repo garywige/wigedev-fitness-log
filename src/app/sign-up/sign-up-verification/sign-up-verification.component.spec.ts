@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TestingModule } from 'src/app/testing/testing.module';
 
 import { SignUpVerificationComponent } from './sign-up-verification.component';
 
@@ -9,6 +11,10 @@ describe('SignUpVerificationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignUpVerificationComponent],
+      imports: [TestingModule],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: { email: 'test@test.com' }}
+      ]
     }).compileComponents();
   });
 
