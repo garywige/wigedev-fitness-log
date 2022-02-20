@@ -41,4 +41,8 @@ export class InMemoryAuthService extends AuthService {
 
       return of(authResponse)
   }
+
+  protected transformJwtToken(token: IAuthStatus): IAuthStatus {
+      return token
+  }
 }
