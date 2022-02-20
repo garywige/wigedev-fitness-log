@@ -1,4 +1,4 @@
-import { Role } from "src/app/common/services/auth/auth.enum";
+import { Role } from 'src/app/common/services/auth/auth.enum'
 
 export interface IUser {
   id: string
@@ -16,21 +16,19 @@ export class User implements IUser {
     public role = Role.None,
     public created: Date | string = '',
     public paidThrough: Date | string = '',
-    public emailVerified = false,
-    ){
+    public emailVerified = false
+  ) {}
 
-  }
-
-  static Build(user: IUser){
-    if(!user){
+  static Build(user: IUser) {
+    if (!user) {
       return new User()
     }
 
-    if(typeof user.created === 'string'){
+    if (typeof user.created === 'string') {
       user.created = new Date(user.created)
     }
 
-    if(typeof user.paidThrough === 'string'){
+    if (typeof user.paidThrough === 'string') {
       user.paidThrough = new Date(user.paidThrough)
     }
 

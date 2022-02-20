@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { EditCycleComponent } from './edit-cycle/edit-cycle.component';
-import { Cycle } from './cycle';
-import { UiService } from 'src/app/common/services/ui/ui.service';
+import { Component, OnInit } from '@angular/core'
+import { EditCycleComponent } from './edit-cycle/edit-cycle.component'
+import { Cycle } from './cycle'
+import { UiService } from 'src/app/common/services/ui/ui.service'
 
 @Component({
   selector: 'app-cycles',
@@ -9,13 +9,13 @@ import { UiService } from 'src/app/common/services/ui/ui.service';
   styleUrls: ['./cycles.component.css'],
 })
 export class CyclesComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'modified', 'workoutCount'];
-  cycles: Cycle[] = [];
+  displayedColumns: string[] = ['name', 'modified', 'workoutCount']
+  cycles: Cycle[] = []
 
   constructor(private uiService: UiService) {}
 
   ngOnInit() {
-    this.loadData();
+    this.loadData()
   }
 
   loadData() {
@@ -24,10 +24,10 @@ export class CyclesComponent implements OnInit {
       { id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 20 },
       { id: 3, name: 'Texas Method', modified: new Date(), workoutCount: 32 },
       { id: 4, name: 'Bigger Leaner Stronger', modified: new Date(), workoutCount: 12 },
-    ];
+    ]
   }
 
   openCycleDialog(id: number) {
-    this.uiService.showDialog(EditCycleComponent, id);
+    this.uiService.showDialog(EditCycleComponent, id)
   }
 }

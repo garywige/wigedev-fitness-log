@@ -1,36 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingModule } from 'src/app/common/testing/testing.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestingModule } from 'src/app/common/testing/testing.module'
 
-import { WorkoutsListComponent } from './workouts-list.component';
+import { WorkoutsListComponent } from './workouts-list.component'
 
 describe('WorkoutsListComponent', () => {
-  let component: WorkoutsListComponent;
-  let fixture: ComponentFixture<WorkoutsListComponent>;
+  let component: WorkoutsListComponent
+  let fixture: ComponentFixture<WorkoutsListComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsListComponent],
       imports: [TestingModule],
-    }).compileComponents();
-  });
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkoutsListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(WorkoutsListComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData();
-    });
+      component.loadData()
+    })
 
     it('should populate workouts array', () => {
-      expect(component.workouts.length).toBeGreaterThan(0);
-    });
-  });
-});
+      expect(component.workouts.length).toBeGreaterThan(0)
+    })
+  })
+})

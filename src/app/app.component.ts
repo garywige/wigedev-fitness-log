@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './common/services/auth/auth.service';
-import { UiService } from './common/services/ui/ui.service';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { AuthService } from './common/services/auth/auth.service'
+import { UiService } from './common/services/ui/ui.service'
 import { Role } from './common/services/auth/auth.enum'
 
 @Component({
@@ -10,7 +10,7 @@ import { Role } from './common/services/auth/auth.enum'
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'wigedev-fitness-log';
+  title = 'wigedev-fitness-log'
 
   constructor(private router: Router, private uiService: UiService, public authService: AuthService) {}
 
@@ -22,6 +22,6 @@ export class AppComponent {
     this.uiService.toast('Logout Successful!')
 
     // navigate to login
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/signin'])
   }
 }

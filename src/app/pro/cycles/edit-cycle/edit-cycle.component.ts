@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UiService } from 'src/app/common/services/ui/ui.service';
-import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
+import { Component } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { UiService } from 'src/app/common/services/ui/ui.service'
+import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component'
 
 @Component({
   selector: 'app-edit-cycle',
@@ -11,23 +11,23 @@ import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
 export class EditCycleComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^(([a-zA-Z0-9]+)\s?)+$/)]),
-  });
+  })
 
   constructor(private uiService: UiService) {}
 
   onSubmit() {
     let output = {
       name: this.form.get('name')?.value,
-    };
+    }
 
-    console.log(output);
+    console.log(output)
 
     // inform user
     this.uiService.toast('Cycle Saved!')
   }
 
   openDeleteDialog() {
-    let ref = this.uiService.showDialog(DeleteCycleComponent, null, true);
+    let ref = this.uiService.showDialog(DeleteCycleComponent, null, true)
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete cycle
@@ -38,6 +38,6 @@ export class EditCycleComponent {
         // close all dialogs
         this.uiService.closeAllDialogs()
       }
-    });
+    })
   }
 }

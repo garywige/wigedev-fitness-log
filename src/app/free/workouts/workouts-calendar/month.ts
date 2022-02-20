@@ -1,9 +1,9 @@
 export class Month {
-  name: string;
-  days: number;
+  name: string
+  days: number
 
   constructor(name: string, days: number) {
-    this.name = name;
-    this.days = days;
+    this.name = name
+    this.days = days
   }
 }
