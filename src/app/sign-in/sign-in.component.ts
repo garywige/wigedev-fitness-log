@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,9 +22,12 @@ export class SignInComponent {
     ]),
   });
 
-  constructor(private snackbar: MatSnackBar, private router: Router) {}
+  constructor(private snackbar: MatSnackBar, private router: Router, private authService: AuthService) {}
 
   onSubmit() {
+    // simulate authService
+    this.authService.login('pro@test.com', '12345678')
+
     // send the data
     let output = {
       email: this.form.get('email')?.value,
