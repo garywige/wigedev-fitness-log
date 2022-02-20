@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, filter, map, mergeMap, Observable, pipe, tap, throwError } from 'rxjs';
 import { Role } from './auth.enum';
-import { IUser, User } from '../user/user/user';
+import { IUser, User } from '../../../user/user/user';
 import jwtDecode from 'jwt-decode'
-import { transformError } from '../common/common'
+import { transformError } from '../../common'
 import { CacheService } from './cache.service';
 
 export interface IAuthStatus{

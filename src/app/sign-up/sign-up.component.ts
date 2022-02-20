@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component';
 import { Router } from '@angular/router';
-import { UiService } from '../ui/ui.service';
+import { UiService } from '../common/services/ui/ui.service';
 
 @Component({
   selector: 'app-sign-up',

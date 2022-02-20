@@ -4,7 +4,7 @@ import { DeleteWorkoutComponent } from './delete-workout/delete-workout.componen
 import { EditSetComponent } from './edit-set/edit-set.component';
 import { Set } from './set';
 import { ExerciseGroup } from './exercise-group';
-import { UiService } from 'src/app/ui/ui.service';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 
 @Component({
   selector: 'app-edit-workout',

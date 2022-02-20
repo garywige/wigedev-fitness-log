@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CyclesComponent } from './cycles/cycles.component';
 import { NgModule } from '@angular/core';
 import { ExercisesComponent } from './exercises/exercises.component';
-import { AuthGuardService } from '../auth/auth-guard.service';
-import { Role } from '../auth/auth.enum';
+import { AuthGuardService } from '../common/services/auth/auth-guard.service';
+import { Role } from '../common/services/auth/auth.enum';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pro/cycles', pathMatch: 'full' },

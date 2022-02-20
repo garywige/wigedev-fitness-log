@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UiService } from 'src/app/ui/ui.service';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.component';
 
 @Component({

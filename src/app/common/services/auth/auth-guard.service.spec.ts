@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TestingModule } from '../testing/testing.module';
+import { TestingModule } from '../../testing/testing.module';
 
 import { AuthGuardService } from './auth-guard.service';
 

@@ -13,10 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpVerificationComponent } from './sign-up/sign-up-verification/sign-up-verification.component';
-import { AuthService } from './auth/auth.service';
-import { InMemoryAuthService } from './auth/auth.inmemory.service';
+import { AuthService } from './common/services/auth/auth.service';
+import { InMemoryAuthService } from './common/services/auth/auth.inmemory.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
+import { AuthHttpInterceptor } from './common/services/auth/auth-http-interceptor';
 
 @NgModule({
   declarations: [

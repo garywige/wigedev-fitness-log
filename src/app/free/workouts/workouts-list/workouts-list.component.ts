@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
-import { UiService } from 'src/app/ui/ui.service';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 
 interface Workout {
   id: number;

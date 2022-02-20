@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService, IAuthStatus, IServerAuthResponse } from './auth.service';
 import { sign } from 'fake-jwt-sign'
 import { Observable, of, throwError } from 'rxjs';
-import { User } from '../user/user/user';
+import { User } from '../../../user/user/user';
 import { Role } from './auth.enum';
 
 @Injectable()

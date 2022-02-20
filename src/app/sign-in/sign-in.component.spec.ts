@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '../auth/auth.service';
-import { AuthServiceFake } from '../testing/testing.fakes';
-import { TestingModule } from '../testing/testing.module';
+import { AuthService } from '../common/services/auth/auth.service';
+import { AuthServiceFake } from '../common/testing/testing.fakes';
+import { TestingModule } from '../common/testing/testing.module';
 
 import { SignInComponent } from './sign-in.component';
 

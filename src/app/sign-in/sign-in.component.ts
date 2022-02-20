@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest, filter, tap } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
-import { UiService } from '../ui/ui.service';
+import { AuthService } from '../common/services/auth/auth.service';
+import { UiService } from '../common/services/ui/ui.service';
 
 @Component({
   selector: 'app-sign-in',
