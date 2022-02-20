@@ -87,6 +87,20 @@ export abstract class AuthService extends CacheService implements IAuthService {
     this.removeItem('jwt')
   }
 
+  protected hasExpiredToken(): boolean {
+    const jwt = this.getToken()
+    if(jwt){
+      const payload = jwtDecode(jwt) as any
+      return Date.now() >= payload.exp * 1000
+    }
+
+    return true
+  }
+
+  protected getAuthStatusFromToken(): IAuthStatus {
+    return this.transformJwtToken(jwtDecode(this.getToken()))
+  }
+
   protected abstract authProvider(email: string, password: string): Observable<IServerAuthResponse>
   protected abstract transformJwtToken(token: unknown): IAuthStatus
   protected abstract getCurrentUser(): Observable<User>
