@@ -8,7 +8,14 @@ import { Role } from './auth.enum';
 @Injectable()
 export class InMemoryAuthService extends AuthService {
 
-  private defaultUser = new User()
+  private defaultUser = User.Build({
+    id: '5da01751da27cc462d265913',
+    email: 'gary@wige-dev.com',
+    role: Role.None,
+    created: '20220219',
+    paidThrough: '20230219',
+    emailVerified: true
+  })
 
   constructor() {
     super()
@@ -44,5 +51,9 @@ export class InMemoryAuthService extends AuthService {
 
   protected transformJwtToken(token: IAuthStatus): IAuthStatus {
       return token
+  }
+
+  protected getCurrentUser(): Observable<User> {
+      return of(this.defaultUser)
   }
 }
