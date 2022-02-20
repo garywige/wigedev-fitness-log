@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable()
-export class InMemoryAuthService {
+export class InMemoryAuthService extends AuthService {
 
-  constructor() { }
+  constructor() {
+    super()
+    console.warn('You\'re using the InMemoryAuthService. Do not use this service in production.')
+  }
 }
