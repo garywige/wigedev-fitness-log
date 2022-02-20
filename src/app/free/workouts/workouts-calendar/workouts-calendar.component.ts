@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
 import { Month } from './month';
-import { UiService } from 'src/app/ui/ui.service';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 
 @Component({
   selector: 'app-workouts-calendar',

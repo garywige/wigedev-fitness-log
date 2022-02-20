@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UiService } from 'src/app/ui/ui.service';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 
 interface Exercise {
