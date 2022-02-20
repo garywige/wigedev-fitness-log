@@ -9,7 +9,7 @@
     <li><matButton routerLink="/signin" routerLinkActive="active">Sign In</matButton></li>
   </ul>
   <ul class="navigation" *ngIf="(authService.authStatus$ | async)?.isAuthenticated">
-    <li>
+    <li *ngIf="(authService.authStatus$ | async)?.userRole === 'pro'">
       <button mat-button [matMenuTriggerFor]="proMenu" class="nav-button">Pro</button>
       <mat-menu #proMenu="matMenu" class="menu">
         <button mat-menu-item routerLink="/pro/cycles" routerLinkActive="active">Cycles</button>
@@ -20,6 +20,7 @@
     <li>
       <button mat-icon-button [matMenuTriggerFor]="accountMenu" aria-label="Account"><mat-icon>account_circle</mat-icon></button>
       <mat-menu #accountMenu="matMenu" class="menu">
+        <button mat-menu-item *ngIf="(authService.authStatus$ | async)?.userRole === 'free'">Upgrade to Pro</button>
         <button mat-menu-item (click)="logout()">Logout</button>
       </mat-menu>
     </li>

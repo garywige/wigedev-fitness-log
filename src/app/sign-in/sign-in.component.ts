@@ -27,7 +27,7 @@ export class SignInComponent {
 
   onSubmit() {
     // simulate authService
-    this.authService.login('pro@test.com', '12345678')
+    this.authService.login('free@test.com', '12345678')
     combineLatest([this.authService.authStatus$, this.authService.currentUser$])
       .pipe(filter(([authStatus, user]) =>
         authStatus.isAuthenticated && user?.id !== ''

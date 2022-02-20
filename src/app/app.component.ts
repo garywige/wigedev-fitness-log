@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 import { UiService } from './ui/ui.service';
+import { Role } from './auth/auth.enum'
 
 @Component({
   selector: 'app-root',
