@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, filter, map, mergeMap, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, filter, map, mergeMap, Observable, pipe, tap, throwError } from 'rxjs';
 import { Role } from './auth.enum';
 import { IUser, User } from '../user/user/user';
 import jwtDecode from 'jwt-decode'
@@ -33,6 +33,12 @@ export interface IAuthService {
 @Injectable()
 export abstract class AuthService extends CacheService implements IAuthService {
 
+  private getAndUpdateUserIfAuthenticated = pipe(
+    filter((status: IAuthStatus) => status.isAuthenticated),
+    mergeMap(() => this.getCurrentUser()),
+    map((user: IUser) => this.currentUser$.next(user)),
+    catchError(transformError))
+
   readonly authStatus$ = new BehaviorSubject<IAuthStatus>(defaultAuthStatus)
   readonly currentUser$ = new BehaviorSubject<IUser>(new User())
 
@@ -55,10 +61,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
           return this.getAuthStatusFromToken()
         }),
         tap(status => this.authStatus$.next(status)),
-        filter((status: IAuthStatus) => status.isAuthenticated),
-        mergeMap(() => this.getCurrentUser()),
-        map(user => this.currentUser$.next(user)),
-        catchError(transformError)
+        this.getAndUpdateUserIfAuthenticated
       )
 
       loginResponse$.subscribe({
