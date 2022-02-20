@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
 import { AuthService, IAuthStatus, IServerAuthResponse } from '../services/auth/auth.service'
 import { User } from '../../user/user/user';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AuthServiceFake extends AuthService {
 
   constructor(){
