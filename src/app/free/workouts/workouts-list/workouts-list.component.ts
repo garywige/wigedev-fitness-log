@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { UiService } from 'src/app/ui/ui.service';
 
 interface Workout {
   id: number;
@@ -20,7 +20,7 @@ export class WorkoutsListComponent implements OnInit {
 
   workouts: Workout[] = [];
 
-  constructor(public dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(public dialog: MatDialog, private uiService: UiService) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -36,12 +36,8 @@ export class WorkoutsListComponent implements OnInit {
     let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id });
     ref.afterClosed().subscribe((result) => {
       if (result) {
-        this.openSnackBar('Workout Saved!', 'Close');
+        this.uiService.toast('Workout Saved!')
       }
     });
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackbar.open(message, action, { duration: 3000, panelClass: 'snackbar' });
   }
 }

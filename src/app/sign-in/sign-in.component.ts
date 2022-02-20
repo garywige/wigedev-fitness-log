@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { combineLatest, filter, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { UiService } from '../ui/ui.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,7 +23,7 @@ export class SignInComponent {
     ]),
   });
 
-  constructor(private snackbar: MatSnackBar, private router: Router, private authService: AuthService) {}
+  constructor(private uiService: UiService, private router: Router, private authService: AuthService) {}
 
   onSubmit() {
     // simulate authService
@@ -33,7 +33,7 @@ export class SignInComponent {
         authStatus.isAuthenticated && user?.id !== ''
       ), tap(([authStatus, user]) => {
         // display message on successful sign in
-        this.snackbar.open('Welcome to WFL!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.uiService.toast('Welcome to WFL!')
 
         // navigate to the workouts page
         this.router.navigate(['/free'])

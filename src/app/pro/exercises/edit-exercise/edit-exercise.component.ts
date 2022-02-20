@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { UiService } from 'src/app/ui/ui.service';
 import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.component';
 
 @Component({
@@ -14,14 +14,14 @@ export class EditExerciseComponent {
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
   });
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private dialog: MatDialog, private uiService: UiService) {}
 
   openDeleteDialog() {
     let ref = this.dialog.open(DeleteExerciseComponent, { width: '380px' });
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete exercise
-        this.snackbar.open('Exercise Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.uiService.toast('Exercise Deleted!')
         this.dialog.closeAll();
       }
     });
@@ -35,6 +35,6 @@ export class EditExerciseComponent {
     console.log(output);
 
     // give user feedback
-    this.snackbar.open('Exercise Saved!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+    this.uiService.toast('Exercise Saved!')
   }
 }

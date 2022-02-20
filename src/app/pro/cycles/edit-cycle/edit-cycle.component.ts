@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { UiService } from 'src/app/ui/ui.service';
 import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class EditCycleComponent {
     name: new FormControl('', [Validators.required, Validators.pattern(/^(([a-zA-Z0-9]+)\s?)+$/)]),
   });
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private dialog: MatDialog, private uiService: UiService) {}
 
   onSubmit() {
     let output = {
@@ -24,7 +24,7 @@ export class EditCycleComponent {
     console.log(output);
 
     // inform user
-    this.snackbar.open('Cycle Saved!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+    this.uiService.toast('Cycle Saved!')
   }
 
   openDeleteDialog() {
@@ -34,7 +34,7 @@ export class EditCycleComponent {
         // delete cycle
 
         // inform user
-        this.snackbar.open('Cycle Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.uiService.toast('Cycle Deleted!')
 
         // close all dialogs
         this.dialog.closeAll();

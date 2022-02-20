@@ -5,7 +5,7 @@ import { EditSetComponent } from './edit-set/edit-set.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Set } from './set';
 import { ExerciseGroup } from './exercise-group';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { UiService } from 'src/app/ui/ui.service';
 
 @Component({
   selector: 'app-edit-workout',
@@ -17,7 +17,7 @@ export class EditWorkoutComponent {
   groups: ExerciseGroup[] = [];
   output: { date: Date; sets: Set[] } | null = null;
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private dialog: MatDialog, private uiService: UiService) {}
 
   openSetDialog() {
     let dialogRef = this.dialog.open(EditSetComponent);
@@ -31,7 +31,7 @@ export class EditWorkoutComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // TODO: implement delete workout & close the workout window
-        this.snackbar.open('Workout Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.uiService.toast('Workout Deleted!')
         this.dialog.closeAll();
       }
     });

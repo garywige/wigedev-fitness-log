@@ -1,10 +1,10 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component';
 import { Router } from '@angular/router';
+import { UiService } from '../ui/ui.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,12 +26,12 @@ export class SignUpComponent {
     type: new FormControl('', Validators.required),
   });
 
-  constructor(private snackbar: MatSnackBar, private dialog: MatDialog, private router: Router) {}
+  constructor(private uiService: UiService, private dialog: MatDialog, private router: Router) {}
 
   onSubmit() {
     // verify that passwords match
     if (this.form.get('password')?.value !== this.form.get('confirm')?.value) {
-      this.openSnackBar('Passwords do not match', 'Close');
+      this.uiService.toast('Passwords do not match.')
       return;
     }
 
@@ -51,9 +51,5 @@ export class SignUpComponent {
         this.router.navigate(['/signin']);
       }
     });
-  }
-
-  openSnackBar(message: string, action: string) {
-    this.snackbar.open(message, action, { duration: 3000, panelClass: 'snackbar' });
   }
 }
