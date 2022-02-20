@@ -47,8 +47,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
       .pipe(
         map(value => {
           this.setToken(value.accessToken)
-          const token = jwtDecode(value.accessToken)
-          return this.transformJwtToken(token)
+          return this.getAuthStatusFromToken()
         }),
         tap(status => this.authStatus$.next(status)),
         filter((status: IAuthStatus) => status.isAuthenticated),
