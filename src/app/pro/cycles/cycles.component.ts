@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { EditCycleComponent } from './edit-cycle/edit-cycle.component';
 import { Cycle } from './cycle';
+import { UiService } from 'src/app/ui/ui.service';
 
 @Component({
   selector: 'app-cycles',
@@ -12,7 +12,7 @@ export class CyclesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'modified', 'workoutCount'];
   cycles: Cycle[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private uiService: UiService) {}
 
   ngOnInit() {
     this.loadData();
@@ -28,6 +28,6 @@ export class CyclesComponent implements OnInit {
   }
 
   openCycleDialog(id: number) {
-    this.dialog.open(EditCycleComponent, { width: '400px', data: id });
+    this.uiService.showDialog(EditCycleComponent, id);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
-import { MatDialog } from '@angular/material/dialog';
 import { UiService } from 'src/app/ui/ui.service';
 
 interface Workout {
@@ -20,7 +19,7 @@ export class WorkoutsListComponent implements OnInit {
 
   workouts: Workout[] = [];
 
-  constructor(public dialog: MatDialog, private uiService: UiService) {}
+  constructor(private uiService: UiService) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -33,7 +32,7 @@ export class WorkoutsListComponent implements OnInit {
   }
 
   openDialog(id: number) {
-    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id });
+    let ref = this.uiService.showDialog(EditWorkoutComponent, id);
     ref.afterClosed().subscribe((result) => {
       if (result) {
         this.uiService.toast('Workout Saved!')

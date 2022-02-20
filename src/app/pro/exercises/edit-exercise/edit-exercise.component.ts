@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { UiService } from 'src/app/ui/ui.service';
 import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.component';
 
@@ -14,15 +13,15 @@ export class EditExerciseComponent {
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
   });
 
-  constructor(private dialog: MatDialog, private uiService: UiService) {}
+  constructor(private uiService: UiService) {}
 
   openDeleteDialog() {
-    let ref = this.dialog.open(DeleteExerciseComponent, { width: '380px' });
+    let ref = this.uiService.showDialog(DeleteExerciseComponent, null, true);
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete exercise
         this.uiService.toast('Exercise Deleted!')
-        this.dialog.closeAll();
+        this.uiService.closeAllDialogs()
       }
     });
   }

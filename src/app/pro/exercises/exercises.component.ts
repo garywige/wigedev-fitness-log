@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { UiService } from 'src/app/ui/ui.service';
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
 
 interface Exercise {
@@ -18,7 +18,7 @@ export class ExercisesComponent implements OnInit {
 
   exercises: Exercise[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private uiService: UiService) {}
 
   ngOnInit() {
     this.loadData();
@@ -33,6 +33,6 @@ export class ExercisesComponent implements OnInit {
   }
 
   openExerciseDialog(id: number) {
-    this.dialog.open(EditExerciseComponent, { width: '420px', data: id });
+    this.uiService.showDialog(EditExerciseComponent, id);
   }
 }

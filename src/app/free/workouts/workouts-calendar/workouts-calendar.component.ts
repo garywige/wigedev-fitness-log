@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Month } from './month';
 import { UiService } from 'src/app/ui/ui.service';
 
@@ -17,7 +16,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   months: Array<Month>;
   weeks: Array<Array<number>>;
 
-  constructor(public dialog: MatDialog, private uiService: UiService) {
+  constructor(private uiService: UiService) {
     this.selectedYear = new Date().getFullYear();
 
     this.months = [
@@ -93,7 +92,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   }
 
   openWorkoutDialog(id: number) {
-    let ref = this.dialog.open(EditWorkoutComponent, { width: '600px', data: id });
+    let ref = this.uiService.showDialog(EditWorkoutComponent, id);
     ref.afterClosed().subscribe((result) => {
       if (result) {
         this.uiService.toast('Workout Saved!')

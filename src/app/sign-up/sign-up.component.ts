@@ -1,7 +1,6 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component';
 import { Router } from '@angular/router';
 import { UiService } from '../ui/ui.service';
@@ -26,7 +25,7 @@ export class SignUpComponent {
     type: new FormControl('', Validators.required),
   });
 
-  constructor(private uiService: UiService, private dialog: MatDialog, private router: Router) {}
+  constructor(private uiService: UiService, private router: Router) {}
 
   onSubmit() {
     // verify that passwords match
@@ -44,7 +43,7 @@ export class SignUpComponent {
 
     console.log(output);
 
-    let ref = this.dialog.open(SignUpVerificationComponent, { width: '420px', data: { email: output.email } });
+    let ref = this.uiService.showDialog(SignUpVerificationComponent, { email: output.email })
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // navigate to Sign In

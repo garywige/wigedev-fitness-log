@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component';
 import { EditSetComponent } from './edit-set/edit-set.component';
-import { MatDialog } from '@angular/material/dialog';
 import { Set } from './set';
 import { ExerciseGroup } from './exercise-group';
 import { UiService } from 'src/app/ui/ui.service';
@@ -17,22 +16,22 @@ export class EditWorkoutComponent {
   groups: ExerciseGroup[] = [];
   output: { date: Date; sets: Set[] } | null = null;
 
-  constructor(private dialog: MatDialog, private uiService: UiService) {}
+  constructor(private uiService: UiService) {}
 
   openSetDialog() {
-    let dialogRef = this.dialog.open(EditSetComponent);
+    let dialogRef = this.uiService.showDialog(EditSetComponent, null, true);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) this.addSet(result);
     });
   }
 
   openDeleteDialog() {
-    let dialogRef = this.dialog.open(DeleteWorkoutComponent);
+    let dialogRef = this.uiService.showDialog(DeleteWorkoutComponent, null, true);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // TODO: implement delete workout & close the workout window
         this.uiService.toast('Workout Deleted!')
-        this.dialog.closeAll();
+        this.uiService.closeAllDialogs()
       }
     });
   }

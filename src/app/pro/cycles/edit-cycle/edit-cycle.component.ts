@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { UiService } from 'src/app/ui/ui.service';
 import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
 
@@ -14,7 +13,7 @@ export class EditCycleComponent {
     name: new FormControl('', [Validators.required, Validators.pattern(/^(([a-zA-Z0-9]+)\s?)+$/)]),
   });
 
-  constructor(private dialog: MatDialog, private uiService: UiService) {}
+  constructor(private uiService: UiService) {}
 
   onSubmit() {
     let output = {
@@ -28,7 +27,7 @@ export class EditCycleComponent {
   }
 
   openDeleteDialog() {
-    let ref = this.dialog.open(DeleteCycleComponent, { width: '380px' });
+    let ref = this.uiService.showDialog(DeleteCycleComponent, null, true);
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete cycle
@@ -37,7 +36,7 @@ export class EditCycleComponent {
         this.uiService.toast('Cycle Deleted!')
 
         // close all dialogs
-        this.dialog.closeAll();
+        this.uiService.closeAllDialogs()
       }
     });
   }
