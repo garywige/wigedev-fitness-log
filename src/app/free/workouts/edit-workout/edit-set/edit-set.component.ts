@@ -1,5 +1,5 @@
 import { FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
-import { ValidateInt, ValidateWeight } from 'src/app/validators/validators';
+import { ValidateInt, ValidateWeight } from 'src/app/common/validators/validators';
 
 import { Component, OnInit } from '@angular/core';
 import { Set } from '../set';
