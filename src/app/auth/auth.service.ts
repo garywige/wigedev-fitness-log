@@ -51,6 +51,7 @@ export abstract class AuthService extends CacheService implements IAuthService {
       this.logout(true)
     } else {
       this.authStatus$.next(this.getAuthStatusFromToken())
+      setTimeout(() => this.resumeCurrentUser$.subscribe(), 0)
     }
   }
 
