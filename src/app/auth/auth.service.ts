@@ -38,6 +38,11 @@ export abstract class AuthService extends CacheService implements IAuthService {
 
   constructor() {
     super()
+    if(this.hasExpiredToken()){
+      this.logout(true)
+    } else {
+      this.authStatus$.next(this.getAuthStatusFromToken())
+    }
   }
 
   login(email: string, password: string): Observable<void> {
