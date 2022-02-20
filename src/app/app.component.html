@@ -4,11 +4,11 @@
     <caption>WigeDev Fitness Log</caption>
   </div>
   <span class="spacer"></span>
-  <ul class="navigation">
+  <ul class="navigation" *ngIf="!(authService.authStatus$ | async)?.isAuthenticated">
     <li><matButton routerLink="/home" routerLinkActive="active">Home</matButton></li>
     <li><matButton routerLink="/signin" routerLinkActive="active">Sign In</matButton></li>
   </ul>
-  <ul class="navigation">
+  <ul class="navigation" *ngIf="(authService.authStatus$ | async)?.isAuthenticated">
     <li>
       <button mat-button [matMenuTriggerFor]="proMenu" class="nav-button">Pro</button>
       <mat-menu #proMenu="matMenu" class="menu">

@@ -11,7 +11,7 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'wigedev-fitness-log';
 
-  constructor(private router: Router, private snackbar: MatSnackBar, private authService: AuthService) {}
+  constructor(private router: Router, private snackbar: MatSnackBar, public authService: AuthService) {}
 
   logout() {
     // TODO: invalidate token
