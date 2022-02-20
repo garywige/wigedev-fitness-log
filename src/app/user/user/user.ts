@@ -1,9 +1,9 @@
 import { Role } from "src/app/auth/auth.enum";
-import { PassThrough } from "stream";
 
 export interface IUser {
   id: string
   email: string
+  role: Role
   created: Date | string
   paidThrough: Date | string
   emailVerified: boolean
@@ -13,14 +13,12 @@ export class User implements IUser {
   constructor(
     public id = '',
     public email = '',
+    public role = Role.None,
     public created: Date | string = '',
     public paidThrough: Date | string = '',
-    public emailVerified = false){
+    public emailVerified = false,
+    ){
 
-  }
-
-  get role() {
-    return User.DetermineRole(this)
   }
 
   static Build(user: IUser){
@@ -36,13 +34,7 @@ export class User implements IUser {
       user.paidThrough = new Date(user.paidThrough)
     }
 
-    return new User(user.id, user.email, user.created, user.paidThrough, user.emailVerified)
-  }
-
-  static DetermineRole(user: IUser){
-    let expireDate: Date = typeof user.paidThrough === 'string' ? new Date(user.paidThrough) : user.paidThrough
-    let today = new Date()
-    return today < expireDate ? Role.Pro : user.emailVerified ? Role.Free : Role.None
+    return new User(user.id, user.email, user.role, user.created, user.paidThrough, user.emailVerified)
   }
 
   toJSON(): object {
