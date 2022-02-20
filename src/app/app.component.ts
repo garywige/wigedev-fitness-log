@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { AuthService } from './common/services/auth/auth.service'
+import { UiService } from './common/services/ui/ui.service'
+import { Role } from './common/services/auth/auth.enum'
 
 @Component({
   selector: 'app-root',
@@ -8,17 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'wigedev-fitness-log';
+  title = 'wigedev-fitness-log'
 
-  constructor(private router: Router, private snackbar: MatSnackBar) {}
+  constructor(private router: Router, private uiService: UiService, public authService: AuthService) {}
 
   logout() {
     // TODO: invalidate token
+    this.authService.logout(true)
 
     // inform that logout was successful
-    this.snackbar.open('Logout Successful!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+    this.uiService.toast('Logout Successful!')
 
     // navigate to login
-    this.router.navigate(['/signin']);
+    this.router.navigate(['/signin'])
   }
 }

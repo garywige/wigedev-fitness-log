@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EditExerciseComponent } from './edit-exercise/edit-exercise.component';
+import { Component, OnInit } from '@angular/core'
+import { UiService } from 'src/app/common/services/ui/ui.service'
+import { EditExerciseComponent } from './edit-exercise/edit-exercise.component'
 
 interface Exercise {
-  id: number;
-  name: string;
-  workoutCount: number;
+  id: number
+  name: string
+  workoutCount: number
 }
 
 @Component({
@@ -14,14 +14,14 @@ interface Exercise {
   styleUrls: ['./exercises.component.css'],
 })
 export class ExercisesComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'workoutCount'];
+  displayedColumns: string[] = ['name', 'workoutCount']
 
-  exercises: Exercise[] = [];
+  exercises: Exercise[] = []
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private uiService: UiService) {}
 
   ngOnInit() {
-    this.loadData();
+    this.loadData()
   }
 
   loadData() {
@@ -29,10 +29,10 @@ export class ExercisesComponent implements OnInit {
       { id: 1, name: 'Bench Press', workoutCount: 10 },
       { id: 2, name: 'Squat', workoutCount: 20 },
       { id: 3, name: 'Deadlift', workoutCount: 10 },
-    ];
+    ]
   }
 
   openExerciseDialog(id: number) {
-    this.dialog.open(EditExerciseComponent, { width: '420px', data: id });
+    this.uiService.showDialog(EditExerciseComponent, id)
   }
 }

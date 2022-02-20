@@ -1,36 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingModule } from 'src/app/testing/testing.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestingModule } from 'src/app/common/testing/testing.module'
 
-import { WorkoutsCalendarComponent } from './workouts-calendar.component';
+import { WorkoutsCalendarComponent } from './workouts-calendar.component'
 
 describe('WorkoutsCalendarComponent', () => {
-  let component: WorkoutsCalendarComponent;
-  let fixture: ComponentFixture<WorkoutsCalendarComponent>;
+  let component: WorkoutsCalendarComponent
+  let fixture: ComponentFixture<WorkoutsCalendarComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [WorkoutsCalendarComponent],
       imports: [TestingModule],
-    }).compileComponents();
-  });
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkoutsCalendarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(WorkoutsCalendarComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   describe('generateCalendar()', () => {
     beforeEach(() => {
-      component.generateCalendar();
-    });
+      component.generateCalendar()
+    })
 
     it('should should populate weeks array', () => {
-      expect(component.weeks.length).toBeGreaterThan(0);
-    });
-  });
-});
+      expect(component.weeks.length).toBeGreaterThan(0)
+    })
+  })
+})

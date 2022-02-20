@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
+import { Component } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { UiService } from 'src/app/common/services/ui/ui.service'
+import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component'
 
 @Component({
   selector: 'app-edit-cycle',
@@ -12,33 +11,33 @@ import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component';
 export class EditCycleComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^(([a-zA-Z0-9]+)\s?)+$/)]),
-  });
+  })
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private uiService: UiService) {}
 
   onSubmit() {
     let output = {
       name: this.form.get('name')?.value,
-    };
+    }
 
-    console.log(output);
+    console.log(output)
 
     // inform user
-    this.snackbar.open('Cycle Saved!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+    this.uiService.toast('Cycle Saved!')
   }
 
   openDeleteDialog() {
-    let ref = this.dialog.open(DeleteCycleComponent, { width: '380px' });
+    let ref = this.uiService.showDialog(DeleteCycleComponent, null, true)
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete cycle
 
         // inform user
-        this.snackbar.open('Cycle Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+        this.uiService.toast('Cycle Deleted!')
 
         // close all dialogs
-        this.dialog.closeAll();
+        this.uiService.closeAllDialogs()
       }
-    });
+    })
   }
 }

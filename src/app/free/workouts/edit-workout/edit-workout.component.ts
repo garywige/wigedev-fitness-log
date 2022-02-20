@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component';
-import { EditSetComponent } from './edit-set/edit-set.component';
-import { MatDialog } from '@angular/material/dialog';
-import { Set } from './set';
-import { ExerciseGroup } from './exercise-group';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component'
+import { EditSetComponent } from './edit-set/edit-set.component'
+import { Set } from './set'
+import { ExerciseGroup } from './exercise-group'
+import { UiService } from 'src/app/common/services/ui/ui.service'
 
 @Component({
   selector: 'app-edit-workout',
@@ -13,37 +12,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./edit-workout.component.css'],
 })
 export class EditWorkoutComponent {
-  date: Date = new Date();
-  groups: ExerciseGroup[] = [];
-  output: { date: Date; sets: Set[] } | null = null;
+  date: Date = new Date()
+  groups: ExerciseGroup[] = []
+  output: { date: Date; sets: Set[] } | null = null
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private uiService: UiService) {}
 
   openSetDialog() {
-    let dialogRef = this.dialog.open(EditSetComponent);
+    let dialogRef = this.uiService.showDialog(EditSetComponent, null, true)
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) this.addSet(result);
-    });
+      if (result) this.addSet(result)
+    })
   }
 
   openDeleteDialog() {
-    let dialogRef = this.dialog.open(DeleteWorkoutComponent);
+    let dialogRef = this.uiService.showDialog(DeleteWorkoutComponent, null, true)
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // TODO: implement delete workout & close the workout window
-        this.snackbar.open('Workout Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
-        this.dialog.closeAll();
+        this.uiService.toast('Workout Deleted!')
+        this.uiService.closeAllDialogs()
       }
-    });
+    })
   }
 
   addSet(set: Set) {
     if (this.groups.filter((group) => group.name === set.exercise).length === 0) {
       // add new group
-      this.groups.push(new ExerciseGroup(set.exercise, [set]));
+      this.groups.push(new ExerciseGroup(set.exercise, [set]))
     } else {
       // add to existing group
-      this.groups.filter((group) => group.name === set.exercise)[0]?.sets?.push(set);
+      this.groups.filter((group) => group.name === set.exercise)[0]?.sets?.push(set)
     }
   }
 
@@ -52,15 +51,15 @@ export class EditWorkoutComponent {
     this.output = {
       date: this.date,
       sets: [],
-    };
+    }
 
     this.groups.forEach((group) => {
       group.sets.forEach((set) => {
-        this.output?.sets.push(set);
-      });
-    });
+        this.output?.sets.push(set)
+      })
+    })
 
     // send the data to outer space
-    console.log(this.output);
+    console.log(this.output)
   }
 }

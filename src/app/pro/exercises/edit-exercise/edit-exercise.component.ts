@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.component';
+import { Component } from '@angular/core'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { UiService } from 'src/app/common/services/ui/ui.service'
+import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.component'
 
 @Component({
   selector: 'app-edit-exercise',
@@ -12,29 +11,29 @@ import { DeleteExerciseComponent } from './delete-exercise/delete-exercise.compo
 export class EditExerciseComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
-  });
+  })
 
-  constructor(private dialog: MatDialog, private snackbar: MatSnackBar) {}
+  constructor(private uiService: UiService) {}
 
   openDeleteDialog() {
-    let ref = this.dialog.open(DeleteExerciseComponent, { width: '380px' });
+    let ref = this.uiService.showDialog(DeleteExerciseComponent, null, true)
     ref.afterClosed().subscribe((result) => {
       if (result) {
         // delete exercise
-        this.snackbar.open('Exercise Deleted!', 'Close', { duration: 3000, panelClass: 'snackbar' });
-        this.dialog.closeAll();
+        this.uiService.toast('Exercise Deleted!')
+        this.uiService.closeAllDialogs()
       }
-    });
+    })
   }
 
   onSubmit() {
     let output = {
       name: this.form.get('name')?.value,
-    };
+    }
 
-    console.log(output);
+    console.log(output)
 
     // give user feedback
-    this.snackbar.open('Exercise Saved!', 'Close', { duration: 3000, panelClass: 'snackbar' });
+    this.uiService.toast('Exercise Saved!')
   }
 }

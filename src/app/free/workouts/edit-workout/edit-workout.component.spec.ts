@@ -1,29 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TestingModule } from 'src/app/testing/testing.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { TestingModule } from 'src/app/common/testing/testing.module'
 
-import { EditWorkoutComponent } from './edit-workout.component';
-import { Set } from './set';
+import { EditWorkoutComponent } from './edit-workout.component'
+import { Set } from './set'
 
 describe('EditWorkoutComponent', () => {
-  let component: EditWorkoutComponent;
-  let fixture: ComponentFixture<EditWorkoutComponent>;
+  let component: EditWorkoutComponent
+  let fixture: ComponentFixture<EditWorkoutComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditWorkoutComponent],
       imports: [TestingModule],
-    }).compileComponents();
-  });
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditWorkoutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(EditWorkoutComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   describe('addSet()', () => {
     beforeEach(() => {
@@ -33,13 +33,13 @@ describe('EditWorkoutComponent', () => {
         unit: 'test',
         reps: 1,
         completed: null,
-      };
+      }
 
-      component.addSet(set);
-    });
+      component.addSet(set)
+    })
 
     it('should populate groups array', () => {
-      expect(component.groups.length).toBeGreaterThan(0);
-    });
-  });
-});
+      expect(component.groups.length).toBeGreaterThan(0)
+    })
+  })
+})
