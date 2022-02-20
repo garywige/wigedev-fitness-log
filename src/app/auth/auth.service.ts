@@ -4,6 +4,7 @@ import { Role } from './auth.enum';
 import { IUser, User } from '../user/user/user';
 import jwtDecode from 'jwt-decode'
 import { transformError } from '../common/common'
+import { CacheService } from './cache.service';
 
 export interface IAuthStatus{
   isAuthenticated: boolean
@@ -30,12 +31,14 @@ export interface IAuthService {
 }
 
 @Injectable()
-export abstract class AuthService implements IAuthService {
+export abstract class AuthService extends CacheService implements IAuthService {
 
   readonly authStatus$ = new BehaviorSubject<IAuthStatus>(defaultAuthStatus)
   readonly currentUser$ = new BehaviorSubject<IUser>(new User())
 
-  constructor() { }
+  constructor() {
+    super()
+  }
 
   login(email: string, password: string): Observable<void> {
     const loginResponse$ = this.authProvider(email, password)
