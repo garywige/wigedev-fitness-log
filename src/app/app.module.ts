@@ -15,6 +15,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpVerificationComponent } from './sign-up/sign-up-verification/sign-up-verification.component';
 import { AuthService } from './auth/auth.service';
 import { InMemoryAuthService } from './auth/auth.inmemory.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from './auth/auth-http-interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { InMemoryAuthService } from './auth/auth.inmemory.service';
     ReactiveFormsModule,
   ],
   providers: [
-    {provide: AuthService, useClass: InMemoryAuthService}
+    {provide: AuthService, useClass: InMemoryAuthService},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent],
 })
