@@ -1,12 +1,14 @@
 import { AppComponent } from './app.component';
 import { TestBed } from '@angular/core/testing';
 import { TestingModule } from './testing/testing.module';
+import { AuthService } from './auth/auth.service';
+import { AuthServiceFake } from './testing/testing.fakes';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TestingModule],
-      declarations: [AppComponent],
+      declarations: [AppComponent]
     }).compileComponents();
   });
 

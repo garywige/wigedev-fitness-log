@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AuthService } from '../auth/auth.service';
+import { AuthServiceFake } from '../testing/testing.fakes';
 import { TestingModule } from '../testing/testing.module';
 
 import { SignInComponent } from './sign-in.component';
@@ -8,9 +10,10 @@ describe('SignInComponent', () => {
   let fixture: ComponentFixture<SignInComponent>;
 
   beforeEach(async () => {
+
     await TestBed.configureTestingModule({
       declarations: [SignInComponent],
-      imports: [TestingModule],
+      imports: [TestingModule]
     }).compileComponents();
   });
 
