@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { combineLatest, filter, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -27,19 +28,15 @@ export class SignInComponent {
   onSubmit() {
     // simulate authService
     this.authService.login('pro@test.com', '12345678')
+    combineLatest([this.authService.authStatus$, this.authService.currentUser$])
+      .pipe(filter(([authStatus, user]) =>
+        authStatus.isAuthenticated && user?.id !== ''
+      ), tap(([authStatus, user]) => {
+        // display message on successful sign in
+        this.snackbar.open('Welcome to WFL!', 'Close', { duration: 3000, panelClass: 'snackbar' });
 
-    // send the data
-    let output = {
-      email: this.form.get('email')?.value,
-      password: this.form.get('password')?.value,
-    };
-
-    console.log(output);
-
-    // display message on successful sign in
-    this.snackbar.open('Welcome to WFL!', 'Close', { duration: 3000, panelClass: 'snackbar' });
-
-    // navigate to the workouts page
-    this.router.navigate(['/free']);
+        // navigate to the workouts page
+        this.router.navigate(['/free'])
+      })).subscribe()
   }
 }
