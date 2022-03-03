@@ -127,6 +127,11 @@ export class ApiService {
     return this.http.put<updateWorkoutOutput>(url, reqBody)
   }
 
+  deleteWorkout(date: Date, cycleId: string): Observable<deleteWorkoutOutput>{
+    const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
+    return this.http.delete<deleteWorkoutOutput>(url)
+  }
+
   private toDateString(date: Date): string {
     return date?.toISOString()?.split('T')[0]
   }
@@ -244,5 +249,9 @@ export interface updateWorkoutSet extends createWorkoutSet {
 }
 
 export interface updateWorkoutOutput extends createWorkoutOutput {
+
+}
+
+export interface deleteWorkoutOutput extends deleteOutput{
 
 }
