@@ -10,6 +10,12 @@ import { UiService } from 'src/app/common/services/ui/ui.service'
 })
 export class WorkoutsComponent implements OnInit {
   cycles: readCyclesElement[] = []
+  selectedCycle: readCyclesElement = {
+    id: '',
+    name: '',
+    modified: new Date('1970-01-01'),
+    workoutCount: 0
+  }
 
   constructor(private api: ApiService, private uiService: UiService) {}
 
@@ -25,6 +31,13 @@ export class WorkoutsComponent implements OnInit {
       }
     }), tap(cycles => {
       this.cycles = cycles
+    }),tap(() => {
+      // determine the latest cycle
+      this.cycles?.forEach(cycle => {
+        if(!this.selectedCycle.id || cycle?.modified > this.selectedCycle?.modified){
+          this.selectedCycle = cycle
+        }
+      })
     })).subscribe()
   }
 }
