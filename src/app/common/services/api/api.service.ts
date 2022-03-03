@@ -82,6 +82,15 @@ export class ApiService {
     const url = environment.apiurl + '/v1/exercise/' + id
     return this.http.get<readExerciseOutput>(url)
   }
+
+  updateExercise(id: string, name: string): Observable<updateExerciseOutput>{
+    const url = environment.apiurl + '/v1/exercise/' + id
+    const reqBody = {
+      name: name
+    }
+
+    return this.http.put<updateExerciseOutput>(url, reqBody)
+  }
 }
 
 export interface signupOutput {
@@ -138,4 +147,7 @@ export interface createExerciseOutput{
 }
 
 export interface readExerciseOutput extends createExerciseOutput {
+}
+
+export interface updateExerciseOutput extends createExerciseOutput {
 }
