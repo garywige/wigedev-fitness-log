@@ -97,7 +97,11 @@ export class ApiService {
     return this.http.delete<deleteExerciseOutput>(url)
   }
 
-  readWorkouts(cycle: string): Observable<readWorkoutsOutput>{
+  readWorkouts(cycle: string): Observable<readWorkoutsOutput | null>{
+    if(cycle?.length < 1){
+      return new Observable<null>()
+    }
+
     const url = environment.apiurl + '/v1/workouts?cycle=' + cycle
     return this.http.get<readWorkoutsOutput>(url)
   }
