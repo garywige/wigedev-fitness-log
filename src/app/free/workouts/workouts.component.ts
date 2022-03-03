@@ -11,18 +11,14 @@ import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 })
 export class WorkoutsComponent implements OnInit {
   cycles: readCyclesElement[] = []
-  selectedCycle: readCyclesElement = {
-    id: '',
-    name: '',
-    modified: new Date('1970-01-01'),
-    workoutCount: 0
-  }
+  selectedCycleId: string = ''
 
   constructor(private api: ApiService, private uiService: UiService, private workoutService: WorkoutService) {}
 
   ngOnInit() {
     // populate cycles
-    this.api.readCycles().pipe(map(result => {
+    this.api.readCycles().pipe(
+      map(result => {
       if(result?.message){
         this.uiService.toast('There was an error reading cycles.')
         return []
@@ -34,17 +30,27 @@ export class WorkoutsComponent implements OnInit {
       this.cycles = cycles
     }),tap(() => {
       // determine the latest cycle
+      let latestCycle = {
+        id: '',
+        name: '',
+        modified: new Date('1970-01-01'),
+        workoutCount: 0
+      }
+
       this.cycles?.forEach(cycle => {
-        if(!this.selectedCycle.id || cycle?.modified > this.selectedCycle?.modified){
-          this.selectedCycle = cycle
-          this.onSelectionChange()
+
+        if(latestCycle.name.length < 1 || cycle?.modified > latestCycle.modified){
+          latestCycle = cycle
         }
       })
+
+      this.selectedCycleId = latestCycle.id
+      this.onSelectionChange()
     })).subscribe()
   }
 
   onSelectionChange(){
-    this.workoutService.selectedCycleId$.next(this.selectedCycle?.id)
+    this.workoutService.selectedCycleId$.next(this.selectedCycleId)
   }
 }
 
