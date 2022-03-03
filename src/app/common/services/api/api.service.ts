@@ -33,9 +33,11 @@ export class ApiService {
 }
 
 export interface signupOutput {
-  email: string
+  email: string,
+  message: string
 }
 
 export interface signinOutput {
-  accessToken: string
+  accessToken: string,
+  message: string
 }
