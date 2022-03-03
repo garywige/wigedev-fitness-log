@@ -20,8 +20,22 @@ export class ApiService {
 
     return this.http.post<signupOutput>(url, reqBody)
   }
+
+  signin(email: string, password: string): Observable<signinOutput> {
+    const url = environment.apiurl + '/v1/signin'
+    const reqBody = {
+      email: email,
+      password: password
+    }
+
+    return this.http.post<signinOutput>(url, reqBody)
+  }
 }
 
 export interface signupOutput {
   email: string
+}
+
+export interface signinOutput {
+  accessToken: string
 }
