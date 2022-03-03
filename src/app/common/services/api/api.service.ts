@@ -44,6 +44,11 @@ export class ApiService {
 
     return this.http.post<createCycleOutput>(url, reqBody)
   }
+
+  getCycle(id: string): Observable<getCycleOutput>{
+    const url = environment.apiurl + '/v1/cycle/' + id
+    return this.http.get<getCycleOutput>(url)
+  }
 }
 
 export interface signupOutput {
@@ -70,4 +75,7 @@ export interface getCyclesOutput {
 
 export interface createCycleOutput extends getCyclesElement {
   message: string
+}
+
+export interface getCycleOutput extends createCycleOutput {
 }
