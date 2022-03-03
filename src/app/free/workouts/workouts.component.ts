@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { map, tap } from 'rxjs'
 import { ApiService, readCyclesElement } from 'src/app/common/services/api/api.service'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 
 @Component({
   selector: 'app-workouts',
@@ -17,7 +18,7 @@ export class WorkoutsComponent implements OnInit {
     workoutCount: 0
   }
 
-  constructor(private api: ApiService, private uiService: UiService) {}
+  constructor(private api: ApiService, private uiService: UiService, private workoutService: WorkoutService) {}
 
   ngOnInit() {
     // populate cycles
@@ -42,7 +43,7 @@ export class WorkoutsComponent implements OnInit {
   }
 
   onSelectionChange(){
-
+    this.workoutService.selectedCycleId$.next(this.selectedCycle?.id)
   }
 }
 
