@@ -105,7 +105,7 @@ export class ApiService {
   createWorkout(date: Date, cycleId: string, sets: createWorkoutSet[]): Observable<createWorkoutOutput>{
     const url = environment.apiurl + '/v1/workouts'
     const reqBody = {
-      date: date,
+      date: this.toDateString(date),
       cycleId: cycleId,
       sets: sets
     }
@@ -113,10 +113,22 @@ export class ApiService {
     return this.http.post<createWorkoutOutput>(url, reqBody)
   }
 
-  readWorkout(date: Date, cycle: string): Observable<readWorkoutOutput>{
-    const dateString = date?.toISOString()?.split('T')[0]
-    const url = environment.apiurl + `/v1/workout/${dateString}?cycle=${cycle}`
+  readWorkout(date: Date, cycleId: string): Observable<readWorkoutOutput>{
+    const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
     return this.http.get<readWorkoutOutput>(url)
+  }
+
+  updateWorkout(date: Date, cycleId: string, sets: updateWorkoutSet[]): Observable<updateWorkoutOutput>{
+    const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
+    const reqBody = {
+      sets: sets
+    }
+
+    return this.http.put<updateWorkoutOutput>(url, reqBody)
+  }
+
+  private toDateString(date: Date): string {
+    return date?.toISOString()?.split('T')[0]
   }
 }
 
@@ -224,5 +236,13 @@ export interface createWorkoutOutput {
 }
 
 export interface readWorkoutOutput extends createWorkoutOutput{
+
+}
+
+export interface updateWorkoutSet extends createWorkoutSet {
+
+}
+
+export interface updateWorkoutOutput extends createWorkoutOutput {
 
 }
