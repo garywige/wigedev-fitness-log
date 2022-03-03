@@ -112,6 +112,12 @@ export class ApiService {
 
     return this.http.post<createWorkoutOutput>(url, reqBody)
   }
+
+  readWorkout(date: Date, cycle: string): Observable<readWorkoutOutput>{
+    const dateString = date?.toISOString()?.split('T')[0]
+    const url = environment.apiurl + `/v1/workout/${dateString}?cycle=${cycle}`
+    return this.http.get<readWorkoutOutput>(url)
+  }
 }
 
 export interface signupOutput {
@@ -215,4 +221,8 @@ export interface createWorkoutOutput {
   cycleId: string,
   sets: createWorkoutElement[],
   message: string
+}
+
+export interface readWorkoutOutput extends createWorkoutOutput{
+
 }
