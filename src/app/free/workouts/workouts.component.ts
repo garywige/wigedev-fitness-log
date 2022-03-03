@@ -37,6 +37,7 @@ export class WorkoutsComponent implements OnInit {
       this.cycles?.forEach(cycle => {
         if(!this.selectedCycle.id || cycle?.modified > this.selectedCycle?.modified){
           this.selectedCycle = cycle
+          this.onSelectionChange()
         }
       })
     })).subscribe()
