@@ -30,6 +30,11 @@ export class ApiService {
 
     return this.http.post<signinOutput>(url, reqBody)
   }
+
+  getCycles(): Observable<getCyclesOutput>{
+    const url = environment.apiurl + '/v1/cycles'
+    return this.http.get<getCyclesOutput>(url)
+  }
 }
 
 export interface signupOutput {
@@ -39,5 +44,17 @@ export interface signupOutput {
 
 export interface signinOutput {
   accessToken: string,
+  message: string
+}
+
+export interface getCyclesElement {
+  id: string,
+  name: string,
+  modified: Date,
+  workoutCount: number
+}
+
+export interface getCyclesOutput {
+  cycles: getCyclesElement[],
   message: string
 }
