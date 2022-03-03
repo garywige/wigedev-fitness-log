@@ -101,6 +101,17 @@ export class ApiService {
     const url = environment.apiurl + '/v1/workouts?cycle=' + cycle
     return this.http.get<readWorkoutsOutput>(url)
   }
+
+  createWorkout(date: Date, cycleId: string, sets: createWorkoutSet[]): Observable<createWorkoutOutput>{
+    const url = environment.apiurl + '/v1/workouts'
+    const reqBody = {
+      date: date,
+      cycleId: cycleId,
+      sets: sets
+    }
+
+    return this.http.post<createWorkoutOutput>(url, reqBody)
+  }
 }
 
 export interface signupOutput {
@@ -176,5 +187,32 @@ export interface readWorkoutsElement {
 
 export interface readWorkoutsOutput {
   workouts: readWorkoutsElement[],
+  message: string
+}
+
+export interface createWorkoutSet {
+  exerciseId: string,
+  weight: number,
+  unit: string,
+  repsPrescribed: number,
+  repsPerformed: number
+}
+
+export interface createWorkoutElement {
+  id: string,
+  exercise: {
+    id: string,
+    name: string
+  },
+  weight: number,
+  unit: string,
+  repsPrescribed: number,
+  repsPerformed: number
+}
+
+export interface createWorkoutOutput {
+  date: Date,
+  cycleId: string,
+  sets: createWorkoutElement[],
   message: string
 }
