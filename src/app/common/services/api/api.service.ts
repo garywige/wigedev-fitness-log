@@ -91,6 +91,11 @@ export class ApiService {
 
     return this.http.put<updateExerciseOutput>(url, reqBody)
   }
+
+  deleteExercise(id: string): Observable<deleteExerciseOutput>{
+    const url = environment.apiurl + '/v1/exercise/' + id
+    return this.http.delete<deleteExerciseOutput>(url)
+  }
 }
 
 export interface signupOutput {
@@ -125,7 +130,11 @@ export interface readCycleOutput extends createCycleOutput {
 export interface updateCycleOutput extends createCycleOutput {
 }
 
-export interface deleteCycleOutput {
+export interface deleteOutput {
+  message: string
+}
+
+export interface deleteCycleOutput extends deleteOutput {
   message: string
 }
 
@@ -150,4 +159,7 @@ export interface readExerciseOutput extends createExerciseOutput {
 }
 
 export interface updateExerciseOutput extends createExerciseOutput {
+}
+
+export interface deleteExerciseOutput extends deleteOutput{
 }
