@@ -96,6 +96,11 @@ export class ApiService {
     const url = environment.apiurl + '/v1/exercise/' + id
     return this.http.delete<deleteExerciseOutput>(url)
   }
+
+  readWorkouts(cycle: string): Observable<readWorkoutsOutput>{
+    const url = environment.apiurl + '/v1/workouts?cycle=' + cycle
+    return this.http.get<readWorkoutsOutput>(url)
+  }
 }
 
 export interface signupOutput {
@@ -162,4 +167,14 @@ export interface updateExerciseOutput extends createExerciseOutput {
 }
 
 export interface deleteExerciseOutput extends deleteOutput{
+}
+
+export interface readWorkoutsElement {
+  date: Date,
+  setCount: number
+}
+
+export interface readWorkoutsOutput {
+  workouts: readWorkoutsElement[],
+  message: string
 }
