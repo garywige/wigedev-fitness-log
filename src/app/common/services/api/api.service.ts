@@ -31,9 +31,9 @@ export class ApiService {
     return this.http.post<signinOutput>(url, reqBody)
   }
 
-  getCycles(): Observable<getCyclesOutput>{
+  readCycles(): Observable<readCyclesOutput>{
     const url = environment.apiurl + '/v1/cycles'
-    return this.http.get<getCyclesOutput>(url)
+    return this.http.get<readCyclesOutput>(url)
   }
 
   createCycle(name: string): Observable<createCycleOutput>{
@@ -45,9 +45,9 @@ export class ApiService {
     return this.http.post<createCycleOutput>(url, reqBody)
   }
 
-  getCycle(id: string): Observable<getCycleOutput>{
+  readCycle(id: string): Observable<readCycleOutput>{
     const url = environment.apiurl + '/v1/cycle/' + id
-    return this.http.get<getCycleOutput>(url)
+    return this.http.get<readCycleOutput>(url)
   }
 
   updateCycle(id: string, name: string): Observable<updateCycleOutput> {
@@ -70,23 +70,23 @@ export interface signinOutput {
   message: string
 }
 
-export interface getCyclesElement {
+export interface readCyclesElement {
   id: string,
   name: string,
   modified: Date,
   workoutCount: number
 }
 
-export interface getCyclesOutput {
-  cycles: getCyclesElement[],
+export interface readCyclesOutput {
+  cycles: readCyclesElement[],
   message: string
 }
 
-export interface createCycleOutput extends getCyclesElement {
+export interface createCycleOutput extends readCyclesElement {
   message: string
 }
 
-export interface getCycleOutput extends createCycleOutput {
+export interface readCycleOutput extends createCycleOutput {
 }
 
 export interface updateCycleOutput extends createCycleOutput {
