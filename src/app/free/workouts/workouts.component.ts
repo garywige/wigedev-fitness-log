@@ -40,6 +40,10 @@ export class WorkoutsComponent implements OnInit {
       })
     })).subscribe()
   }
+
+  onSelectionChange(){
+
+  }
 }
 
 
