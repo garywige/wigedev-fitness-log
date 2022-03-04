@@ -41,7 +41,18 @@ export class ExercisesComponent implements OnInit {
     ).subscribe()
   }
 
-  openExerciseDialog(id: number) {
-    this.uiService.showDialog(EditExerciseComponent, id)
+  openExerciseDialog(id?: string) {
+    let dialogRef = this.uiService.showDialog(EditExerciseComponent, {id: id})
+    dialogRef.afterClosed().pipe(
+      tap(output => {
+        setTimeout(() => this.loadData(), 1000)
+
+        return output
+      }),
+      filter(output => output),
+      tap(formData => {
+        console.log(JSON.stringify(formData))
+      })
+    ).subscribe()
   }
 }
