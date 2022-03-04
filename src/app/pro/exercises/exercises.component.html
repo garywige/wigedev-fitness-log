@@ -8,9 +8,9 @@
       <mat-cell *matCellDef="let exercise" class="clickable" (click)="openExerciseDialog(exercise.id)">{{ exercise.name }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="workoutCount">
-      <mat-header-cell *matHeaderCellDef>Workout Count</mat-header-cell>
-      <mat-cell *matCellDef="let exercise">{{ exercise.workoutCount }}</mat-cell>
+    <ng-container matColumnDef="setCount">
+      <mat-header-cell *matHeaderCellDef>Set Count</mat-header-cell>
+      <mat-cell *matCellDef="let exercise">{{ exercise.setCount }}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
