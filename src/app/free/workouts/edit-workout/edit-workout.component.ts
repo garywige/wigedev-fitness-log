@@ -6,7 +6,7 @@ import { Set } from './set'
 import { ExerciseGroup } from './exercise-group'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { ApiService } from 'src/app/common/services/api/api.service'
+import { ApiService, updateWorkoutSet } from 'src/app/common/services/api/api.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { filter, tap } from 'rxjs'
 
@@ -18,7 +18,7 @@ import { filter, tap } from 'rxjs'
 export class EditWorkoutComponent implements OnInit {
   date: Date = new Date()
   groups: ExerciseGroup[] = []
-  output: { date: Date; sets: Set[] } | null = null
+  output: { date: Date; sets: Set[] } = { date: new Date('1970-01-01'), sets: []}
   isEditMode: boolean = false
 
   constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA)data: any, private api: ApiService, private workoutService: WorkoutService) {
@@ -85,18 +85,12 @@ export class EditWorkoutComponent implements OnInit {
 
   onSubmit() {
     // flatten the data
-    this.output = {
-      date: this.date,
-      sets: [],
-    }
+    this.output.date = this.date
 
     this.groups.forEach((group) => {
       group.sets.forEach((set) => {
         this.output?.sets.push(set)
       })
     })
-
-    // send the data to outer space
-    console.log(this.output)
   }
 }

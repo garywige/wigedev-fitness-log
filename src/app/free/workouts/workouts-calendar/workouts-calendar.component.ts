@@ -104,6 +104,7 @@ export class WorkoutsCalendarComponent implements OnInit {
     let ref = this.uiService.showDialog(EditWorkoutComponent, {date: date})
     ref.afterClosed().subscribe((result) => {
       if (result) {
+        console.log(JSON.stringify(result))
         this.uiService.toast('Workout Saved!')
       }
     })
