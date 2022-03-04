@@ -20,6 +20,7 @@ export class EditWorkoutComponent implements OnInit {
   groups: ExerciseGroup[] = []
   output: { date: Date; sets: Set[] } = { date: new Date('1970-01-01'), sets: []}
   isEditMode: boolean = false
+  cycleId: string = ''
 
   constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA)data: any, private api: ApiService, private workoutService: WorkoutService) {
     if(data?.date){
@@ -36,6 +37,9 @@ export class EditWorkoutComponent implements OnInit {
         this.workoutService.selectedCycleId$.pipe(
           filter(cycleId => cycleId?.length > 0),
           tap(cycleId => {
+
+            this.cycleId = cycleId
+
             this.api.readWorkout(this.date, cycleId).pipe(
               filter(output => output?.message ? false : true),
               tap(workout => {
@@ -64,13 +68,17 @@ export class EditWorkoutComponent implements OnInit {
 
   openDeleteDialog() {
     let dialogRef = this.uiService.showDialog(DeleteWorkoutComponent, null, true)
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // TODO: implement delete workout & close the workout window
-        this.uiService.toast('Workout Deleted!')
-        this.uiService.closeAllDialogs()
-      }
-    })
+    dialogRef.afterClosed().pipe(
+      filter(result => result),
+      tap(() => {
+        this.api.deleteWorkout(this.date, this.cycleId).pipe(
+          tap(result => {
+            this.uiService.toast('Workout Deleted!')
+            this.uiService.closeAllDialogs()
+          })
+        ).subscribe()
+      })
+    ).subscribe()
   }
 
   addSet(set: Set) {
