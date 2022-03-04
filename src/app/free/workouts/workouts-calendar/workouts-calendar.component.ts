@@ -133,7 +133,6 @@ export class WorkoutsCalendarComponent implements OnInit {
       }),
       tap(output => {
         this.workouts = output
-        console.log(JSON.stringify(this.workouts))
       })
     ).subscribe()
   }
