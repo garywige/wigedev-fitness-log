@@ -36,7 +36,7 @@ import { ApiAuthService } from './common/services/auth/auth.api.service'
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     { provide: AuthService, useClass: ApiAuthService },

@@ -29,30 +29,31 @@ export class EditSetComponent implements OnInit {
   }
 
   loadExercises() {
-    this.api.readExercises().pipe(
-      filter(output => output?.message ? false : true),
-      tap(output => {
-        this.exercises = output?.exercises
-      })
-    ).subscribe()
+    this.api
+      .readExercises()
+      .pipe(
+        filter((output) => (output?.message ? false : true)),
+        tap((output) => {
+          this.exercises = output?.exercises
+        })
+      )
+      .subscribe()
   }
 
   onSubmit() {
     this.output.exercise = {
       id: this.form.get('exercise')?.value,
-      name: this.getExerciseName(this.form.get('exercise')?.value)
+      name: this.getExerciseName(this.form.get('exercise')?.value),
     }
     this.output.weight = +this.form.get('weight')?.value
     this.output.unit = this.form.get('unit')?.value
     this.output.reps = +this.form.get('reps')?.value
   }
 
-  getExerciseName(id: string) : string{
-
+  getExerciseName(id: string): string {
     let name = ''
-    this.exercises.forEach(exercise => {
-
-      if(exercise?.id === id){
+    this.exercises.forEach((exercise) => {
+      if (exercise?.id === id) {
         name = exercise?.name
       }
     })
@@ -62,6 +63,6 @@ export class EditSetComponent implements OnInit {
 }
 
 interface Exercise {
-  id: string,
+  id: string
   name: string
 }

@@ -42,14 +42,14 @@ export class SignUpComponent {
       accountType: this.form.get('type')?.value,
     }
 
-    this.api.signup(input?.email, input?.password, input?.accountType).subscribe(output => {
-      if(output?.message){
+    this.api.signup(input?.email, input?.password, input?.accountType).subscribe((output) => {
+      if (output?.message) {
         this.uiService.toast('An error occurred.')
         return
       }
 
       let ref = this.uiService.showDialog(SignUpVerificationComponent, { email: output?.email })
-      ref.afterClosed().subscribe(result => {
+      ref.afterClosed().subscribe((result) => {
         if (result) {
           // navigate to Sign In
           this.router.navigate(['/signin'])

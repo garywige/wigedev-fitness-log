@@ -21,50 +21,63 @@ export class CyclesComponent implements OnInit {
   }
 
   loadData() {
-    this.api.readCycles().pipe(
-      map(output => {
-        if(output?.message){
-          this.uiService.toast('There was an error reading cycles.')
-          return null
-        }
+    this.api
+      .readCycles()
+      .pipe(
+        map((output) => {
+          if (output?.message) {
+            this.uiService.toast('There was an error reading cycles.')
+            return null
+          }
 
-        return output
-      }),
-      filter(data => data !== null),
-      tap(cycleData => {
-        this.cycles.data = cycleData?.cycles as CyclesElement[]
-      })
-    ).subscribe()
+          return output
+        }),
+        filter((data) => data !== null),
+        tap((cycleData) => {
+          this.cycles.data = cycleData?.cycles as CyclesElement[]
+        })
+      )
+      .subscribe()
   }
 
   openCycleDialog(id?: string) {
-    this.uiService.showDialog(EditCycleComponent, {id: id}).afterClosed().pipe(
-      tap(output => {
-        setTimeout(() => this.loadData(), 1000)
-        return output
-      }),
-      filter(result => result),
-      tap(formData => {
-        if(id){
-          // EDIT MODE
-          this.api.updateCycle(id, formData?.name).pipe(
-            tap(output => {
-              if(output?.message){
-                this.uiService.toast('There was an error saving the cycle.')
-              }
-            })
-          ).subscribe()
-        } else {
-          // ADD MODE
-          this.api.createCycle(formData?.name).pipe(
-            tap(output => {
-              if(output?.message){
-                this.uiService.toast('There was an error saving the cycle.')
-              }
-            })
-          ).subscribe()
-        }
-      })
-    ).subscribe()
+    this.uiService
+      .showDialog(EditCycleComponent, { id: id })
+      .afterClosed()
+      .pipe(
+        tap((output) => {
+          setTimeout(() => this.loadData(), 1000)
+          return output
+        }),
+        filter((result) => result),
+        tap((formData) => {
+          if (id) {
+            // EDIT MODE
+            this.api
+              .updateCycle(id, formData?.name)
+              .pipe(
+                tap((output) => {
+                  if (output?.message) {
+                    this.uiService.toast('There was an error saving the cycle.')
+                  }
+                })
+              )
+              .subscribe()
+          } else {
+            // ADD MODE
+            this.api
+              .createCycle(formData?.name)
+              .pipe(
+                tap((output) => {
+                  if (output?.message) {
+                    this.uiService.toast('There was an error saving the cycle.')
+                  }
+                })
+              )
+              .subscribe()
+          }
+        })
+      )
+      .subscribe()
   }
 }

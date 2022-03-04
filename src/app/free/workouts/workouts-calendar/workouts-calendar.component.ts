@@ -51,12 +51,15 @@ export class WorkoutsCalendarComponent implements OnInit {
     this.generateCalendar()
 
     // load workouts
-    this.workoutService.selectedCycleId$.pipe(
-      filter(output => output.length > 0),
-      tap(cycleId => {
-      this.cycleId = cycleId
-      this.loadData(cycleId)
-    })).subscribe()
+    this.workoutService.selectedCycleId$
+      .pipe(
+        filter((output) => output.length > 0),
+        tap((cycleId) => {
+          this.cycleId = cycleId
+          this.loadData(cycleId)
+        })
+      )
+      .subscribe()
   }
 
   generateCalendar() {
@@ -106,103 +109,114 @@ export class WorkoutsCalendarComponent implements OnInit {
   }
 
   openWorkoutDialog(date?: Date) {
-    let ref = this.uiService.showDialog(EditWorkoutComponent, {date: date})
-    ref.afterClosed().pipe(
-      tap(() => {
-        // Reload calendar no matter the outcome
-        setTimeout(() => this.loadData(this.cycleId), 1000)
-      }),
-      filter(output => output),
-      map(workout => {
-        let output = {
-          date: workout?.date,
-          cycleId: this.cycleId,
-          sets: [] as WorkoutSet[]
-        }
-
-        workout?.sets?.forEach((set: Set) => {
-
-          if(set?.completed){
-            set.completed = +set.completed
+    let ref = this.uiService.showDialog(EditWorkoutComponent, { date: date })
+    ref
+      .afterClosed()
+      .pipe(
+        tap(() => {
+          // Reload calendar no matter the outcome
+          setTimeout(() => this.loadData(this.cycleId), 1000)
+        }),
+        filter((output) => output),
+        map((workout) => {
+          let output = {
+            date: workout?.date,
+            cycleId: this.cycleId,
+            sets: [] as WorkoutSet[],
           }
 
-          output.sets.push({
-            exerciseId: set?.exercise?.id,
-            weight: set?.weight,
-            unit: set?.unit,
-            repsPrescribed: set?.reps,
-            repsPerformed:  set?.completed
+          workout?.sets?.forEach((set: Set) => {
+            if (set?.completed) {
+              set.completed = +set.completed
+            }
+
+            output.sets.push({
+              exerciseId: set?.exercise?.id,
+              weight: set?.weight,
+              unit: set?.unit,
+              repsPrescribed: set?.reps,
+              repsPerformed: set?.completed,
+            })
           })
+
+          return output
+        }),
+        tap((workout) => {
+          if (date) {
+            // EDIT MODE
+
+            this.api
+              .updateWorkout(date, this.cycleId, workout.sets)
+              .pipe(
+                tap((result) => {
+                  if (result?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                  } else {
+                    this.uiService.toast('Workout Saved!')
+                  }
+                })
+              )
+              .subscribe()
+          } else {
+            // ADD MODE
+
+            this.api
+              .createWorkout(workout.date, this.cycleId, workout.sets)
+              .pipe(
+                tap((result) => {
+                  if (result?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                  } else {
+                    this.uiService.toast('Workout Saved!')
+                  }
+                })
+              )
+              .subscribe()
+          }
         })
-
-        return output
-      }),
-      tap(workout => {
-        if(date) {// EDIT MODE
-
-          this.api.updateWorkout(date, this.cycleId, workout.sets).pipe(
-            tap(result => {
-              if(result?.message){
-                this.uiService.toast('An error occurred when saving the workout.')
-              }
-              else{
-                this.uiService.toast('Workout Saved!')
-              }
-            })
-          ).subscribe()
-        }
-        else { // ADD MODE
-
-          this.api.createWorkout(workout.date, this.cycleId, workout.sets).pipe(
-            tap(result => {
-              if(result?.message){
-                this.uiService.toast('An error occurred when saving the workout.')
-              }
-              else {
-                this.uiService.toast('Workout Saved!')
-              }
-            })
-          ).subscribe()
-
-        }
-      })
-    ).subscribe()
+      )
+      .subscribe()
   }
 
-  loadData(cycleId: string){
-    this.api.readWorkouts(cycleId).pipe(
-      filter(output => output !== null),
-      tap(output => {
-        if(output?.message){
-          this.uiService.toast('There was an error retrieving workouts.')
-        }
+  loadData(cycleId: string) {
+    this.api
+      .readWorkouts(cycleId)
+      .pipe(
+        filter((output) => output !== null),
+        tap((output) => {
+          if (output?.message) {
+            this.uiService.toast('There was an error retrieving workouts.')
+          }
 
-        return output
-      }),
-      filter(output => output?.workouts ? true : false),
-      map(output => {
-        let workouts: WorkoutsElement[] = []
-        output?.workouts.forEach(workout => {
-          workouts.push({
-            date: new Date(workout.date),
-            setCount: workout.setCount
+          return output
+        }),
+        filter((output) => (output?.workouts ? true : false)),
+        map((output) => {
+          let workouts: WorkoutsElement[] = []
+          output?.workouts.forEach((workout) => {
+            workouts.push({
+              date: new Date(workout.date),
+              setCount: workout.setCount,
+            })
           })
-        })
 
-        return workouts
-      }),
-      tap(output => {
-        this.workouts = output
-      })
-    ).subscribe()
+          return workouts
+        }),
+        tap((output) => {
+          this.workouts = output
+        })
+      )
+      .subscribe()
   }
 
-  hasWorkout(year: number, month: number, day: number) : boolean {
-    let result = false;
-    this.workouts.forEach(workout => {
-      if(workout.date.getUTCFullYear() === year &&
-         workout.date.getUTCMonth() === month &&
-         workout.date.getUTCDate() === day){
+  hasWorkout(year: number, month: number, day: number): boolean {
+    let result = false
+    this.workouts.forEach((workout) => {
+      if (
+        workout.date.getUTCFullYear() === year &&
+        workout.date.getUTCMonth() === month &&
+        workout.date.getUTCDate() === day
+      ) {
         result = true
       }
     })
@@ -210,7 +224,7 @@ export class WorkoutsCalendarComponent implements OnInit {
     return result
   }
 
-  convertToDate(year: number, month: number, day: number) : Date {
+  convertToDate(year: number, month: number, day: number): Date {
     return new Date(Date.UTC(year, month, day))
   }
 }

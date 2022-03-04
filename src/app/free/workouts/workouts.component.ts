@@ -17,41 +17,43 @@ export class WorkoutsComponent implements OnInit {
 
   ngOnInit() {
     // populate cycles
-    this.api.readCycles().pipe(
-      map(result => {
-      if(result?.message){
-        this.uiService.toast('There was an error reading cycles.')
-        return []
-      }
-      else{
-        return result?.cycles
-      }
-    }), tap(cycles => {
-      this.cycles = cycles
-    }),tap(() => {
-      // determine the latest cycle
-      let latestCycle = {
-        id: '',
-        name: '',
-        modified: new Date('1970-01-01'),
-        workoutCount: 0
-      }
+    this.api
+      .readCycles()
+      .pipe(
+        map((result) => {
+          if (result?.message) {
+            this.uiService.toast('There was an error reading cycles.')
+            return []
+          } else {
+            return result?.cycles
+          }
+        }),
+        tap((cycles) => {
+          this.cycles = cycles
+        }),
+        tap(() => {
+          // determine the latest cycle
+          let latestCycle = {
+            id: '',
+            name: '',
+            modified: new Date('1970-01-01'),
+            workoutCount: 0,
+          }
 
-      this.cycles?.forEach(cycle => {
+          this.cycles?.forEach((cycle) => {
+            if (latestCycle.name.length < 1 || cycle?.modified > latestCycle.modified) {
+              latestCycle = cycle
+            }
+          })
 
-        if(latestCycle.name.length < 1 || cycle?.modified > latestCycle.modified){
-          latestCycle = cycle
-        }
-      })
-
-      this.selectedCycleId = latestCycle.id
-      this.onSelectionChange()
-    })).subscribe()
+          this.selectedCycleId = latestCycle.id
+          this.onSelectionChange()
+        })
+      )
+      .subscribe()
   }
 
-  onSelectionChange(){
+  onSelectionChange() {
     this.workoutService.selectedCycleId$.next(this.selectedCycleId)
   }
 }
-
-

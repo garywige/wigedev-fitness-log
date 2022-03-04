@@ -15,30 +15,33 @@ export class EditExerciseComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
   })
-  output: {id: string | null, name: string} = {id: null, name: ''}
+  output: { id: string | null; name: string } = { id: null, name: '' }
 
   constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA) data: any, private api: ApiService) {
-    if(data?.id){
+    if (data?.id) {
       this.output.id = data.id
     }
   }
 
-  ngOnInit(){
-    if(this.output.id){
-      this.api.readExercise(this.output.id).pipe(
-        map(output => {
-          if(output?.message){
-            this.uiService.toast('An error occurred retrieving the exercise.')
-            return null
-          }
+  ngOnInit() {
+    if (this.output.id) {
+      this.api
+        .readExercise(this.output.id)
+        .pipe(
+          map((output) => {
+            if (output?.message) {
+              this.uiService.toast('An error occurred retrieving the exercise.')
+              return null
+            }
 
-          return output
-        }),
-        filter(data => data !== null),
-        tap(exercise => {
-          this.form.get('name')?.setValue(exercise?.name)
-        })
-      ).subscribe()
+            return output
+          }),
+          filter((data) => data !== null),
+          tap((exercise) => {
+            this.form.get('name')?.setValue(exercise?.name)
+          })
+        )
+        .subscribe()
     }
   }
 

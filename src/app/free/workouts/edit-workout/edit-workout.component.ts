@@ -18,12 +18,17 @@ import { filter, tap } from 'rxjs'
 export class EditWorkoutComponent implements OnInit {
   date: Date = new Date()
   groups: ExerciseGroup[] = []
-  output: { date: Date; sets: Set[] } = { date: new Date('1970-01-01'), sets: []}
+  output: { date: Date; sets: Set[] } = { date: new Date('1970-01-01'), sets: [] }
   isEditMode: boolean = false
   cycleId: string = ''
 
-  constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA)data: any, private api: ApiService, private workoutService: WorkoutService) {
-    if(data?.date){
+  constructor(
+    private uiService: UiService,
+    @Inject(MAT_DIALOG_DATA) data: any,
+    private api: ApiService,
+    private workoutService: WorkoutService
+  ) {
+    if (data?.date) {
       // adjust date to compensate for timezone
       this.date = data.date
       this.date.setUTCHours(this.date.getTimezoneOffset() / 60)
@@ -32,31 +37,35 @@ export class EditWorkoutComponent implements OnInit {
   }
 
   ngOnInit() {
-      if(this.isEditMode){
-        // load the workout into the form
-        this.workoutService.selectedCycleId$.pipe(
-          filter(cycleId => cycleId?.length > 0),
-          tap(cycleId => {
-
+    if (this.isEditMode) {
+      // load the workout into the form
+      this.workoutService.selectedCycleId$
+        .pipe(
+          filter((cycleId) => cycleId?.length > 0),
+          tap((cycleId) => {
             this.cycleId = cycleId
 
-            this.api.readWorkout(this.date, cycleId).pipe(
-              filter(output => output?.message ? false : true),
-              tap(workout => {
-                workout?.sets?.forEach(set => {
-                  this.addSet({
-                    exercise: set?.exercise,
-                    weight: set?.weight,
-                    unit: set?.unit,
-                    reps: set?.repsPrescribed,
-                    completed: set?.repsPerformed
+            this.api
+              .readWorkout(this.date, cycleId)
+              .pipe(
+                filter((output) => (output?.message ? false : true)),
+                tap((workout) => {
+                  workout?.sets?.forEach((set) => {
+                    this.addSet({
+                      exercise: set?.exercise,
+                      weight: set?.weight,
+                      unit: set?.unit,
+                      reps: set?.repsPrescribed,
+                      completed: set?.repsPerformed,
+                    })
                   })
                 })
-              })
-            ).subscribe()
+              )
+              .subscribe()
           })
-        ).subscribe()
-      }
+        )
+        .subscribe()
+    }
   }
 
   openSetDialog() {
@@ -68,17 +77,23 @@ export class EditWorkoutComponent implements OnInit {
 
   openDeleteDialog() {
     let dialogRef = this.uiService.showDialog(DeleteWorkoutComponent, null, true)
-    dialogRef.afterClosed().pipe(
-      filter(result => result),
-      tap(() => {
-        this.api.deleteWorkout(this.date, this.cycleId).pipe(
-          tap(result => {
-            this.uiService.toast('Workout Deleted!')
-            this.uiService.closeAllDialogs()
-          })
-        ).subscribe()
-      })
-    ).subscribe()
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((result) => result),
+        tap(() => {
+          this.api
+            .deleteWorkout(this.date, this.cycleId)
+            .pipe(
+              tap((result) => {
+                this.uiService.toast('Workout Deleted!')
+                this.uiService.closeAllDialogs()
+              })
+            )
+            .subscribe()
+        })
+      )
+      .subscribe()
   }
 
   addSet(set: Set) {

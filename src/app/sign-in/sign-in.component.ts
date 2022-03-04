@@ -27,8 +27,9 @@ export class SignInComponent {
 
   onSubmit() {
     // simulate authService
-    this.authService.login(this.form.get('email')?.value, this.form.get('password')?.value)
-      .subscribe({error: () => this.uiService.toast('The username or password is incorrect')})
+    this.authService
+      .login(this.form.get('email')?.value, this.form.get('password')?.value)
+      .subscribe({ error: () => this.uiService.toast('The username or password is incorrect') })
 
     combineLatest([this.authService.authStatus$, this.authService.currentUser$])
       .pipe(
