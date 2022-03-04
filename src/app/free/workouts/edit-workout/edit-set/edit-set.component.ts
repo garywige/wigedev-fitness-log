@@ -3,6 +3,8 @@ import { ValidateInt, ValidateWeight } from 'src/app/common/validators/validator
 
 import { Component, OnInit } from '@angular/core'
 import { Set } from '../set'
+import { ApiService } from 'src/app/common/services/api/api.service'
+import { filter, tap } from 'rxjs'
 
 @Component({
   selector: 'app-edit-set',
@@ -18,16 +20,21 @@ export class EditSetComponent implements OnInit {
   })
 
   output: Set = <Set>{}
-  exercises: string[] = []
+  exercises: Exercise[] = []
 
-  constructor() {}
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
     this.loadExercises()
   }
 
   loadExercises() {
-    this.exercises = ['Bench Press', 'Squat', 'Deadlift', 'Overhead Press']
+    this.api.readExercises().pipe(
+      filter(output => output?.message ? false : true),
+      tap(output => {
+        this.exercises = output?.exercises
+      })
+    ).subscribe()
   }
 
   onSubmit() {
@@ -36,4 +43,9 @@ export class EditSetComponent implements OnInit {
     this.output.unit = this.form.get('unit')?.value
     this.output.reps = +this.form.get('reps')?.value
   }
+}
+
+interface Exercise {
+  id: string,
+  name: string
 }

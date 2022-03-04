@@ -2,7 +2,7 @@
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Exercise</mat-label>
     <mat-select formControlName="exercise">
-      <mat-option *ngFor="let exercise of exercises" [value]="exercise">{{ exercise }}</mat-option>
+      <mat-option *ngFor="let exercise of exercises" [value]="exercise?.id">{{ exercise?.name }}</mat-option>
     </mat-select>
     <mat-error>Exercise is required.</mat-error>
   </mat-form-field><br>
