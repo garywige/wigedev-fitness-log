@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { filter, map, tap } from 'rxjs'
-import { ApiService, readExercisesElement, readExercisesOutput } from 'src/app/common/services/api/api.service'
+import { ApiService, ExercisesElement, ExercisesOutput } from 'src/app/common/services/api/api.service'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { EditExerciseComponent } from './edit-exercise/edit-exercise.component'
@@ -15,7 +15,7 @@ import { EditExerciseComponent } from './edit-exercise/edit-exercise.component'
 export class ExercisesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'setCount']
 
-  exercises: MatTableDataSource<readExercisesElement> = new MatTableDataSource()
+  exercises: MatTableDataSource<ExercisesElement> = new MatTableDataSource()
   cycleId: string = ''
 
   constructor(private uiService: UiService, private api: ApiService, private workoutService: WorkoutService) {}
@@ -26,7 +26,7 @@ export class ExercisesComponent implements OnInit {
 
   loadData() {
     this.api.readExercises().pipe(
-      map( (output: readExercisesOutput) => {
+      map( (output: ExercisesOutput) => {
         if(output?.message){
           this.uiService.toast('An error occurred retrieving exercises.')
           return null
@@ -36,7 +36,7 @@ export class ExercisesComponent implements OnInit {
       }),
       filter(data => data !== null),
       tap(exercises => {
-        this.exercises.data = exercises?.exercises as readExercisesElement[]
+        this.exercises.data = exercises?.exercises as ExercisesElement[]
       })
     ).subscribe()
   }

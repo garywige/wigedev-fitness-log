@@ -5,7 +5,7 @@ import { Month } from './month'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { filter, map, tap } from 'rxjs'
-import { ApiService, readWorkoutsElement, updateWorkoutSet } from 'src/app/common/services/api/api.service'
+import { ApiService, WorkoutsElement, WorkoutSet } from 'src/app/common/services/api/api.service'
 import { Set } from '../edit-workout/set'
 
 @Component({
@@ -19,7 +19,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   selectedYear: number = 0
   months: Array<Month>
   weeks: Array<Array<number>>
-  workouts: readWorkoutsElement[] = []
+  workouts: WorkoutsElement[] = []
   cycleId: string = ''
 
   constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {
@@ -51,7 +51,9 @@ export class WorkoutsCalendarComponent implements OnInit {
     this.generateCalendar()
 
     // load workouts
-    this.workoutService.selectedCycleId$.pipe(tap(cycleId => {
+    this.workoutService.selectedCycleId$.pipe(
+      filter(output => output.length > 0),
+      tap(cycleId => {
       this.cycleId = cycleId
       this.loadData(cycleId)
     })).subscribe()
@@ -115,7 +117,7 @@ export class WorkoutsCalendarComponent implements OnInit {
         let output = {
           date: workout?.date,
           cycleId: this.cycleId,
-          sets: [] as updateWorkoutSet[]
+          sets: [] as WorkoutSet[]
         }
 
         workout?.sets?.forEach((set: Set) => {
@@ -179,7 +181,7 @@ export class WorkoutsCalendarComponent implements OnInit {
       }),
       filter(output => output?.workouts ? true : false),
       map(output => {
-        let workouts: readWorkoutsElement[] = []
+        let workouts: WorkoutsElement[] = []
         output?.workouts.forEach(workout => {
           workouts.push({
             date: new Date(workout.date),

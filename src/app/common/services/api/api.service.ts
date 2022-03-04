@@ -31,82 +31,79 @@ export class ApiService {
     return this.http.post<signinOutput>(url, reqBody)
   }
 
-  readCycles(): Observable<readCyclesOutput>{
+  readCycles(): Observable<CyclesOutput>{
     const url = environment.apiurl + '/v1/cycles'
-    return this.http.get<readCyclesOutput>(url)
+    return this.http.get<CyclesOutput>(url)
   }
 
-  createCycle(name: string): Observable<createCycleOutput>{
+  createCycle(name: string): Observable<CycleOutput>{
     const url = environment.apiurl + '/v1/cycles'
     const reqBody = {
       name: name
     }
 
-    return this.http.post<createCycleOutput>(url, reqBody)
+    return this.http.post<CycleOutput>(url, reqBody)
   }
 
-  readCycle(id: string): Observable<readCycleOutput>{
+  readCycle(id: string): Observable<CycleOutput>{
     const url = environment.apiurl + '/v1/cycle/' + id
-    return this.http.get<readCycleOutput>(url)
+    return this.http.get<CycleOutput>(url)
   }
 
-  updateCycle(id: string, name: string): Observable<updateCycleOutput> {
+  updateCycle(id: string, name: string): Observable<CycleOutput> {
     const url = environment.apiurl + '/v1/cycle/' + id
     const reqBody = {
       name: name
     }
 
-    return this.http.put<updateCycleOutput>(url, reqBody)
+    return this.http.put<CycleOutput>(url, reqBody)
   }
 
-  deleteCycle(id: string): Observable<deleteCycleOutput>{
+  deleteCycle(id: string): Observable<DeleteOutput>{
     const url = environment.apiurl + '/v1/cycle/' + id
-    return this.http.delete<deleteCycleOutput>(url)
+    return this.http.delete<DeleteOutput>(url)
   }
 
-  readExercises(): Observable<readExercisesOutput> {
+  readExercises(): Observable<ExercisesOutput> {
     const url = environment.apiurl + '/v1/exercises'
-    return this.http.get<readExercisesOutput>(url)
+    return this.http.get<ExercisesOutput>(url)
   }
 
-  createExercise(name: string): Observable<createExerciseOutput>{
+  createExercise(name: string): Observable<ExerciseOutput>{
     const url = environment.apiurl + '/v1/exercises'
     const reqBody = {
       name: name
     }
 
-    return this.http.post<createExerciseOutput>(url, reqBody)
+    return this.http.post<ExerciseOutput>(url, reqBody)
   }
 
-  readExercise(id: string): Observable<readExerciseOutput>{
+  readExercise(id: string): Observable<ExerciseOutput>{
     const url = environment.apiurl + '/v1/exercise/' + id
-    return this.http.get<readExerciseOutput>(url)
+    return this.http.get<ExerciseOutput>(url)
   }
 
-  updateExercise(id: string, name: string): Observable<updateExerciseOutput>{
+  updateExercise(id: string, name: string): Observable<ExerciseOutput>{
     const url = environment.apiurl + '/v1/exercise/' + id
     const reqBody = {
       name: name
     }
 
-    return this.http.put<updateExerciseOutput>(url, reqBody)
+    return this.http.put<ExerciseOutput>(url, reqBody)
   }
 
-  deleteExercise(id: string): Observable<deleteExerciseOutput>{
+  deleteExercise(id: string): Observable<DeleteOutput>{
     const url = environment.apiurl + '/v1/exercise/' + id
-    return this.http.delete<deleteExerciseOutput>(url)
+    return this.http.delete<DeleteOutput>(url)
   }
 
-  readWorkouts(cycle: string): Observable<readWorkoutsOutput | null>{
-    if(cycle?.length < 1){
-      return new Observable<null>()
-    }
+  readWorkouts(cycle: string): Observable<WorkoutsOutput>{
 
     const url = environment.apiurl + '/v1/workouts?cycle=' + cycle
-    return this.http.get<readWorkoutsOutput>(url)
+    return this.http.get<WorkoutsOutput>(url)
   }
 
-  createWorkout(date: Date, cycleId: string, sets: createWorkoutSet[]): Observable<createWorkoutOutput>{
+  createWorkout(date: Date, cycleId: string, sets: WorkoutSet[]): Observable<WorkoutOutput>{
     const url = environment.apiurl + '/v1/workouts'
     const reqBody = {
       date: this.toDateString(date),
@@ -114,26 +111,26 @@ export class ApiService {
       sets: sets
     }
 
-    return this.http.post<createWorkoutOutput>(url, reqBody)
+    return this.http.post<WorkoutOutput>(url, reqBody)
   }
 
-  readWorkout(date: Date, cycleId: string): Observable<readWorkoutOutput>{
+  readWorkout(date: Date, cycleId: string): Observable<WorkoutOutput>{
     const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
-    return this.http.get<readWorkoutOutput>(url)
+    return this.http.get<WorkoutOutput>(url)
   }
 
-  updateWorkout(date: Date, cycleId: string, sets: updateWorkoutSet[]): Observable<updateWorkoutOutput>{
+  updateWorkout(date: Date, cycleId: string, sets: WorkoutSet[]): Observable<WorkoutOutput>{
     const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
     const reqBody = {
       sets: sets
     }
 
-    return this.http.put<updateWorkoutOutput>(url, reqBody)
+    return this.http.put<WorkoutOutput>(url, reqBody)
   }
 
-  deleteWorkout(date: Date, cycleId: string): Observable<deleteWorkoutOutput>{
+  deleteWorkout(date: Date, cycleId: string): Observable<DeleteOutput>{
     const url = environment.apiurl + `/v1/workout/${this.toDateString(date)}?cycle=${cycleId}`
-    return this.http.delete<deleteWorkoutOutput>(url)
+    return this.http.delete<DeleteOutput>(url)
   }
 
   private toDateString(date: Date): string {
@@ -151,73 +148,54 @@ export interface signinOutput {
   message: string
 }
 
-export interface readCyclesElement {
+export interface CyclesElement {
   id: string,
   name: string,
   modified: Date,
   workoutCount: number
 }
 
-export interface readCyclesOutput {
-  cycles: readCyclesElement[],
+export interface CyclesOutput {
+  cycles: CyclesElement[],
   message: string
 }
 
-export interface createCycleOutput extends readCyclesElement {
+export interface CycleOutput extends CyclesElement {
   message: string
 }
 
-export interface readCycleOutput extends createCycleOutput {
-}
-
-export interface updateCycleOutput extends createCycleOutput {
-}
-
-export interface deleteOutput {
+export interface DeleteOutput {
   message: string
 }
 
-export interface deleteCycleOutput extends deleteOutput {
-  message: string
-}
-
-export interface readExercisesElement {
+export interface ExercisesElement {
   id: string,
   name: string,
   workoutCount: number
 }
 
-export interface readExercisesOutput {
-  exercises: readExercisesElement[],
+export interface ExercisesOutput {
+  exercises: ExercisesElement[],
   message: string
 }
 
-export interface createExerciseOutput{
+export interface ExerciseOutput {
   id: string,
   name: string,
   message: string
 }
 
-export interface readExerciseOutput extends createExerciseOutput {
-}
-
-export interface updateExerciseOutput extends createExerciseOutput {
-}
-
-export interface deleteExerciseOutput extends deleteOutput{
-}
-
-export interface readWorkoutsElement {
+export interface WorkoutsElement {
   date: Date,
   setCount: number
 }
 
-export interface readWorkoutsOutput {
-  workouts: readWorkoutsElement[],
+export interface WorkoutsOutput {
+  workouts: WorkoutsElement[],
   message: string
 }
 
-export interface createWorkoutSet {
+export interface WorkoutSet {
   exerciseId: string,
   weight: number,
   unit: string,
@@ -225,7 +203,7 @@ export interface createWorkoutSet {
   repsPerformed: number | null
 }
 
-export interface createWorkoutElement {
+export interface WorkoutElement {
   id: string,
   exercise: {
     id: string,
@@ -237,25 +215,10 @@ export interface createWorkoutElement {
   repsPerformed: number
 }
 
-export interface createWorkoutOutput {
+export interface WorkoutOutput {
   date: Date,
   cycleId: string,
-  sets: createWorkoutElement[],
+  sets: WorkoutElement[],
   message: string
 }
 
-export interface readWorkoutOutput extends createWorkoutOutput{
-
-}
-
-export interface updateWorkoutSet extends createWorkoutSet {
-
-}
-
-export interface updateWorkoutOutput extends createWorkoutOutput {
-
-}
-
-export interface deleteWorkoutOutput extends deleteOutput{
-
-}

@@ -6,7 +6,7 @@ import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { filter, map, tap } from 'rxjs'
 import { ApiService } from 'src/app/common/services/api/api.service'
 import { MatTableDataSource } from '@angular/material/table'
-import { createWorkoutSet } from '../../../common/services/api/api.service'
+import { WorkoutSet } from '../../../common/services/api/api.service'
 import { Set } from '../edit-workout/set'
 
 interface Workout {
@@ -29,7 +29,9 @@ export class WorkoutsListComponent implements OnInit {
   constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {}
 
   ngOnInit(): void {
-    this.workoutService.selectedCycleId$.pipe(tap(cycleId => {
+    this.workoutService.selectedCycleId$.pipe(
+      filter(output => output.length > 0),
+      tap(cycleId => {
       this.cycleId = cycleId
       this.loadData(cycleId)
     })).subscribe()
@@ -68,7 +70,7 @@ export class WorkoutsListComponent implements OnInit {
       filter(possiblynull => possiblynull),
       map(form => {
 
-        let sets: createWorkoutSet[] = []
+        let sets: WorkoutSet[] = []
         form?.sets?.forEach((set: Set) => {
           sets.push({
             exerciseId: set?.exercise?.id,

@@ -6,7 +6,7 @@ import { Set } from './set'
 import { ExerciseGroup } from './exercise-group'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { ApiService, updateWorkoutSet } from 'src/app/common/services/api/api.service'
+import { ApiService } from 'src/app/common/services/api/api.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { filter, tap } from 'rxjs'
 

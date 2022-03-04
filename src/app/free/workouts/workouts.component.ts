@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { map, tap } from 'rxjs'
-import { ApiService, readCyclesElement } from 'src/app/common/services/api/api.service'
+import { ApiService, CyclesElement } from 'src/app/common/services/api/api.service'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 
@@ -10,7 +10,7 @@ import { WorkoutService } from 'src/app/common/services/workout/workout.service'
   styleUrls: ['./workouts.component.css'],
 })
 export class WorkoutsComponent implements OnInit {
-  cycles: readCyclesElement[] = []
+  cycles: CyclesElement[] = []
   selectedCycleId: string = ''
 
   constructor(private api: ApiService, private uiService: UiService, private workoutService: WorkoutService) {}
