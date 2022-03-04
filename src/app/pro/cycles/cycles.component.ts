@@ -41,7 +41,6 @@ export class CyclesComponent implements OnInit {
     this.uiService.showDialog(EditCycleComponent, {id: id}).afterClosed().pipe(
       tap(output => {
         setTimeout(() => this.loadData(), 1000)
-        console.log(JSON.stringify(output))
         return output
       }),
       filter(result => result),
