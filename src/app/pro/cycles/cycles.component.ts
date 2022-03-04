@@ -37,7 +37,7 @@ export class CyclesComponent implements OnInit {
     this.cycles.data = cycles
   }
 
-  openCycleDialog(id: number) {
-    this.uiService.showDialog(EditCycleComponent, id)
+  openCycleDialog(id?: string) {
+    this.uiService.showDialog(EditCycleComponent, {id: id})
   }
 }

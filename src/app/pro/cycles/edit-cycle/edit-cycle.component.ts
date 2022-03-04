@@ -1,5 +1,8 @@
-import { Component } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { filter, map, tap } from 'rxjs'
+import { ApiService } from 'src/app/common/services/api/api.service'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component'
 
@@ -8,12 +11,37 @@ import { DeleteCycleComponent } from './delete-cycle/delete-cycle.component'
   templateUrl: './edit-cycle.component.html',
   styleUrls: ['./edit-cycle.component.css'],
 })
-export class EditCycleComponent {
+export class EditCycleComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^(([a-zA-Z0-9]+)\s?)+$/)]),
   })
 
-  constructor(private uiService: UiService) {}
+  id: string | null = null
+
+  constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA) data: any, private api: ApiService) {
+    if(data?.id){
+      this.id = data.id
+    }
+  }
+
+  ngOnInit() {
+    if(this.id){
+      this.api.readCycle(this.id).pipe(
+        map(output => {
+          if(output?.message){
+            this.uiService.toast("There was an error loading the cycle.")
+            return null
+          }
+
+          return output
+        }),
+        filter(data => data !== null),
+        tap(cycle => {
+          this.form.get('name')?.setValue(cycle?.name)
+        })
+      ).subscribe()
+    }
+  }
 
   onSubmit() {
     let output = {
