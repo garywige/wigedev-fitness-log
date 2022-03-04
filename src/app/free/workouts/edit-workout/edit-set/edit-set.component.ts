@@ -38,10 +38,26 @@ export class EditSetComponent implements OnInit {
   }
 
   onSubmit() {
-    this.output.exercise = this.form.get('exercise')?.value
+    this.output.exercise = {
+      id: this.form.get('exercise')?.value,
+      name: this.getExerciseName(this.form.get('exercise')?.value)
+    }
     this.output.weight = +this.form.get('weight')?.value
     this.output.unit = this.form.get('unit')?.value
     this.output.reps = +this.form.get('reps')?.value
+  }
+
+  getExerciseName(id: string) : string{
+
+    let name = ''
+    this.exercises.forEach(exercise => {
+
+      if(exercise?.id === id){
+        name = exercise?.name
+      }
+    })
+
+    return name
   }
 }
 
