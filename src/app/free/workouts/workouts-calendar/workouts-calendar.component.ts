@@ -141,6 +141,7 @@ export class WorkoutsCalendarComponent implements OnInit {
               }
               else{
                 this.uiService.toast('Workout Saved!')
+                this.loadData(this.cycleId)
               }
             })
           ).subscribe()
@@ -154,6 +155,7 @@ export class WorkoutsCalendarComponent implements OnInit {
               }
               else {
                 this.uiService.toast('Workout Saved!')
+                this.loadData(this.cycleId)
               }
             })
           ).subscribe()
