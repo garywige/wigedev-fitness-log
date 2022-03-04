@@ -106,6 +106,10 @@ export class WorkoutsCalendarComponent implements OnInit {
   openWorkoutDialog(date?: Date) {
     let ref = this.uiService.showDialog(EditWorkoutComponent, {date: date})
     ref.afterClosed().pipe(
+      tap(() => {
+        // Reload calendar no matter the outcome
+        setTimeout(() => this.loadData(this.cycleId), 1000)
+      }),
       filter(output => output),
       map(workout => {
         let output = {
@@ -141,7 +145,6 @@ export class WorkoutsCalendarComponent implements OnInit {
               }
               else{
                 this.uiService.toast('Workout Saved!')
-                this.loadData(this.cycleId)
               }
             })
           ).subscribe()
@@ -155,7 +158,6 @@ export class WorkoutsCalendarComponent implements OnInit {
               }
               else {
                 this.uiService.toast('Workout Saved!')
-                this.loadData(this.cycleId)
               }
             })
           ).subscribe()
