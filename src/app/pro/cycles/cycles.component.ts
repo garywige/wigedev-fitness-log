@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { EditCycleComponent } from './edit-cycle/edit-cycle.component'
-import { Cycle } from './cycle'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { MatTableDataSource } from '@angular/material/table'
+import { ApiService, readCyclesElement } from 'src/app/common/services/api/api.service'
+import { filter, map, tap } from 'rxjs'
 
 @Component({
   selector: 'app-cycles',
@@ -10,21 +12,29 @@ import { UiService } from 'src/app/common/services/ui/ui.service'
 })
 export class CyclesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'modified', 'workoutCount']
-  cycles: Cycle[] = []
+  cycles: MatTableDataSource<readCyclesElement> = new MatTableDataSource()
 
-  constructor(private uiService: UiService) {}
+  constructor(private uiService: UiService, private api: ApiService) {}
 
   ngOnInit() {
-    this.loadData()
+    this.api.readCycles().pipe(
+      map(output => {
+        if(output?.message){
+          this.uiService.toast('There was an error reading cycles.')
+          return null
+        }
+
+        return output
+      }),
+      filter(data => data !== null),
+      tap(cycleData => {
+        this.loadData(cycleData?.cycles as readCyclesElement[])
+      })
+    ).subscribe()
   }
 
-  loadData() {
-    this.cycles = [
-      { id: 1, name: 'Free', modified: new Date(), workoutCount: 24 },
-      { id: 2, name: 'Starting Strength', modified: new Date(), workoutCount: 20 },
-      { id: 3, name: 'Texas Method', modified: new Date(), workoutCount: 32 },
-      { id: 4, name: 'Bigger Leaner Stronger', modified: new Date(), workoutCount: 12 },
-    ]
+  loadData(cycles: readCyclesElement[]) {
+    this.cycles.data = cycles
   }
 
   openCycleDialog(id: number) {
