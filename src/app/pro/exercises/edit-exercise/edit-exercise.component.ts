@@ -15,17 +15,17 @@ export class EditExerciseComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]),
   })
-  id: string | null = null
+  output: {id: string | null, name: string} = {id: null, name: ''}
 
   constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA) data: any, private api: ApiService) {
     if(data?.id){
-      this.id = data.id
+      this.output.id = data.id
     }
   }
 
   ngOnInit(){
-    if(this.id){
-      this.api.readExercise(this.id).pipe(
+    if(this.output.id){
+      this.api.readExercise(this.output.id).pipe(
         map(output => {
           if(output?.message){
             this.uiService.toast('An error occurred retrieving the exercise.')
@@ -54,12 +54,7 @@ export class EditExerciseComponent implements OnInit {
   }
 
   onSubmit() {
-    let output = {
-      id: this.id,
-      name: this.form.get('name')?.value,
-    }
-
-    console.log(output)
+    this.output.name = this.form.get('name')?.value
 
     // give user feedback
     this.uiService.toast('Exercise Saved!')

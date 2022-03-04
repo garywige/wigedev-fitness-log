@@ -51,7 +51,39 @@ export class ExercisesComponent implements OnInit {
       }),
       filter(output => output),
       tap(formData => {
-        console.log(JSON.stringify(formData))
+        if(formData?.id){
+          // EDIT MODE
+          this.api.updateExercise(formData.id, formData?.name).pipe(
+            map(output => {
+              if(output?.message){
+                this.uiService.toast('There was an error saving the exercise.')
+                return null
+              }
+
+              return output
+            }),
+            filter(data => data !== null),
+            tap(() => {
+              this.loadData()
+            })
+          ).subscribe()
+        } else {
+          // ADD MODE
+          this.api.createExercise(formData?.name).pipe(
+            map(output => {
+              if(output?.message){
+                this.uiService.toast('There was an error saving the exercise.')
+                return null
+              }
+
+              return output
+            }),
+            filter(data => data !== null),
+            tap(() => {
+              this.loadData()
+            })
+          ).subscribe()
+        }
       })
     ).subscribe()
   }
