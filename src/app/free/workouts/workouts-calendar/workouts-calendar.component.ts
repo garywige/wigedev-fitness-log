@@ -141,9 +141,9 @@ export class WorkoutsCalendarComponent implements OnInit {
   hasWorkout(year: number, month: number, day: number) : boolean {
     let result = false;
     this.workouts.forEach(workout => {
-      if(workout.date.getFullYear() === year &&
-         workout.date.getMonth() === month &&
-         workout.date.getDate() === day){
+      if(workout.date.getUTCFullYear() === year &&
+         workout.date.getUTCMonth() === month &&
+         workout.date.getUTCDate() === day){
         result = true
       }
     })
