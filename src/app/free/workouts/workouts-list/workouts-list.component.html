@@ -4,7 +4,7 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Date</th>
-      <td mat-cell *matCellDef="let workout" (click)="openDialog(workout.id)" class="clickable">{{ workout.date | date }}</td>
+      <td mat-cell *matCellDef="let workout" (click)="openDialog(workout.id)" class="clickable">{{ workout.date | date:'mediumDate':'GMT' }}</td>
     </ng-container>
 
     <ng-container matColumnDef="setCount">
