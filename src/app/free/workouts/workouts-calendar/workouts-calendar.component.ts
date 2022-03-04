@@ -100,8 +100,8 @@ export class WorkoutsCalendarComponent implements OnInit {
     this.generateCalendar()
   }
 
-  openWorkoutDialog(id: number) {
-    let ref = this.uiService.showDialog(EditWorkoutComponent, id)
+  openWorkoutDialog(date?: Date) {
+    let ref = this.uiService.showDialog(EditWorkoutComponent, {date: date})
     ref.afterClosed().subscribe((result) => {
       if (result) {
         this.uiService.toast('Workout Saved!')
@@ -148,5 +148,9 @@ export class WorkoutsCalendarComponent implements OnInit {
     })
 
     return result
+  }
+
+  convertToDate(year: number, month: number, day: number) : Date {
+    return new Date(Date.UTC(year, month, day))
   }
 }
