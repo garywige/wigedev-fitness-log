@@ -36,6 +36,7 @@
           <div>
             {{ day }}<br>
             <button *ngIf="selectedMonth === today.getMonth() && day === today.getDate() && selectedYear === today.getFullYear()" mat-mini-fab color="accent" (click)="openWorkoutDialog(0)" aria-label="add workout"><mat-icon>add</mat-icon></button>
+            <button *ngIf="hasWorkout(selectedYear, selectedMonth, day)" mat-mini-fab color="accent" (click)="openWorkoutDialog(0)" aria-label="edit workout"><mat-icon>edit</mat-icon></button>
           </div>
         </td>
       </tr>

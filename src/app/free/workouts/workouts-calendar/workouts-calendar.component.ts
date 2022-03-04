@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core'
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component'
 import { Month } from './month'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { WorkoutService } from 'src/app/common/services/workout/workout.service'
+import { filter, map, tap } from 'rxjs'
+import { ApiService, readWorkoutsElement } from 'src/app/common/services/api/api.service'
 
 @Component({
   selector: 'app-workouts-calendar',
@@ -15,8 +18,9 @@ export class WorkoutsCalendarComponent implements OnInit {
   selectedYear: number = 0
   months: Array<Month>
   weeks: Array<Array<number>>
+  workouts: readWorkoutsElement[] = []
 
-  constructor(private uiService: UiService) {
+  constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {
     this.selectedYear = new Date().getFullYear()
 
     this.months = [
@@ -43,6 +47,11 @@ export class WorkoutsCalendarComponent implements OnInit {
 
     // generate calendar
     this.generateCalendar()
+
+    // load workouts
+    this.workoutService.selectedCycleId$.pipe(tap(cycleId => {
+      this.loadData(cycleId)
+    })).subscribe()
   }
 
   generateCalendar() {
@@ -98,5 +107,47 @@ export class WorkoutsCalendarComponent implements OnInit {
         this.uiService.toast('Workout Saved!')
       }
     })
+  }
+
+  loadData(cycleId: string){
+    this.api.readWorkouts(cycleId).pipe(
+      filter(output => output !== null),
+      tap(output => {
+        if(output?.message){
+          this.uiService.toast('There was an error retrieving workouts.')
+        }
+
+        return output
+      }),
+      filter(output => output?.workouts ? true : false),
+      map(output => {
+        let workouts: readWorkoutsElement[] = []
+        output?.workouts.forEach(workout => {
+          workouts.push({
+            date: new Date(workout.date),
+            setCount: workout.setCount
+          })
+        })
+
+        return workouts
+      }),
+      tap(output => {
+        this.workouts = output
+        console.log(JSON.stringify(this.workouts))
+      })
+    ).subscribe()
+  }
+
+  hasWorkout(year: number, month: number, day: number) : boolean {
+    let result = false;
+    this.workouts.forEach(workout => {
+      if(workout.date.getFullYear() === year &&
+         workout.date.getMonth() === month &&
+         workout.date.getDate() === day){
+        result = true
+      }
+    })
+
+    return result
   }
 }
