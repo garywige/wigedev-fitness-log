@@ -222,7 +222,7 @@ export interface createWorkoutSet {
   weight: number,
   unit: string,
   repsPrescribed: number,
-  repsPerformed: number
+  repsPerformed: number | null
 }
 
 export interface createWorkoutElement {

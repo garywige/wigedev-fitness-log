@@ -5,7 +5,8 @@ import { Month } from './month'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
 import { filter, map, tap } from 'rxjs'
-import { ApiService, readWorkoutsElement } from 'src/app/common/services/api/api.service'
+import { ApiService, readWorkoutsElement, updateWorkoutSet } from 'src/app/common/services/api/api.service'
+import { Set } from '../edit-workout/set'
 
 @Component({
   selector: 'app-workouts-calendar',
@@ -19,6 +20,7 @@ export class WorkoutsCalendarComponent implements OnInit {
   months: Array<Month>
   weeks: Array<Array<number>>
   workouts: readWorkoutsElement[] = []
+  cycleId: string = ''
 
   constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {
     this.selectedYear = new Date().getFullYear()
@@ -50,6 +52,7 @@ export class WorkoutsCalendarComponent implements OnInit {
 
     // load workouts
     this.workoutService.selectedCycleId$.pipe(tap(cycleId => {
+      this.cycleId = cycleId
       this.loadData(cycleId)
     })).subscribe()
   }
@@ -102,12 +105,62 @@ export class WorkoutsCalendarComponent implements OnInit {
 
   openWorkoutDialog(date?: Date) {
     let ref = this.uiService.showDialog(EditWorkoutComponent, {date: date})
-    ref.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log(JSON.stringify(result))
-        this.uiService.toast('Workout Saved!')
-      }
-    })
+    ref.afterClosed().pipe(
+      filter(output => output),
+      map(workout => {
+        let output = {
+          date: workout?.date,
+          cycleId: this.cycleId,
+          sets: [] as updateWorkoutSet[]
+        }
+
+        workout?.sets?.forEach((set: Set) => {
+
+          if(set?.completed){
+            set.completed = +set.completed
+          }
+
+          output.sets.push({
+            exerciseId: set?.exercise?.id,
+            weight: set?.weight,
+            unit: set?.unit,
+            repsPrescribed: set?.reps,
+            repsPerformed:  set?.completed
+          })
+        })
+
+        return output
+      }),
+      tap(workout => {
+        if(date) {// EDIT MODE
+
+          this.api.updateWorkout(date, this.cycleId, workout.sets).pipe(
+            tap(result => {
+              if(result?.message){
+                this.uiService.toast('An error occurred when saving the workout.')
+              }
+              else{
+                this.uiService.toast('Workout Saved!')
+              }
+            })
+          ).subscribe()
+        }
+        else { // ADD MODE
+
+          this.api.createWorkout(workout.date, this.cycleId, workout.sets).pipe(
+            tap(result => {
+              if(result?.message){
+                this.uiService.toast('An error occurred when saving the workout.')
+              }
+              else {
+                this.uiService.toast('Workout Saved!')
+              }
+            })
+          ).subscribe()
+
+        }
+      })
+    ).subscribe()
   }
 
   loadData(cycleId: string){
