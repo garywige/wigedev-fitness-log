@@ -2,7 +2,7 @@
 <form mat-dialog-content #myForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-form-field color="accent">
     <mat-label>Workout Date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required [disabled]="isEditMode">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-error>Date is required.</mat-error>

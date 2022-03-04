@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 
 import { DeleteWorkoutComponent } from './delete-workout/delete-workout.component'
 import { EditSetComponent } from './edit-set/edit-set.component'
 import { Set } from './set'
 import { ExerciseGroup } from './exercise-group'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-edit-workout',
@@ -15,8 +16,16 @@ export class EditWorkoutComponent {
   date: Date = new Date()
   groups: ExerciseGroup[] = []
   output: { date: Date; sets: Set[] } | null = null
+  isEditMode: boolean = false
 
-  constructor(private uiService: UiService) {}
+  constructor(private uiService: UiService, @Inject(MAT_DIALOG_DATA)data: any) {
+    if(data?.date){
+      // adjust date to compensate for timezone
+      this.date = data.date
+      this.date.setUTCHours(this.date.getTimezoneOffset() / 60)
+      this.isEditMode = true
+    }
+  }
 
   openSetDialog() {
     let dialogRef = this.uiService.showDialog(EditSetComponent, null, true)

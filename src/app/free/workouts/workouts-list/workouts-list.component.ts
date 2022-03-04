@@ -54,8 +54,8 @@ export class WorkoutsListComponent implements OnInit {
     })).subscribe()
   }
 
-  openDialog(id: number) {
-    let ref = this.uiService.showDialog(EditWorkoutComponent, id)
+  openDialog(date?: Date) {
+    let ref = this.uiService.showDialog(EditWorkoutComponent, { date: date})
     ref.afterClosed().subscribe((result) => {
       if (result) {
         this.uiService.toast('Workout Saved!')
