@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
 import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component'
 import { Router } from '@angular/router'
 import { UiService } from '../common/services/ui/ui.service'
+import { ApiService } from '../common/services/api/api.service'
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +26,7 @@ export class SignUpComponent {
     type: new FormControl('', Validators.required),
   })
 
-  constructor(private uiService: UiService, private router: Router) {}
+  constructor(private uiService: UiService, private router: Router, private api: ApiService) {}
 
   onSubmit() {
     // verify that passwords match
@@ -35,20 +36,25 @@ export class SignUpComponent {
     }
 
     // send data
-    const output = {
+    const input = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
-      type: this.form.get('type')?.value,
+      accountType: this.form.get('type')?.value,
     }
 
-    console.log(output)
-
-    let ref = this.uiService.showDialog(SignUpVerificationComponent, { email: output.email })
-    ref.afterClosed().subscribe((result) => {
-      if (result) {
-        // navigate to Sign In
-        this.router.navigate(['/signin'])
+    this.api.signup(input?.email, input?.password, input?.accountType).subscribe((output) => {
+      if (output?.message) {
+        this.uiService.toast('An error occurred.')
+        return
       }
+
+      let ref = this.uiService.showDialog(SignUpVerificationComponent, { email: output?.email })
+      ref.afterClosed().subscribe((result) => {
+        if (result) {
+          // navigate to Sign In
+          this.router.navigate(['/signin'])
+        }
+      })
     })
   }
 }

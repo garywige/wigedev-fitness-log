@@ -3,6 +3,8 @@ import { ValidateInt, ValidateWeight } from 'src/app/common/validators/validator
 
 import { Component, OnInit } from '@angular/core'
 import { Set } from '../set'
+import { ApiService } from 'src/app/common/services/api/api.service'
+import { filter, tap } from 'rxjs'
 
 @Component({
   selector: 'app-edit-set',
@@ -18,22 +20,49 @@ export class EditSetComponent implements OnInit {
   })
 
   output: Set = <Set>{}
-  exercises: string[] = []
+  exercises: Exercise[] = []
 
-  constructor() {}
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
     this.loadExercises()
   }
 
   loadExercises() {
-    this.exercises = ['Bench Press', 'Squat', 'Deadlift', 'Overhead Press']
+    this.api
+      .readExercises()
+      .pipe(
+        filter((output) => (output?.message ? false : true)),
+        tap((output) => {
+          this.exercises = output?.exercises
+        })
+      )
+      .subscribe()
   }
 
   onSubmit() {
-    this.output.exercise = this.form.get('exercise')?.value
+    this.output.exercise = {
+      id: this.form.get('exercise')?.value,
+      name: this.getExerciseName(this.form.get('exercise')?.value),
+    }
     this.output.weight = +this.form.get('weight')?.value
     this.output.unit = this.form.get('unit')?.value
     this.output.reps = +this.form.get('reps')?.value
   }
+
+  getExerciseName(id: string): string {
+    let name = ''
+    this.exercises.forEach((exercise) => {
+      if (exercise?.id === id) {
+        name = exercise?.name
+      }
+    })
+
+    return name
+  }
+}
+
+interface Exercise {
+  id: string
+  name: string
 }

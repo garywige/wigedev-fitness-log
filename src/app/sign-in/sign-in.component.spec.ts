@@ -25,4 +25,14 @@ describe('SignInComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  describe('onSubmit()', () => {
+    it('should call authService.login()', () => {
+      const spy = spyOn<any>(component['authService'], 'login').and.returnValue({
+        subscribe() {},
+      })
+      component.onSubmit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })

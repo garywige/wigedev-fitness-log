@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core'
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component'
 import { Month } from './month'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { WorkoutService } from 'src/app/common/services/workout/workout.service'
+import { filter, map, tap } from 'rxjs'
+import { ApiService, WorkoutsElement, WorkoutSet } from 'src/app/common/services/api/api.service'
+import { Set } from '../edit-workout/set'
 
 @Component({
   selector: 'app-workouts-calendar',
@@ -15,8 +19,10 @@ export class WorkoutsCalendarComponent implements OnInit {
   selectedYear: number = 0
   months: Array<Month>
   weeks: Array<Array<number>>
+  workouts: WorkoutsElement[] = []
+  cycleId: string = ''
 
-  constructor(private uiService: UiService) {
+  constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {
     this.selectedYear = new Date().getFullYear()
 
     this.months = [
@@ -43,6 +49,17 @@ export class WorkoutsCalendarComponent implements OnInit {
 
     // generate calendar
     this.generateCalendar()
+
+    // load workouts
+    this.workoutService.selectedCycleId$
+      .pipe(
+        filter((output) => output.length > 0),
+        tap((cycleId) => {
+          this.cycleId = cycleId
+          this.loadData(cycleId)
+        })
+      )
+      .subscribe()
   }
 
   generateCalendar() {
@@ -91,12 +108,123 @@ export class WorkoutsCalendarComponent implements OnInit {
     this.generateCalendar()
   }
 
-  openWorkoutDialog(id: number) {
-    let ref = this.uiService.showDialog(EditWorkoutComponent, id)
-    ref.afterClosed().subscribe((result) => {
-      if (result) {
-        this.uiService.toast('Workout Saved!')
+  openWorkoutDialog(date?: Date) {
+    let ref = this.uiService.showDialog(EditWorkoutComponent, { date: date })
+    ref
+      .afterClosed()
+      .pipe(
+        tap(() => {
+          // Reload calendar no matter the outcome
+          setTimeout(() => this.loadData(this.cycleId), 1000)
+        }),
+        filter((output) => output),
+        map((workout) => {
+          let output = {
+            date: workout?.date,
+            cycleId: this.cycleId,
+            sets: [] as WorkoutSet[],
+          }
+
+          workout?.sets?.forEach((set: Set) => {
+            if (set?.completed) {
+              set.completed = +set.completed
+            }
+
+            output.sets.push({
+              exerciseId: set?.exercise?.id,
+              weight: set?.weight,
+              unit: set?.unit,
+              repsPrescribed: set?.reps,
+              repsPerformed: set?.completed,
+            })
+          })
+
+          return output
+        }),
+        tap((workout) => {
+          if (date) {
+            // EDIT MODE
+
+            this.api
+              .updateWorkout(date, this.cycleId, workout.sets)
+              .pipe(
+                tap((result) => {
+                  if (result?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                  } else {
+                    this.uiService.toast('Workout Saved!')
+                  }
+                })
+              )
+              .subscribe()
+          } else {
+            // ADD MODE
+
+            this.api
+              .createWorkout(workout.date, this.cycleId, workout.sets)
+              .pipe(
+                tap((result) => {
+                  if (result?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                  } else {
+                    this.uiService.toast('Workout Saved!')
+                  }
+                })
+              )
+              .subscribe()
+          }
+        })
+      )
+      .subscribe()
+  }
+
+  loadData(cycleId: string) {
+    this.api
+      .readWorkouts(cycleId)
+      .pipe(
+        filter((output) => output !== null),
+        tap((output) => {
+          if (output?.message) {
+            this.uiService.toast('There was an error retrieving workouts.')
+          }
+
+          return output
+        }),
+        filter((output) => (output?.workouts ? true : false)),
+        map((output) => {
+          let workouts: WorkoutsElement[] = []
+          output?.workouts.forEach((workout) => {
+            workouts.push({
+              date: new Date(workout.date),
+              setCount: workout.setCount,
+            })
+          })
+
+          return workouts
+        }),
+        tap((output) => {
+          this.workouts = output
+        })
+      )
+      .subscribe()
+  }
+
+  hasWorkout(year: number, month: number, day: number): boolean {
+    let result = false
+    this.workouts.forEach((workout) => {
+      if (
+        workout.date.getUTCFullYear() === year &&
+        workout.date.getUTCMonth() === month &&
+        workout.date.getUTCDate() === day
+      ) {
+        result = true
       }
     })
+
+    return result
+  }
+
+  convertToDate(year: number, month: number, day: number): Date {
+    return new Date(Date.UTC(year, month, day))
   }
 }

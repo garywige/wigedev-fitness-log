@@ -23,4 +23,44 @@ describe('EditExerciseComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  describe('ngOnInit()', () => {
+    it('should call api.readExercise when output.id is not null', () => {
+      component.output.id = 'test'
+      const spy = spyOn<any>(component['api'], 'readExercise').and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
+  describe('openDeleteDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
+        afterClosed() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+      component.openDeleteDialog()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
+  describe('onSubmit()', () => {
+    it('should call form.get()', () => {
+      const spy = spyOn<any>(component.form, 'get').and.returnValue({
+        value: 'test',
+      })
+
+      component.onSubmit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })

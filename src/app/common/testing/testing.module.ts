@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from '../services/auth/auth.service'
 import { MaterialModule } from '../../material/material.module'
 import { AuthServiceFake } from './testing.fakes'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 const modules = [
   RouterTestingModule,
@@ -16,11 +18,15 @@ const modules = [
   ReactiveFormsModule,
   FlexLayoutModule,
   CommonModule,
+  HttpClientTestingModule,
 ]
 
 @NgModule({
   imports: modules,
   exports: modules,
-  providers: [{ provide: AuthService, useClass: AuthServiceFake }],
+  providers: [
+    { provide: AuthService, useClass: AuthServiceFake },
+    { provide: MAT_DIALOG_DATA, useValue: { id: '62225f6e848445b5c4ad085b' } },
+  ],
 })
 export class TestingModule {}

@@ -24,13 +24,48 @@ describe('CyclesComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  describe('loadData()', () => {
-    beforeEach(() => {
-      component.loadData()
+  describe('ngOnInit()', () => {
+    it('should call loadData()', () => {
+      const spy = spyOn<any>(component, 'loadData')
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
     })
+  })
 
-    it('should populate cycles array', () => {
-      expect(component.cycles.length).toBeGreaterThan(0)
+  describe('loadData()', () => {
+    it('should call readCycles()', () => {
+      // Arrange
+      component['api'].readCycles = jasmine.createSpy<any>('readCycles', component['api'].readCycles).and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+
+      // Act
+      component.loadData()
+
+      // Assert
+      expect(component['api'].readCycles).toHaveBeenCalled()
+    })
+  })
+
+  describe('openCycleDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
+        afterClosed() {
+          return {
+            pipe() {
+              return {
+                subscribe() {},
+              }
+            },
+          }
+        },
+      })
+      component.openCycleDialog('test')
+      expect(spy).toHaveBeenCalled()
     })
   })
 })

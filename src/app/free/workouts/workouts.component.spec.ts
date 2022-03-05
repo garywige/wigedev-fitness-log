@@ -23,4 +23,26 @@ describe('WorkoutsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  describe('ngOnInit()', () => {
+    it('should call api.readCycles()', () => {
+      const spy = spyOn<any>(component['api'], 'readCycles').and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
+  describe('onSelectionChange()', () => {
+    it('should call selectedCycleId$.next', () => {
+      const spy = spyOn<any>(component['workoutService'].selectedCycleId$, 'next')
+      component.onSelectionChange()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })

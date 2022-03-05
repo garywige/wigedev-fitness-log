@@ -24,13 +24,48 @@ describe('EditSetComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('ngOnInit()', () => {
+    it('should call loadExercises()', () => {
+      component.loadExercises = jasmine.createSpy<any>()
+      component.ngOnInit()
+      expect(component.loadExercises).toHaveBeenCalled()
+    })
+  })
+
   describe('loadExercises()', () => {
     beforeEach(() => {
+      // Arrange
+      component['api'].readExercises = jasmine.createSpy<any>().and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+
+      // Act
       component.loadExercises()
     })
 
-    it('should populate exercises array', () => {
-      expect(component.exercises?.length).toBeGreaterThan(0)
+    it('should call readExercises()', () => {
+      // Assert
+      expect(component['api'].readExercises).toHaveBeenCalled()
+    })
+  })
+
+  describe('onSubmit()', () => {
+    it('should call getExerciseName()', () => {
+      component.getExerciseName = jasmine.createSpy<any>()
+      component.onSubmit()
+      expect(component.getExerciseName).toHaveBeenCalled()
+    })
+  })
+
+  describe('getExerciseName()', () => {
+    it('should call exercises.forEach()', () => {
+      component.exercises.forEach = jasmine.createSpy<any>()
+      component.getExerciseName('test')
+      expect(component.exercises.forEach).toHaveBeenCalled()
     })
   })
 })

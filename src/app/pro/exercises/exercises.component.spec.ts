@@ -24,13 +24,49 @@ describe('ExercisesComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('ngOnInit()', () => {
+    it('should call loadData()', () => {
+      const spy = spyOn<any>(component, 'loadData')
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
   describe('loadData()', () => {
     beforeEach(() => {
+      // Arrange
+      component['api'].readExercises = jasmine.createSpy<any>().and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+
+      // Act
       component.loadData()
     })
 
-    it('should populate exercises array', () => {
-      expect(component.exercises.length).toBeGreaterThan(0)
+    it('should call readExercises()', () => {
+      expect(component['api'].readExercises).toHaveBeenCalled()
+    })
+  })
+
+  describe('openExerciseDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
+        afterClosed() {
+          return {
+            pipe() {
+              return {
+                subscribe() {},
+              }
+            },
+          }
+        },
+      })
+      component.openExerciseDialog()
+      expect(spy).toHaveBeenCalled()
     })
   })
 })

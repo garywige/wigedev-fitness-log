@@ -1,5 +1,8 @@
 export interface Set {
-  exercise: string
+  exercise: {
+    id: string
+    name: string
+  }
   weight: number
   unit: string
   reps: number

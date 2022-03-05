@@ -24,13 +24,53 @@ describe('WorkoutsListComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('ngOnInit()', () => {
+    it('should call selectedCycleId$.pipe()', () => {
+      const spy = spyOn<any>(component['workoutService'].selectedCycleId$, 'pipe').and.returnValue({
+        subscribe() {},
+      })
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData()
+      // Arrange
+      component['api'].readWorkouts = jasmine.createSpy<any>().and.returnValue({
+        pipe() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+
+      // Act
+      component.loadData('62225f6e848445b5c4ad085b')
     })
 
-    it('should populate workouts array', () => {
-      expect(component.workouts.length).toBeGreaterThan(0)
+    it('should call readWorkouts()', () => {
+      // Assert
+      expect(component['api'].readWorkouts).toHaveBeenCalled()
+    })
+  })
+
+  describe('openDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
+        afterClosed() {
+          return {
+            pipe() {
+              return {
+                subscribe() {},
+              }
+            },
+          }
+        },
+      })
+
+      component.openDialog(new Date())
+      expect(spy).toHaveBeenCalled()
     })
   })
 })

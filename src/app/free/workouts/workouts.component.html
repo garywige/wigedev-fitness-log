@@ -6,8 +6,8 @@
   <span class="spacer"></span>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Cycle</mat-label>
-    <mat-select>
-      <mat-option value="free">Free</mat-option>
+    <mat-select [(value)]="selectedCycleId" (selectionChange)="onSelectionChange()">
+      <mat-option *ngFor="let cycle of cycles" [value]="cycle.id">{{ cycle.name }}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>

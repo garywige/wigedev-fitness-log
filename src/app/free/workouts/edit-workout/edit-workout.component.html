@@ -2,7 +2,7 @@
 <form mat-dialog-content #myForm="ngForm" (ngSubmit)="onSubmit()">
   <mat-form-field color="accent">
     <mat-label>Workout Date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" name="date" required [disabled]="isEditMode">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
     <mat-error>Date is required.</mat-error>
@@ -36,13 +36,13 @@
           reps
         </span>
         <span class="spacer"></span>
-        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise + i" pattern="^\d+$" aria-label="completed reps">
+        <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise.name + i" pattern="^\d+$" aria-label="completed reps">
       </div>
     </div>
   </div>
   <button type="button" mat-mini-fab (click)="openSetDialog()" aria-label="add set"><mat-icon>add</mat-icon></button>
   <mat-divider></mat-divider>
-  <button type="submit" mat-raised-button color="accent" [disabled]="myForm.invalid" mat-dialog-close="output">Save</button>
-  <button type="button" mat-raised-button color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete Workout</button>
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-raised-button color="accent" [disabled]="myForm.invalid" [mat-dialog-close]="output">Save</button>
+  <button *ngIf="isEditMode" type="button" mat-raised-button color="accent" (click)="openDeleteDialog()"><mat-icon>delete</mat-icon>Delete Workout</button>
+  <button type="button" mat-button mat-dialog-close>Cancel</button>
 </form>

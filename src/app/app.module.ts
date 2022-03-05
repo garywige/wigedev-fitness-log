@@ -14,9 +14,9 @@ import { SignInComponent } from './sign-in/sign-in.component'
 import { SignUpComponent } from './sign-up/sign-up.component'
 import { SignUpVerificationComponent } from './sign-up/sign-up-verification/sign-up-verification.component'
 import { AuthService } from './common/services/auth/auth.service'
-import { InMemoryAuthService } from './common/services/auth/auth.inmemory.service'
-import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthHttpInterceptor } from './common/services/auth/auth-http-interceptor'
+import { ApiAuthService } from './common/services/auth/auth.api.service'
 
 @NgModule({
   declarations: [
@@ -36,9 +36,10 @@ import { AuthHttpInterceptor } from './common/services/auth/auth-http-intercepto
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
-    { provide: AuthService, useClass: InMemoryAuthService },
+    { provide: AuthService, useClass: ApiAuthService },
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

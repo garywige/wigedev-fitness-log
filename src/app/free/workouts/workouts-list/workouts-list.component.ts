@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core'
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component'
 import { UiService } from 'src/app/common/services/ui/ui.service'
+import { WorkoutService } from 'src/app/common/services/workout/workout.service'
+import { filter, map, tap } from 'rxjs'
+import { ApiService } from 'src/app/common/services/api/api.service'
+import { MatTableDataSource } from '@angular/material/table'
+import { WorkoutSet } from '../../../common/services/api/api.service'
+import { Set } from '../edit-workout/set'
 
 interface Workout {
-  id: number
   date: Date
   setCount: number
 }
@@ -16,27 +21,122 @@ interface Workout {
 })
 export class WorkoutsListComponent implements OnInit {
   displayedColumns: string[] = ['date', 'setCount']
+  dataSource: MatTableDataSource<Workout> = new MatTableDataSource()
 
   workouts: Workout[] = []
+  cycleId: string = ''
 
-  constructor(private uiService: UiService) {}
+  constructor(private uiService: UiService, private workoutService: WorkoutService, private api: ApiService) {}
 
   ngOnInit(): void {
-    this.loadData()
+    this.workoutService.selectedCycleId$
+      .pipe(
+        filter((output) => output.length > 0),
+        tap((cycleId) => {
+          this.cycleId = cycleId
+          this.loadData(cycleId)
+        })
+      )
+      .subscribe()
   }
 
-  loadData() {
-    for (let i = 0; i < 20; i++) {
-      this.workouts.push({ id: i + 1, date: new Date(Date.UTC(2022, 1, i + 1)), setCount: 10 })
-    }
+  loadData(cycleId: string) {
+    this.api
+      .readWorkouts(cycleId)
+      .pipe(
+        filter((result) => result !== null),
+        tap((result) => {
+          if (result?.message) {
+            this.uiService.toast('There was an error retrieving workouts.')
+            return
+          }
+
+          this.workouts.length = 0
+          result?.workouts.forEach((workout) => {
+            this.workouts.push({
+              date: new Date(workout.date),
+              setCount: workout.setCount,
+            })
+          })
+
+          this.dataSource.data = this.workouts
+        })
+      )
+      .subscribe()
   }
 
-  openDialog(id: number) {
-    let ref = this.uiService.showDialog(EditWorkoutComponent, id)
-    ref.afterClosed().subscribe((result) => {
-      if (result) {
-        this.uiService.toast('Workout Saved!')
-      }
-    })
+  openDialog(date?: Date) {
+    let ref = this.uiService.showDialog(EditWorkoutComponent, { date: date })
+    ref
+      .afterClosed()
+      .pipe(
+        tap((data) => {
+          setTimeout(() => this.loadData(this.cycleId), 1000)
+          return data
+        }),
+        filter((possiblynull) => possiblynull),
+        map((form) => {
+          let sets: WorkoutSet[] = []
+          form?.sets?.forEach((set: Set) => {
+            sets.push({
+              exerciseId: set?.exercise?.id,
+              weight: set?.weight,
+              unit: set?.unit,
+              repsPrescribed: set?.reps,
+              repsPerformed: set?.completed,
+            })
+          })
+
+          let output = {
+            date: form?.date,
+            cycleId: form?.cycleId,
+            sets: sets,
+          }
+
+          return output
+        }),
+        tap((workout) => {
+          if (date) {
+            // EDIT MODE
+            this.api
+              .updateWorkout(date, this.cycleId, workout.sets)
+              .pipe(
+                tap((output) => {
+                  if (output?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                    return null
+                  }
+
+                  return output
+                }),
+                filter((data) => data !== null),
+                tap(() => {
+                  this.uiService.toast('Workout Saved!')
+                })
+              )
+              .subscribe()
+          } else {
+            // ADD MODE
+            this.api
+              .createWorkout(workout?.date, this.cycleId, workout.sets)
+              .pipe(
+                tap((output) => {
+                  if (output?.message) {
+                    this.uiService.toast('An error occurred when saving the workout.')
+                    return null
+                  }
+
+                  return output
+                }),
+                filter((data) => data !== null),
+                tap(() => {
+                  this.uiService.toast('Workout Saved!')
+                })
+              )
+              .subscribe()
+          }
+        })
+      )
+      .subscribe()
   }
 }

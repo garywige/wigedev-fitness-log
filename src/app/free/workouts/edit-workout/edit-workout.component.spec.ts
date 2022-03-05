@@ -25,10 +25,56 @@ describe('EditWorkoutComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('ngOnInit()', () => {
+    it('should subscribe to the selectedCycleId in edit mode', () => {
+      component.isEditMode = true
+      component['workoutService'].selectedCycleId$.pipe = jasmine.createSpy<any>().and.returnValue({
+        subscribe() {},
+      })
+      component['ngOnInit']()
+      expect(component['workoutService'].selectedCycleId$.pipe).toHaveBeenCalled()
+    })
+  })
+
+  describe('openSetDialog()', () => {
+    it('should call uiService showDialog()', () => {
+      component['uiService'].showDialog = jasmine.createSpy<any>().and.returnValue({
+        afterClosed() {
+          return {
+            subscribe() {},
+          }
+        },
+      })
+      component.openSetDialog()
+      expect(component['uiService'].showDialog).toHaveBeenCalled()
+    })
+  })
+
+  describe('openDeleteDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      component['uiService'].showDialog = jasmine.createSpy<any>().and.returnValue({
+        afterClosed() {
+          return {
+            pipe() {
+              return {
+                subscribe() {},
+              }
+            },
+          }
+        },
+      })
+      component.openDeleteDialog()
+      expect(component['uiService'].showDialog).toHaveBeenCalled()
+    })
+  })
+
   describe('addSet()', () => {
     beforeEach(() => {
       let set: Set = {
-        exercise: 'test',
+        exercise: {
+          id: 'test',
+          name: 'test',
+        },
         weight: 1,
         unit: 'test',
         reps: 1,
@@ -40,6 +86,14 @@ describe('EditWorkoutComponent', () => {
 
     it('should populate groups array', () => {
       expect(component.groups.length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('onSubmit()', () => {
+    it('should call groups.forEach()', () => {
+      component.groups.forEach = jasmine.createSpy<any>()
+      component.onSubmit()
+      expect(component.groups.forEach).toHaveBeenCalled()
     })
   })
 })
