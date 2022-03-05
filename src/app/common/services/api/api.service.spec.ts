@@ -16,4 +16,17 @@ describe('ApiService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
+
+  describe('signup()', () => {
+    it('should call post()', () => {
+      // Arrange
+      service['http'].post = jasmine.createSpy<any>()
+
+      // Act
+      service.signup('test', 'test', 'test')
+
+      // Assert
+      expect(service['http'].post).toHaveBeenCalled()
+    })
+  })
 })
