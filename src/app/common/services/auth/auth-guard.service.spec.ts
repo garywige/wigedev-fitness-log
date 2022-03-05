@@ -59,11 +59,15 @@ describe('AuthGuardService', () => {
     let route: any
 
     beforeEach(() => {
-      route = jasmine.createSpyObj<any>('ActivatedRouteSnapshot', {}, {
-        data: {
-          expectedRole: Role.Pro
+      route = jasmine.createSpyObj<any>(
+        'ActivatedRouteSnapshot',
+        {},
+        {
+          data: {
+            expectedRole: Role.Pro,
+          },
         }
-      })
+      )
     })
 
     it('should return true when the role matches', () => {
@@ -72,7 +76,7 @@ describe('AuthGuardService', () => {
       expect(result).toEqual(true)
     })
 
-    it('should return false when the role doesn\'t match', () => {
+    it("should return false when the role doesn't match", () => {
       const role = Role.Free
       const result = service['checkRoleMatch'](role, route)
       expect(result).toEqual(false)
@@ -90,7 +94,7 @@ describe('AuthGuardService', () => {
       expect(service['uiService'].toast).toHaveBeenCalled()
     })
 
-    it('should call toast() when role doesn\'t match', () => {
+    it("should call toast() when role doesn't match", () => {
       const [isAuth, roleMatch] = [true, false]
       service['showAlert'](isAuth, roleMatch)
       expect(service['uiService'].toast).toHaveBeenCalled()
@@ -99,13 +103,13 @@ describe('AuthGuardService', () => {
 
   describe('getResolvedUrl()', () => {
     it('should call route.pathFromRoot.map()', () => {
-      const route = jasmine.createSpyObj<any>('ActivatedRouteSnapshot', {}, { pathFromRoot: { map(){}}})
+      const route = jasmine.createSpyObj<any>('ActivatedRouteSnapshot', {}, { pathFromRoot: { map() {} } })
       route.pathFromRoot.map = jasmine.createSpy().and.returnValue({
-        join(){
+        join() {
           return {
-            replace(){}
+            replace() {},
           }
-        }
+        },
       })
 
       service.getResolvedUrl(route)

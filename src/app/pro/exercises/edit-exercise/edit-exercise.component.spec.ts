@@ -28,11 +28,11 @@ describe('EditExerciseComponent', () => {
     it('should call api.readExercise when output.id is not null', () => {
       component.output.id = 'test'
       const spy = spyOn<any>(component['api'], 'readExercise').and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.ngOnInit()
       expect(spy).toHaveBeenCalled()
@@ -42,11 +42,11 @@ describe('EditExerciseComponent', () => {
   describe('openDeleteDialog()', () => {
     it('should call uiService.showDialog()', () => {
       const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.openDeleteDialog()
       expect(spy).toHaveBeenCalled()
@@ -56,7 +56,7 @@ describe('EditExerciseComponent', () => {
   describe('onSubmit()', () => {
     it('should call form.get()', () => {
       const spy = spyOn<any>(component.form, 'get').and.returnValue({
-        value: 'test'
+        value: 'test',
       })
 
       component.onSubmit()

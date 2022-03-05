@@ -18,7 +18,7 @@ const modules = [
   ReactiveFormsModule,
   FlexLayoutModule,
   CommonModule,
-  HttpClientTestingModule
+  HttpClientTestingModule,
 ]
 
 @NgModule({
@@ -26,7 +26,7 @@ const modules = [
   exports: modules,
   providers: [
     { provide: AuthService, useClass: AuthServiceFake },
-    { provide: MAT_DIALOG_DATA, useValue: { id: '62225f6e848445b5c4ad085b'}}
+    { provide: MAT_DIALOG_DATA, useValue: { id: '62225f6e848445b5c4ad085b' } },
   ],
 })
 export class TestingModule {}

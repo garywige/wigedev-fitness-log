@@ -10,7 +10,6 @@ import { Role } from './common/services/auth/auth.enum'
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
   constructor(private router: Router, private uiService: UiService, public authService: AuthService) {}
 
   logout() {

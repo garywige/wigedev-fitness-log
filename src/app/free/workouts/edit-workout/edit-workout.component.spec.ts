@@ -29,7 +29,7 @@ describe('EditWorkoutComponent', () => {
     it('should subscribe to the selectedCycleId in edit mode', () => {
       component.isEditMode = true
       component['workoutService'].selectedCycleId$.pipe = jasmine.createSpy<any>().and.returnValue({
-        subscribe(){}
+        subscribe() {},
       })
       component['ngOnInit']()
       expect(component['workoutService'].selectedCycleId$.pipe).toHaveBeenCalled()
@@ -39,11 +39,11 @@ describe('EditWorkoutComponent', () => {
   describe('openSetDialog()', () => {
     it('should call uiService showDialog()', () => {
       component['uiService'].showDialog = jasmine.createSpy<any>().and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.openSetDialog()
       expect(component['uiService'].showDialog).toHaveBeenCalled()
@@ -53,15 +53,15 @@ describe('EditWorkoutComponent', () => {
   describe('openDeleteDialog()', () => {
     it('should call uiService.showDialog()', () => {
       component['uiService'].showDialog = jasmine.createSpy<any>().and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
       component.openDeleteDialog()
       expect(component['uiService'].showDialog).toHaveBeenCalled()
@@ -73,7 +73,7 @@ describe('EditWorkoutComponent', () => {
       let set: Set = {
         exercise: {
           id: 'test',
-          name: 'test'
+          name: 'test',
         },
         weight: 1,
         unit: 'test',

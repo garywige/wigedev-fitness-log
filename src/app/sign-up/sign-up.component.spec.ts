@@ -27,10 +27,10 @@ describe('SignUpComponent', () => {
   describe('onSubmit()', () => {
     it('should call api.signup() when passwords match', () => {
       spyOn<any>(component.form, 'get').and.returnValue({
-        value: 'test'
+        value: 'test',
       })
       const spy = spyOn<any>(component['api'], 'signup').and.returnValue({
-        subscribe(){}
+        subscribe() {},
       })
       component.onSubmit()
       expect(spy).toHaveBeenCalled()

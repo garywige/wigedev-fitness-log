@@ -27,11 +27,11 @@ describe('EditCycleComponent', () => {
   describe('ngOnInit()', () => {
     it('should call api.readCycle() when output.id is not null', () => {
       const spy = spyOn<any>(component['api'], 'readCycle').and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.output.id = 'test'
       component.ngOnInit()
@@ -42,7 +42,7 @@ describe('EditCycleComponent', () => {
   describe('onSubmit()', () => {
     it('should call form.get()', () => {
       const spy = spyOn<any>(component.form, 'get').and.returnValue({
-        value: 'test'
+        value: 'test',
       })
 
       component.onSubmit()
@@ -54,15 +54,15 @@ describe('EditCycleComponent', () => {
   describe('openDeleteDialog()', () => {
     it('should call uiService.showDialog()', () => {
       const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
       component.openDeleteDialog()
       expect(spy).toHaveBeenCalled()

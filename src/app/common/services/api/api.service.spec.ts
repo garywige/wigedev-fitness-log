@@ -9,7 +9,7 @@ describe('ApiService', () => {
   beforeEach(() => {
     // Arrange
     TestBed.configureTestingModule({
-      imports: [TestingModule]
+      imports: [TestingModule],
     })
     service = TestBed.inject(ApiService)
 
@@ -26,7 +26,6 @@ describe('ApiService', () => {
 
   describe('signup()', () => {
     it('should call post()', () => {
-
       // Act
       service.signup('test', 'test', 'test')
 
@@ -37,7 +36,6 @@ describe('ApiService', () => {
 
   describe('signin()', () => {
     it('should call post()', () => {
-
       // Act
       service.signin('test', 'test')
 

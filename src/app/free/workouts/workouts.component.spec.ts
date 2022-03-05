@@ -27,11 +27,11 @@ describe('WorkoutsComponent', () => {
   describe('ngOnInit()', () => {
     it('should call api.readCycles()', () => {
       const spy = spyOn<any>(component['api'], 'readCycles').and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.ngOnInit()
       expect(spy).toHaveBeenCalled()

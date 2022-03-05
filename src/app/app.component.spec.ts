@@ -5,7 +5,6 @@ import { AuthService } from './common/services/auth/auth.service'
 import { AuthServiceFake } from './common/testing/testing.fakes'
 
 describe('AppComponent', () => {
-
   let fixture: ComponentFixture<AppComponent>
   let component: AppComponent
 

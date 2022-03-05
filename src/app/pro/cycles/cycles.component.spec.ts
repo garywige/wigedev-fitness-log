@@ -33,15 +33,14 @@ describe('CyclesComponent', () => {
   })
 
   describe('loadData()', () => {
-
     it('should call readCycles()', () => {
       // Arrange
       component['api'].readCycles = jasmine.createSpy<any>('readCycles', component['api'].readCycles).and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
 
       // Act
@@ -55,15 +54,15 @@ describe('CyclesComponent', () => {
   describe('openCycleDialog()', () => {
     it('should call uiService.showDialog()', () => {
       const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
       component.openCycleDialog('test')
       expect(spy).toHaveBeenCalled()

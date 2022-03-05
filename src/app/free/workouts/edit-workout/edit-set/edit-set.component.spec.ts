@@ -36,11 +36,11 @@ describe('EditSetComponent', () => {
     beforeEach(() => {
       // Arrange
       component['api'].readExercises = jasmine.createSpy<any>().and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
 
       // Act

@@ -27,7 +27,7 @@ describe('WorkoutsCalendarComponent', () => {
   describe('ngOnInit()', () => {
     it('should call selectedCycleId$.pipe()', () => {
       component['workoutService'].selectedCycleId$.pipe = jasmine.createSpy<any>().and.returnValue({
-        subscribe(){}
+        subscribe() {},
       })
       component.ngOnInit()
       expect(component['workoutService'].selectedCycleId$.pipe).toHaveBeenCalled()
@@ -63,15 +63,15 @@ describe('WorkoutsCalendarComponent', () => {
   describe('openWorkoutDialog()', () => {
     it('should call showDialog()', () => {
       const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
       component.openWorkoutDialog(new Date())
       expect(spy).toHaveBeenCalled()
@@ -81,11 +81,11 @@ describe('WorkoutsCalendarComponent', () => {
   describe('loadData()', () => {
     it('should call api.readWorkouts()', () => {
       const spy = spyOn<any>(component['api'], 'readWorkouts').and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
       component.loadData('test')
       expect(spy).toHaveBeenCalled()

@@ -36,13 +36,12 @@ describe('ExercisesComponent', () => {
     beforeEach(() => {
       // Arrange
       component['api'].readExercises = jasmine.createSpy<any>().and.returnValue({
-          pipe(){
-            return {
-              subscribe(){}
-            }
+        pipe() {
+          return {
+            subscribe() {},
           }
-        }
-      )
+        },
+      })
 
       // Act
       component.loadData()
@@ -56,15 +55,15 @@ describe('ExercisesComponent', () => {
   describe('openExerciseDialog()', () => {
     it('should call uiService.showDialog()', () => {
       const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
-        afterClosed(){
+        afterClosed() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
       component.openExerciseDialog()
       expect(spy).toHaveBeenCalled()
