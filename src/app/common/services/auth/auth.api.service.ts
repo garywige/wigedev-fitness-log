@@ -53,7 +53,7 @@ export class ApiAuthService extends AuthService {
   }
 }
 
-interface TokenPackage {
+export interface TokenPackage {
   id: string
   email: string
   role: Role
