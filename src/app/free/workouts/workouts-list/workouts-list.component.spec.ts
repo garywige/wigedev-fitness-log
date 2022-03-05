@@ -24,6 +24,16 @@ describe('WorkoutsListComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('ngOnInit()', () => {
+    it('should call selectedCycleId$.pipe()', () => {
+      const spy = spyOn<any>(component['workoutService'].selectedCycleId$, 'pipe').and.returnValue({
+        subscribe(){}
+      })
+      component.ngOnInit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
+
   describe('loadData()', () => {
     beforeEach(() => {
       // Arrange
@@ -42,6 +52,25 @@ describe('WorkoutsListComponent', () => {
     it('should call readWorkouts()', () => {
       // Assert
       expect(component['api'].readWorkouts).toHaveBeenCalled()
+    })
+  })
+
+  describe('openDialog()', () => {
+    it('should call uiService.showDialog()', () => {
+      const spy = spyOn<any>(component['uiService'], 'showDialog').and.returnValue({
+        afterClosed(){
+          return {
+            pipe(){
+              return {
+                subscribe(){}
+              }
+            }
+          }
+        }
+      })
+
+      component.openDialog(new Date())
+      expect(spy).toHaveBeenCalled()
     })
   })
 })
