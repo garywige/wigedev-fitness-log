@@ -28,7 +28,10 @@ describe('EditWorkoutComponent', () => {
   describe('addSet()', () => {
     beforeEach(() => {
       let set: Set = {
-        exercise: 'test',
+        exercise: {
+          id: 'test',
+          name: 'test'
+        },
         weight: 1,
         unit: 'test',
         reps: 1,

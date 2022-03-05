@@ -26,11 +26,22 @@ describe('WorkoutsListComponent', () => {
 
   describe('loadData()', () => {
     beforeEach(() => {
-      component.loadData()
+      // Arrange
+      component['api'].readWorkouts = jasmine.createSpy<any>().and.returnValue({
+        pipe(){
+          return {
+            subscribe(){}
+          }
+        }
+      })
+
+      // Act
+      component.loadData('62225f6e848445b5c4ad085b')
     })
 
-    it('should populate workouts array', () => {
-      expect(component.workouts.length).toBeGreaterThan(0)
+    it('should call readWorkouts()', () => {
+      // Assert
+      expect(component['api'].readWorkouts).toHaveBeenCalled()
     })
   })
 })

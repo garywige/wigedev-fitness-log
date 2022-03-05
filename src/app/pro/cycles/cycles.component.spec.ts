@@ -25,12 +25,23 @@ describe('CyclesComponent', () => {
   })
 
   describe('loadData()', () => {
+
     beforeEach(() => {
+      // Arrange
+      component['api'].readCycles = jasmine.createSpy<any>('readCycles', component['api'].readCycles).and.returnValue({
+          pipe(){
+            return {
+              subscribe(){}
+            }
+          }
+        })
+
+      // Act
       component.loadData()
     })
 
-    it('should populate cycles array', () => {
-      expect(component.cycles.length).toBeGreaterThan(0)
+    it('should call readCycles()', () => {
+      expect(component['api'].readCycles).toHaveBeenCalled()
     })
   })
 })

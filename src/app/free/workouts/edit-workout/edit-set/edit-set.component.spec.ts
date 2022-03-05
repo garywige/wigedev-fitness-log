@@ -26,11 +26,22 @@ describe('EditSetComponent', () => {
 
   describe('loadExercises()', () => {
     beforeEach(() => {
+      // Arrange
+      component['api'].readExercises = jasmine.createSpy<any>().and.returnValue({
+        pipe(){
+          return {
+            subscribe(){}
+          }
+        }
+      })
+
+      // Act
       component.loadExercises()
     })
 
-    it('should populate exercises array', () => {
-      expect(component.exercises?.length).toBeGreaterThan(0)
+    it('should call readExercises()', () => {
+      // Assert
+      expect(component['api'].readExercises).toHaveBeenCalled()
     })
   })
 })
