@@ -23,4 +23,17 @@ describe('SignUpComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  describe('onSubmit()', () => {
+    it('should call api.signup() when passwords match', () => {
+      spyOn<any>(component.form, 'get').and.returnValue({
+        value: 'test'
+      })
+      const spy = spyOn<any>(component['api'], 'signup').and.returnValue({
+        subscribe(){}
+      })
+      component.onSubmit()
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })
