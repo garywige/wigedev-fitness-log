@@ -7,10 +7,17 @@ describe('ApiService', () => {
   let service: ApiService
 
   beforeEach(() => {
+    // Arrange
     TestBed.configureTestingModule({
       imports: [TestingModule]
     })
     service = TestBed.inject(ApiService)
+
+    // common spies
+    service['http'].post = jasmine.createSpy<any>()
+    service['http'].put = jasmine.createSpy<any>()
+    service['http'].get = jasmine.createSpy<any>()
+    service['http'].delete = jasmine.createSpy<any>()
   })
 
   it('should be created', () => {
@@ -19,8 +26,6 @@ describe('ApiService', () => {
 
   describe('signup()', () => {
     it('should call post()', () => {
-      // Arrange
-      service['http'].post = jasmine.createSpy<any>()
 
       // Act
       service.signup('test', 'test', 'test')
@@ -32,14 +37,12 @@ describe('ApiService', () => {
 
   describe('signin()', () => {
     it('should call post()', () => {
-      // Arrange
-      service['http'].post = jasmine.createSpy<any>()
 
       // Act
       service.signin('test', 'test')
 
       // Assert
-      expect(service['http'].post)
+      expect(service['http'].post).toHaveBeenCalled()
     })
   })
 })
