@@ -9,3 +9,6 @@ RUN npm run build
 FROM nginx:alpine
 COPY --from=node /app/dist/wigedev-fitness-log /usr/share/nginx/html
 
+ENV HOST "0.0.0.0"
+ENV PORT 80
+EXPOSE 80
