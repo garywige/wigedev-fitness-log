@@ -12,3 +12,5 @@ This project is the Angular front-end for an online workout logging application.
 - **npm run lint**: perform a lint test
 - **npm run style**: perform a style test
 - **npm run style:fix**: apply style fixes
+- **npm run docker:build**: build docker image
+- **npm run docker:run**: run docker image locally on port 8080
