@@ -8,3 +8,6 @@ RUN npm run build
 # stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/wigedev-fitness-log /usr/share/nginx/html
+
+ENV PORT 80
+ENV HOST 0.0.0.0
