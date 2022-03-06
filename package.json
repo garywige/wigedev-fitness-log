@@ -11,9 +11,8 @@
     "lint": "ng lint",
     "style": "npx prettier -c **/src/**/*.{ts,css}",
     "style:fix": "npx prettier -w **/src/**/*.{ts,css}",
-    "predocker:build": "npm run build",
     "docker:build": "docker build -t garywige/wigedev-fitness-log:latest .",
-    "docker:run": "docker run -d -p 80:80 garywige/wigedev-fitness-log:latest"
+    "docker:run": "docker run -d -p 8080:80 garywige/wigedev-fitness-log:latest"
   },
   "private": true,
   "dependencies": {
