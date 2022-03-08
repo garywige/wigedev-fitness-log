@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiurl: 'https://wfl-api.wige-dev.com',
+  apiurl: 'https://wfl-server-323gbo4wzq-wl.a.run.app',
 }
