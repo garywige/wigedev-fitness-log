@@ -8,3 +8,4 @@
 - [ ] Lint Fix
 - [ ] Unit Tests
 - [ ] WCAG Compliant
+- [ ] Bump Version

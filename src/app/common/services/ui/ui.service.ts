@@ -1,6 +1,7 @@
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
+
 import { ComponentType } from '@angular/cdk/portal'
 import { Injectable } from '@angular/core'
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable({
@@ -20,7 +21,7 @@ export class UiService {
   }
 
   showDialog(component: ComponentType<unknown>, data: any = null, isSubDialog: boolean = false): MatDialogRef<unknown> {
-    return this.dialog.open(component, { width: isSubDialog ? '380px' : '420px', data: data })
+    return this.dialog.open(component, { width: isSubDialog ? '380px' : '420px', data: data, disableClose: true })
   }
 
   closeAllDialogs() {
