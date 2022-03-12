@@ -216,6 +216,7 @@ export interface WorkoutElement {
 export interface WorkoutOutput {
   date: Date
   cycleId: string
+  setCount: number
   sets: WorkoutElement[]
   message: string
 }
