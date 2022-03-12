@@ -118,6 +118,17 @@ export class EditWorkoutComponent implements OnInit {
   }
 
   copySet(set: Set){
-    console.log(`copy: ${JSON.stringify(set)}`)
+    console.log(this.groups.length)
+    this.groups.forEach(group => {
+      if(group.name === set.exercise.name){
+        group.sets.push({
+          exercise: set.exercise,
+          weight: set.weight,
+          unit: set.unit,
+          reps: set.reps,
+          completed: set.completed
+        })
+      }
+    })
   }
 }
