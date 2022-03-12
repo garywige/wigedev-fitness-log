@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core'
+import { catchError, filter, map, of, tap } from 'rxjs'
 
+import { ApiService } from 'src/app/common/services/api/api.service'
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component'
+import { MatTableDataSource } from '@angular/material/table'
+import { Set } from '../edit-workout/set'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
-import { filter, map, tap } from 'rxjs'
-import { ApiService } from 'src/app/common/services/api/api.service'
-import { MatTableDataSource } from '@angular/material/table'
 import { WorkoutSet } from '../../../common/services/api/api.service'
-import { Set } from '../edit-workout/set'
 
 interface Workout {
   date: Date
@@ -120,17 +120,14 @@ export class WorkoutsListComponent implements OnInit {
             this.api
               .createWorkout(workout?.date, this.cycleId, workout.sets)
               .pipe(
+                catchError((err) => of(err)),
                 tap((output) => {
+                  console.log(output?.message)
                   if (output?.message) {
                     this.uiService.toast('An error occurred when saving the workout.')
-                    return null
+                  } else {
+                    this.uiService.toast('Workout Saved!')
                   }
-
-                  return output
-                }),
-                filter((data) => data !== null),
-                tap(() => {
-                  this.uiService.toast('Workout Saved!')
                 })
               )
               .subscribe()
