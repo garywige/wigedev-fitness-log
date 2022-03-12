@@ -1,12 +1,12 @@
+import { ApiService, WorkoutSet, WorkoutsElement } from 'src/app/common/services/api/api.service'
 import { Component, OnInit } from '@angular/core'
+import { catchError, filter, map, of, tap } from 'rxjs'
 
 import { EditWorkoutComponent } from '../edit-workout/edit-workout.component'
 import { Month } from './month'
+import { Set } from '../edit-workout/set'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
-import { filter, map, tap } from 'rxjs'
-import { ApiService, WorkoutsElement, WorkoutSet } from 'src/app/common/services/api/api.service'
-import { Set } from '../edit-workout/set'
 
 @Component({
   selector: 'app-workouts-calendar',
@@ -163,6 +163,7 @@ export class WorkoutsCalendarComponent implements OnInit {
             this.api
               .createWorkout(workout.date, this.cycleId, workout.sets)
               .pipe(
+                catchError(err => of(err)),
                 tap((result) => {
                   if (result?.message) {
                     this.uiService.toast('An error occurred when saving the workout.')
