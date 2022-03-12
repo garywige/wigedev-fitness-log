@@ -6,9 +6,9 @@ import { Set } from './set'
 import { ExerciseGroup } from './exercise-group'
 import { UiService } from 'src/app/common/services/ui/ui.service'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { ApiService } from 'src/app/common/services/api/api.service'
+import { ApiService, WorkoutElement } from 'src/app/common/services/api/api.service'
 import { WorkoutService } from 'src/app/common/services/workout/workout.service'
-import { filter, tap } from 'rxjs'
+import { catchError, filter, map, of, tap } from 'rxjs'
 
 @Component({
   selector: 'app-edit-workout',
@@ -48,9 +48,26 @@ export class EditWorkoutComponent implements OnInit {
             this.api
               .readWorkout(this.date, cycleId)
               .pipe(
-                filter((output) => (output?.message ? false : true)),
+                map((output) => {
+                  if (output?.message || output?.setCount != output?.sets?.length) {
+                    throw Error('There was an error retrieving the workout from the server.')
+                  } else {
+                    return output
+                  }
+                }),
+                catchError((err) => of(err)),
+                tap((output) => {
+                  if (output?.message) {
+                    this.uiService.toast(output.message)
+                    this.uiService.closeAllDialogs()
+                    return null
+                  }
+
+                  return output
+                }),
+                filter((output) => output !== null),
                 tap((workout) => {
-                  workout?.sets?.forEach((set) => {
+                  workout?.sets?.forEach((set: WorkoutElement) => {
                     this.addSet({
                       exercise: set?.exercise,
                       weight: set?.weight,
