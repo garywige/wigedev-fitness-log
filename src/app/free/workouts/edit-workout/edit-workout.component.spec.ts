@@ -103,12 +103,12 @@ describe('EditWorkoutComponent', () => {
       const set: Set = {
         exercise: {
           id: 'test',
-          name: 'test'
+          name: 'test',
         },
         weight: 1,
         unit: 'lbs',
         reps: 1,
-        completed: 1
+        completed: 1,
       }
 
       component.copySet(set)
