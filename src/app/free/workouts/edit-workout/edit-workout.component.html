@@ -37,6 +37,7 @@
         </span>
         <span class="spacer"></span>
         <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise.name + i" pattern="^\d+$" aria-label="completed reps">
+        <button mat-icon-button color="accent" aria-label="copy set"><mat-icon>content_copy</mat-icon></button>
       </div>
     </div>
   </div>
