@@ -116,4 +116,8 @@ export class EditWorkoutComponent implements OnInit {
       })
     })
   }
+
+  copySet(set: Set){
+    console.log(`copy: ${JSON.stringify(set)}`)
+  }
 }
