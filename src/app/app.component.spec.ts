@@ -1,8 +1,7 @@
-import { AppComponent } from './app.component'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+
+import { AppComponent } from './app.component'
 import { TestingModule } from './common/testing/testing.module'
-import { AuthService } from './common/services/auth/auth.service'
-import { AuthServiceFake } from './common/testing/testing.fakes'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -29,16 +28,22 @@ describe('AppComponent', () => {
   })
 
   describe('logout()', () => {
+    let logoutSpy: jasmine.Spy<any>
+    let navigateSpy: jasmine.Spy<any>
+
+    beforeEach(() => {
+      logoutSpy = spyOn<any>(component['authService'], 'logout')
+      navigateSpy = spyOn<any>(component['router'], 'navigate')
+    })
+
     it('should call authService.logout()', () => {
-      const spy = spyOn<any>(component['authService'], 'logout')
       component.logout()
-      expect(spy).toHaveBeenCalled()
+      expect(logoutSpy).toHaveBeenCalled()
     })
 
     it('should call router.navigate()', () => {
-      const spy = spyOn<any>(component['router'], 'navigate')
       component.logout()
-      expect(spy).toHaveBeenCalled()
+      expect(navigateSpy).toHaveBeenCalled()
     })
   })
 })
