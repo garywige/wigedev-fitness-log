@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TestingModule } from 'src/app/common/testing/testing.module'
 
 import { EditWorkoutComponent } from './edit-workout.component'
 import { Set } from './set'
+import { TestingModule } from 'src/app/common/testing/testing.module'
 
 describe('EditWorkoutComponent', () => {
   let component: EditWorkoutComponent
@@ -94,6 +94,26 @@ describe('EditWorkoutComponent', () => {
       component.groups.forEach = jasmine.createSpy<any>()
       component.onSubmit()
       expect(component.groups.forEach).toHaveBeenCalled()
+    })
+  })
+
+  describe('copySet()', () => {
+    it('should call addSet()', () => {
+      const spy = spyOn<any>(component, 'addSet')
+      const set: Set = {
+        exercise: {
+          id: 'test',
+          name: 'test',
+        },
+        weight: 1,
+        unit: 'lbs',
+        reps: 1,
+        completed: 1,
+      }
+
+      component.copySet(set)
+
+      expect(spy).toHaveBeenCalled()
     })
   })
 })

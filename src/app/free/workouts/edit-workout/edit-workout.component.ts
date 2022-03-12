@@ -116,4 +116,16 @@ export class EditWorkoutComponent implements OnInit {
       })
     })
   }
+
+  copySet(set: Set) {
+    const copy: Set = {
+      exercise: set.exercise,
+      weight: set.weight,
+      unit: set.unit,
+      reps: set.reps,
+      completed: set.completed,
+    }
+
+    this.addSet(copy)
+  }
 }
