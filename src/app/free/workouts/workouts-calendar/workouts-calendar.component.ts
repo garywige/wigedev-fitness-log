@@ -163,7 +163,7 @@ export class WorkoutsCalendarComponent implements OnInit {
             this.api
               .createWorkout(workout.date, this.cycleId, workout.sets)
               .pipe(
-                catchError(err => of(err)),
+                catchError((err) => of(err)),
                 tap((result) => {
                   if (result?.message) {
                     this.uiService.toast('An error occurred when saving the workout.')

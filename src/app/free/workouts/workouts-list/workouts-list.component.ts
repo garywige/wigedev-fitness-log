@@ -120,7 +120,7 @@ export class WorkoutsListComponent implements OnInit {
             this.api
               .createWorkout(workout?.date, this.cycleId, workout.sets)
               .pipe(
-                catchError(err => of(err)),
+                catchError((err) => of(err)),
                 tap((output) => {
                   console.log(output?.message)
                   if (output?.message) {
