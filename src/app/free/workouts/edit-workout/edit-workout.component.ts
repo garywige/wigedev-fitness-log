@@ -48,17 +48,16 @@ export class EditWorkoutComponent implements OnInit {
             this.api
               .readWorkout(this.date, cycleId)
               .pipe(
-                map(output => {
-                  if(output?.message || output?.setCount != output?.sets?.length){
+                map((output) => {
+                  if (output?.message || output?.setCount != output?.sets?.length) {
                     throw Error('There was an error retrieving the workout from the server.')
-                  }
-                  else {
+                  } else {
                     return output
                   }
                 }),
-                catchError(err => of(err)),
-                tap(output => {
-                  if(output?.message){
+                catchError((err) => of(err)),
+                tap((output) => {
+                  if (output?.message) {
                     this.uiService.toast(output.message)
                     this.uiService.closeAllDialogs()
                     return null
@@ -66,7 +65,7 @@ export class EditWorkoutComponent implements OnInit {
 
                   return output
                 }),
-                filter(output => output !== null),
+                filter((output) => output !== null),
                 tap((workout) => {
                   workout?.sets?.forEach((set: WorkoutElement) => {
                     this.addSet({
