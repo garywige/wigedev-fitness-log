@@ -21,7 +21,7 @@
       <mat-divider></mat-divider>
       <p>{{group.name}}</p>
       <div *ngFor="let set of group.sets; index as i" class="flex">
-        <button mat-icon-button color="accent" (click)="group.sets.splice(i, 1)" aria-label="delete set"><mat-icon>delete</mat-icon></button>
+        <button type="button" mat-icon-button color="accent" (click)="group.sets.splice(i, 1)" aria-label="delete set"><mat-icon>delete</mat-icon></button>
         <span>
           {{set.weight}}
         </span>
@@ -37,7 +37,7 @@
         </span>
         <span class="spacer"></span>
         <input matInput class="completed-reps" [(ngModel)]="set.completed" [name]="set.exercise.name + i" pattern="^\d+$" aria-label="completed reps">
-        <button mat-icon-button color="accent" aria-label="copy set" (click)="copySet(set)"><mat-icon>content_copy</mat-icon></button>
+        <button type="button" mat-icon-button color="accent" aria-label="copy set" (click)="copySet(set)"><mat-icon>content_copy</mat-icon></button>
       </div>
     </div>
   </div>
