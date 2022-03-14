@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'workouts',
     component: WorkoutsComponent,
     canActivate: [AuthGuardService],
-    data: { expectedRole: Role.Free}
+    data: { expectedRole: Role.Free },
   },
 ]
 

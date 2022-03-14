@@ -30,7 +30,7 @@ const modules = [
   MatDividerModule,
   MatSnackBarModule,
   MatTableModule,
-  MatTabsModule
+  MatTabsModule,
 ]
 
 @NgModule({
