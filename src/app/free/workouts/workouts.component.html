@@ -1,9 +1,6 @@
 <h1>Workouts</h1>
 
-<div class="flex">
-  <button mat-button routerLink="/free/workouts/calendar" routerLinkActive="active" class="mobile-fix">Calendar</button>
-  <button mat-button routerLink="/free/workouts/list" routerLinkActive="active">List</button>
-  <span class="spacer"></span>
+<div>
   <mat-form-field appearance="outline" color="accent">
     <mat-label>Cycle</mat-label>
     <mat-select [(value)]="selectedCycleId" (selectionChange)="onSelectionChange()">
@@ -13,5 +10,16 @@
 </div>
 
 <div>
-  <router-outlet></router-outlet>
+  <mat-tab-group color="accent">
+    <mat-tab label="Calendar">
+      <div class="margin-top">
+        <app-workouts-calendar></app-workouts-calendar>
+      </div>
+    </mat-tab>
+    <mat-tab label="List">
+      <div class="margin-top">
+        <app-workouts-list></app-workouts-list>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
