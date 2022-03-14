@@ -26,3 +26,7 @@ label {
 .mobile-fix {
   width: 90px;
 }
+
+.mat-form-field {
+  width: 100%;
+}
