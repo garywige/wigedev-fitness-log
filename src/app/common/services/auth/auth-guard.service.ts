@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core'
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -8,10 +7,12 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
-import { map, Observable, take } from 'rxjs'
-import { UiService } from '../ui/ui.service'
-import { Role } from './auth.enum'
+import { Observable, map, take } from 'rxjs'
+
 import { AuthService } from './auth.service'
+import { Injectable } from '@angular/core'
+import { Role } from './auth.enum'
+import { UiService } from '../ui/ui.service'
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +59,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
       return true
     }
 
-    return role === route.data['expectedRole']
+    return role === route.data['expectedRole'] || (role === Role.Pro && route.data['expectedRole'] === Role.Free )
   }
 
   private showAlert(isAuth: boolean, roleMatch: boolean) {
