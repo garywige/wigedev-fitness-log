@@ -11,8 +11,7 @@ describe('WorkoutsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WorkoutsComponent,
-      WorkoutsCalendarComponent, WorkoutsListComponent],
+      declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent],
       imports: [TestingModule],
     }).compileComponents()
   })
