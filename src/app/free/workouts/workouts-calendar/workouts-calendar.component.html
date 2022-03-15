@@ -1,3 +1,4 @@
+<button mat-raised-button color="accent" (click)="openWorkoutDialog()">New Workout</button>
 <div class="flex border month-selector">
   <button mat-fab class="month" (click)="monthBack()" aria-label="previous month"><mat-icon>arrow_back</mat-icon></button>
   <span class="spacer"></span>
@@ -35,8 +36,6 @@
         <td *ngFor="let day of week">
           <div>
             {{ day }}<br>
-            <button *ngIf="selectedMonth === today.getMonth() && day === today.getDate() && selectedYear === today.getFullYear()"
-                mat-mini-fab color="accent" (click)="openWorkoutDialog()" aria-label="add workout"><mat-icon>add</mat-icon></button>
             <button *ngIf="hasWorkout(selectedYear, selectedMonth, day)" mat-mini-fab color="accent"
                 (click)="openWorkoutDialog(convertToDate(selectedYear, selectedMonth, day))" aria-label="edit workout">
                   <mat-icon>edit</mat-icon></button>

@@ -28,3 +28,8 @@ td {
 .month-selector {
   background: #8b6b61;
 }
+
+.mat-raised-button {
+  width: 100%;
+  margin-bottom: 16px;
+}
