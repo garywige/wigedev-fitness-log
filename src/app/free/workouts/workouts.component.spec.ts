@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TestingModule } from 'src/app/common/testing/testing.module'
 
+import { TestingModule } from 'src/app/common/testing/testing.module'
+import { WorkoutsCalendarComponent } from './workouts-calendar/workouts-calendar.component'
 import { WorkoutsComponent } from './workouts.component'
+import { WorkoutsListComponent } from './workouts-list/workouts-list.component'
 
 describe('WorkoutsComponent', () => {
   let component: WorkoutsComponent
@@ -9,7 +11,7 @@ describe('WorkoutsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WorkoutsComponent],
+      declarations: [WorkoutsComponent, WorkoutsCalendarComponent, WorkoutsListComponent],
       imports: [TestingModule],
     }).compileComponents()
   })
