@@ -11,3 +11,7 @@ table {
 .fixed {
   width: 50%;
 }
+
+.mat-raised-button {
+  width: 100%;
+}
