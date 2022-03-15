@@ -59,7 +59,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad 
       return true
     }
 
-    return role === route.data['expectedRole'] || (role === Role.Pro && route.data['expectedRole'] === Role.Free )
+    return role === route.data['expectedRole'] || (role === Role.Pro && route.data['expectedRole'] === Role.Free)
   }
 
   private showAlert(isAuth: boolean, roleMatch: boolean) {
