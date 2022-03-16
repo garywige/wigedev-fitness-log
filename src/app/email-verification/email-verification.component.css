@@ -1,0 +1,11 @@
+.component {
+  text-align: center;
+  width: 30%;
+  margin-left: 35%;
+}
+
+.mat-spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+}
