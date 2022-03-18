@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmailVerificationComponent } from './email-verification.component';
+import { TestingModule } from '../common/testing/testing.module';
 
 describe('EmailVerificationComponent', () => {
   let component: EmailVerificationComponent;
@@ -8,7 +9,8 @@ describe('EmailVerificationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmailVerificationComponent ]
+      declarations: [ EmailVerificationComponent ],
+      imports: [TestingModule]
     })
     .compileComponents();
   });
@@ -22,4 +24,20 @@ describe('EmailVerificationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('ngOnInit()', () => {
+    it('should call verifyEmail()', () => {
+      component['api'].verifyEmail = jasmine.createSpy().and.returnValue({
+        pipe(){
+          return {
+            subscribe(){}
+          }
+        }
+      })
+
+      component.ngOnInit()
+
+      expect(component['api'].verifyEmail).toHaveBeenCalled()
+    })
+  })
 });
