@@ -1,0 +1,19 @@
+<div class="component">
+
+  <div *ngIf="!isComplete">
+    <mat-spinner color="accent" aria-label="verifying email address"></mat-spinner>
+    <span>Verifying {{ email }}...</span>
+  </div>
+
+  <div *ngIf="isComplete">
+    <div *ngIf="isSuccess">
+      <h1>Verification successful!</h1>
+      <button mat-raised-button color="accent" routerLink="/signin">Sign In</button>
+    </div>
+
+    <div *ngIf="!isSuccess">
+      <h1>Verification failed!</h1>
+      <p>There was an error processing the verification input. Please try again later.</p>
+    </div>
+  </div>
+</div>

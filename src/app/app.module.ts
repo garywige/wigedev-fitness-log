@@ -17,6 +17,7 @@ import { AuthService } from './common/services/auth/auth.service'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AuthHttpInterceptor } from './common/services/auth/auth-http-interceptor'
 import { ApiAuthService } from './common/services/auth/auth.api.service'
+import { EmailVerificationComponent } from './email-verification/email-verification.component'
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ApiAuthService } from './common/services/auth/auth.api.service'
     SignInComponent,
     SignUpComponent,
     SignUpVerificationComponent,
+    EmailVerificationComponent,
   ],
   imports: [
     BrowserModule,

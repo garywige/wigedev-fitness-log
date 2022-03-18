@@ -30,6 +30,16 @@ export class ApiService {
     return this.http.post<signinOutput>(url, reqBody)
   }
 
+  verifyEmail(email: string, hash: string): Observable<VerifyEmailOutput> {
+    const url = environment.apiurl + '/v1/verifyemail'
+    const reqBody = {
+      email: email,
+      hash: hash,
+    }
+
+    return this.http.put<VerifyEmailOutput>(url, reqBody)
+  }
+
   readCycles(): Observable<CyclesOutput> {
     const url = environment.apiurl + '/v1/cycles'
     return this.http.get<CyclesOutput>(url)
@@ -143,6 +153,12 @@ export interface signupOutput {
 
 export interface signinOutput {
   accessToken: string
+  message: string
+}
+
+export interface VerifyEmailOutput {
+  email: string
+  verified: boolean
   message: string
 }
 
