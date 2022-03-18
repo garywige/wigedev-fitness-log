@@ -32,7 +32,7 @@ const modules = [
   MatSnackBarModule,
   MatTableModule,
   MatTabsModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 ]
 
 @NgModule({

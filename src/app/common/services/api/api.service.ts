@@ -34,7 +34,7 @@ export class ApiService {
     const url = environment.apiurl + '/v1/verifyemail'
     const reqBody = {
       email: email,
-      hash: hash
+      hash: hash,
     }
 
     return this.http.put<VerifyEmailOutput>(url, reqBody)

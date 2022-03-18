@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { filter, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core'
+import { filter, tap } from 'rxjs'
 
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../common/services/api/api.service';
+import { ActivatedRoute } from '@angular/router'
+import { ApiService } from '../common/services/api/api.service'
 
 @Component({
   selector: 'app-email-verification',
   templateUrl: './email-verification.component.html',
-  styleUrls: ['./email-verification.component.css']
+  styleUrls: ['./email-verification.component.css'],
 })
 export class EmailVerificationComponent implements OnInit {
-
   email: string
   hash: string
   isComplete: boolean = false
@@ -22,19 +21,21 @@ export class EmailVerificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.api.verifyEmail(this.email, this.hash).pipe(
-        tap(output => {
-          if(output?.message) {
+    this.api
+      .verifyEmail(this.email, this.hash)
+      .pipe(
+        tap((output) => {
+          if (output?.message) {
             this.isComplete = true
             this.isSuccess = false
           }
         }),
-        filter(output => output?.verified !== null),
-        tap(output => {
+        filter((output) => output?.verified !== null),
+        tap((output) => {
           this.isComplete = true
           this.isSuccess = output.verified
         })
-      ).subscribe()
+      )
+      .subscribe()
   }
 }
-

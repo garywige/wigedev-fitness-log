@@ -1,38 +1,37 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { EmailVerificationComponent } from './email-verification.component';
-import { TestingModule } from '../common/testing/testing.module';
+import { EmailVerificationComponent } from './email-verification.component'
+import { TestingModule } from '../common/testing/testing.module'
 
 describe('EmailVerificationComponent', () => {
-  let component: EmailVerificationComponent;
-  let fixture: ComponentFixture<EmailVerificationComponent>;
+  let component: EmailVerificationComponent
+  let fixture: ComponentFixture<EmailVerificationComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmailVerificationComponent ],
-      imports: [TestingModule]
-    })
-    .compileComponents();
-  });
+      declarations: [EmailVerificationComponent],
+      imports: [TestingModule],
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmailVerificationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(EmailVerificationComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   describe('ngOnInit()', () => {
     it('should call verifyEmail()', () => {
       component['api'].verifyEmail = jasmine.createSpy().and.returnValue({
-        pipe(){
+        pipe() {
           return {
-            subscribe(){}
+            subscribe() {},
           }
-        }
+        },
       })
 
       component.ngOnInit()
@@ -40,4 +39,4 @@ describe('EmailVerificationComponent', () => {
       expect(component['api'].verifyEmail).toHaveBeenCalled()
     })
   })
-});
+})
