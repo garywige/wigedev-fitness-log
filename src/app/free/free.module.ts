@@ -9,7 +9,8 @@ import { MaterialModule } from '../material/material.module'
 import { NgModule } from '@angular/core'
 import { WorkoutsCalendarComponent } from './workouts/workouts-calendar/workouts-calendar.component'
 import { WorkoutsComponent } from './workouts/workouts.component'
-import { WorkoutsListComponent } from './workouts/workouts-list/workouts-list.component'
+import { WorkoutsListComponent } from './workouts/workouts-list/workouts-list.component';
+import { UpgradeComponent } from './upgrade/upgrade.component'
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { WorkoutsListComponent } from './workouts/workouts-list/workouts-list.co
     EditWorkoutComponent,
     EditSetComponent,
     DeleteWorkoutComponent,
+    UpgradeComponent,
   ],
   imports: [CommonModule, FreeRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
 })
