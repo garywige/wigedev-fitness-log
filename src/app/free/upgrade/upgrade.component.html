@@ -26,8 +26,10 @@
 <mat-card class="form">
   <form>
     <h2>Subscription Type</h2>
-    <mat-radio-button>$2/month</mat-radio-button>
-    <mat-radio-button>$20/year (20% savings)</mat-radio-button>
+    <mat-radio-group aria-label="subscription type" [(ngModel)]="subscriptionType">
+      <mat-radio-button value="year">$20/year (20% savings)</mat-radio-button>
+      <mat-radio-button value="month">$2/month</mat-radio-button>
+    </mat-radio-group>
     <h2>Credit Card</h2>
     <div id="card-container"></div>
     <h2>Billing Name</h2>

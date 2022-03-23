@@ -11,6 +11,8 @@ export class UpgradeComponent implements OnInit {
   private appId = 'sandbox-sq0idb-Cev7uB4UAAPhOfL4ZWRKMQ'
   private locationId = 'LNXH23P4CY14T'
 
+  subscriptionType = ''
+
   constructor() { }
 
   ngOnInit(): void {
