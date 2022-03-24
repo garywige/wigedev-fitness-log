@@ -37,10 +37,12 @@
       <mat-form-field appearance="outline" color="accent">
         <mat-label>First Name</mat-label>
         <input matInput type="text" placeholder="John" formControlName="first">
+        <mat-error>first name is required</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Last Name</mat-label>
         <input matInput type="text" placeholder="Doe" formControlName="last">
+        <mat-error>last name is required</mat-error>
       </mat-form-field>
     </div>
     <h2>Billing Address</h2>
@@ -48,6 +50,7 @@
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Street Address</mat-label>
         <input matInput type="text" placeholder="123 Main St." formControlName="line1">
+        <mat-error>street address is required</mat-error>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline" color="accent">
@@ -58,21 +61,25 @@
       <mat-form-field appearance="outline" color="accent">
         <mat-label>City</mat-label>
         <input matInput type="text" placeholder="Los Angeles" formControlName="city">
+        <mat-error>city is required</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>State/Province</mat-label>
         <input matInput type="text" placeholder="CA" formControlName="state">
+        <mat-error>state is required</mat-error>
       </mat-form-field>
       <br>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>ZIP/Postal Code</mat-label>
         <input matInput type="text" placeholder="90210" formControlName="zip">
+        <mat-error>zip is required and can only contain numbers and dashes</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" color="accent">
         <mat-label>Country</mat-label>
         <input matInput type="text" placeholder="US" formControlName="country">
+        <mat-error>country is required and can only contain 2 characters</mat-error>
       </mat-form-field>
     </div>
-    <button mat-raised-button color="accent">Subscribe</button>
+    <button mat-raised-button color="accent" [disabled]="form.invalid">Subscribe</button>
   </form>
 </mat-card>

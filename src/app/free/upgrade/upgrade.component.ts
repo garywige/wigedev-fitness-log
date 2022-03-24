@@ -1,6 +1,7 @@
 import { Card, Payments, Square } from '@square/web-payments-sdk-types'
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UiService } from 'src/app/common/services/ui/ui.service';
 
 @Component({
   selector: 'app-upgrade',
@@ -14,22 +15,22 @@ export class UpgradeComponent implements OnInit {
   private card = <Card>{}
 
   form = new FormGroup({
-    type: new FormControl(''),
+    type: new FormControl('', [Validators.required, Validators.pattern(/^[a-z]+$/)]),
     name: new FormGroup({
-      first: new FormControl(''),
-      last: new FormControl('')
+      first: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z-]+$/)]),
+      last: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z-]+$/)])
     }),
     address: new FormGroup({
-      line1: new FormControl(''),
+      line1: new FormControl('', [Validators.required]),
       line2: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      zip: new FormControl(''),
-      country: new FormControl('')
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      zip: new FormControl('', [Validators.required, Validators.pattern(/^[\d-]+$/)]),
+      country: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z]{2}$/)])
     })
   })
 
-  constructor() { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit(): void {
     if(!window.Square){
@@ -55,7 +56,7 @@ export class UpgradeComponent implements OnInit {
 
     this.card.tokenize().then(token => {
       if(token.status !== 'OK'){
-        console.error('invalid credit card input')
+        this.uiService.toast('Please enter a valid credit card')
         return
       }
 
