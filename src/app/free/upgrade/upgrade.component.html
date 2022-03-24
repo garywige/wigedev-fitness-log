@@ -24,51 +24,55 @@
 </p>
 
 <mat-card class="form">
-  <form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h2>Subscription Type</h2>
-    <mat-radio-group aria-label="subscription type" [(ngModel)]="subscriptionType">
+    <mat-radio-group aria-label="subscription type" formControlName="type">
       <mat-radio-button value="year">$20/year (20% savings)</mat-radio-button>
       <mat-radio-button value="month">$2/month</mat-radio-button>
     </mat-radio-group>
     <h2>Credit Card</h2>
     <div id="card-container"></div>
     <h2>Billing Name</h2>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>First Name</mat-label>
-      <input matInput type="text" placeholder="John">
-    </mat-form-field>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Last Name</mat-label>
-      <input matInput type="text" placeholder="Doe">
-    </mat-form-field>
+    <div formGroupName="name">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" placeholder="John" formControlName="first">
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" placeholder="Doe" formControlName="last">
+      </mat-form-field>
+    </div>
     <h2>Billing Address</h2>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Street Address</mat-label>
-      <input matInput type="text" placeholder="123 Main St.">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Address Line 2</mat-label>
-      <input matInput type="text" placeholder="Unit 2">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>City</mat-label>
-      <input matInput type="text" placeholder="Los Angeles">
-    </mat-form-field>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>State/Province</mat-label>
-      <input matInput type="text" placeholder="CA">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>ZIP/Postal Code</mat-label>
-      <input matInput type="text" placeholder="90210">
-    </mat-form-field>
-    <mat-form-field appearance="outline" color="accent">
-      <mat-label>Country</mat-label>
-      <input matInput type="text" placeholder="US">
-    </mat-form-field>
+    <div formGroupName="address">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Street Address</mat-label>
+        <input matInput type="text" placeholder="123 Main St." formControlName="line1">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput type="text" placeholder="Unit 2" formControlName="line2">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>City</mat-label>
+        <input matInput type="text" placeholder="Los Angeles" formControlName="city">
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>State/Province</mat-label>
+        <input matInput type="text" placeholder="CA" formControlName="state">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>ZIP/Postal Code</mat-label>
+        <input matInput type="text" placeholder="90210" formControlName="zip">
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" placeholder="US" formControlName="country">
+      </mat-form-field>
+    </div>
     <button mat-raised-button color="accent">Subscribe</button>
   </form>
 </mat-card>
