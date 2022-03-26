@@ -24,4 +24,29 @@ describe('UpgradeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('ngOnInit()', () => {
+    it('should call initializeCard()', () => {
+      // Arrange
+      window['Square'] = jasmine.createSpyObj('Square', {
+        payments(){
+          return {}
+        }
+      })
+
+      const spy = spyOn<any>(component, 'initializeCard').and.returnValue({
+        then(){
+          return {
+            catch(){}
+          }
+        }
+      })
+
+      // Act
+      component.ngOnInit()
+
+      // Assert
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 });
