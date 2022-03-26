@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TestingModule } from 'src/app/common/testing/testing.module';
 import { UpgradeComponent } from './upgrade.component';
 
 describe('UpgradeComponent', () => {
@@ -8,7 +9,8 @@ describe('UpgradeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpgradeComponent ]
+      declarations: [ UpgradeComponent ],
+      imports: [TestingModule]
     })
     .compileComponents();
   });

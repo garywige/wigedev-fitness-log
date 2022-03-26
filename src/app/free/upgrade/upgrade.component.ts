@@ -34,7 +34,8 @@ export class UpgradeComponent implements OnInit {
 
   ngOnInit(): void {
     if(!window.Square){
-      throw new Error('Square.js failed to load properly')
+      console.log('Square.js failed to load properly!')
+      return
     }
 
     const payments = window.Square.payments(this.appId, this.locationId)
