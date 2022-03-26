@@ -49,4 +49,19 @@ describe('UpgradeComponent', () => {
       expect(spy).toHaveBeenCalled()
     })
   })
+
+  describe('onSubmit()', () => {
+    it('should call card.tokenize()', () => {
+      // Arrange
+      component['card'].tokenize = jasmine.createSpy().and.returnValue({
+        then(){}
+      })
+
+      // Act
+      component.onSubmit()
+
+      // Assert
+      expect(component['card'].tokenize).toHaveBeenCalled()
+    })
+  })
 });
