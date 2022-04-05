@@ -2,6 +2,8 @@ import { Card, Payments, Square } from '@square/web-payments-sdk-types'
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/services/ui/ui.service';
+import { ApiService } from 'src/app/common/services/api/api.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-upgrade',
@@ -30,7 +32,7 @@ export class UpgradeComponent implements OnInit {
     })
   })
 
-  constructor(private uiService: UiService) { }
+  constructor(private uiService: UiService, private api: ApiService) { }
 
   ngOnInit(): void {
     if(!window.Square){
@@ -78,7 +80,11 @@ export class UpgradeComponent implements OnInit {
         }
       }
 
-      console.log(JSON.stringify(output))
+      this.api.upgrade(output as any).pipe(
+        tap(output => {
+          console.log(JSON.stringify(output))
+        })
+      ).subscribe()
     })
   }
 }

@@ -51,17 +51,40 @@ describe('UpgradeComponent', () => {
   })
 
   describe('onSubmit()', () => {
-    it('should call card.tokenize()', () => {
+
+    beforeEach(() => {
       // Arrange
       component['card'].tokenize = jasmine.createSpy().and.returnValue({
-        then(){}
+        then(func: any){
+          func({status: 'OK'})
+        }
       })
+    })
+
+    it('should call card.tokenize()', () => {
 
       // Act
       component.onSubmit()
 
       // Assert
       expect(component['card'].tokenize).toHaveBeenCalled()
+    })
+
+    it('should call api.upgrade()', () => {
+      // Arrange
+      const spy = spyOn<any>(component['api'], 'upgrade').and.returnValue({
+        pipe(){
+          return {
+            subscribe(){}
+          }
+        }
+      })
+
+      // Act
+      component.onSubmit()
+
+      // Assert
+      expect(spy).toHaveBeenCalled()
     })
   })
 });
