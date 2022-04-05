@@ -40,6 +40,14 @@ export class ApiService {
     return this.http.put<VerifyEmailOutput>(url, reqBody)
   }
 
+  upgrade(body: {type: string, card: string, name: {first: string, last: string}, address: {
+    line1: string, line2?: string, city: string, state: string, zip: string, country: string
+  }}): Observable<UpgradeOutput>{
+    const url = environment.apiurl + '/v1/upgrade'
+
+    return this.http.post<UpgradeOutput>(url, body)
+  }
+
   readCycles(): Observable<CyclesOutput> {
     const url = environment.apiurl + '/v1/cycles'
     return this.http.get<CyclesOutput>(url)
@@ -160,6 +168,11 @@ export interface VerifyEmailOutput {
   email: string
   verified: boolean
   message: string
+}
+
+export interface UpgradeOutput {
+  email: string,
+  paidThrough: Date
 }
 
 export interface CyclesElement {
