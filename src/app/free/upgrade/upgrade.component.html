@@ -1,0 +1,86 @@
+<h1>Upgrade to WFL Pro</h1>
+
+<h2>Why Upgrade?</h2>
+
+<p>When you're just starting with weight training, it's good to get experience with the basic lifts but to keep things relatively simple.
+  After about 6-9 months of linear progression though, the basic training models lose their effectiveness and it becomes necessary to
+  introduce more complexity into your training. WFL Pro was designed to facilitate a transition to more complex strength programming
+  models. After upgrading, you will have access to the following features:
+</p>
+
+<ul>
+  <li>Unlimited Custom Exercises</li>
+  <li>Unlimited Workout Cycles</li>
+  <li>1RM Calculator</li>
+  <li>Stats</li>
+</ul>
+
+<p>Cycles can be used to represent a workout routine, or a macrocycle. If you are just about to start the Texas Method intermediate routine,
+  for instance, you should create a new cycle in WFL to represent that phase of your training. This will help keep your workouts organized as
+  you may need look at your training history down the road. Then, you can add any additional exercises to the app that you will need for that
+  training period. Some programs require that you calculate the weight on the bar as a percentage of your one-rep max (1RM), so I am including
+  a calculator to assist with that. Finally, the stats page will help you to see your overall progress on each lift. If you're still not
+  sure, I urge you to at least try it out for a month and you can cancel your subscription at any time. I mean, who can't afford $2? You can
+  always cancel at anytime by navigating to the account menu on the top-right.
+</p>
+
+<mat-card class="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Subscription Type</h2>
+    <mat-radio-group aria-label="subscription type" formControlName="type">
+      <mat-radio-button value="year">$20/year (20% savings)</mat-radio-button>
+      <mat-radio-button value="month">$2/month</mat-radio-button>
+    </mat-radio-group>
+    <h2>Credit Card</h2>
+    <div id="card-container"></div>
+    <h2>Billing Name</h2>
+    <div formGroupName="name">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" placeholder="John" formControlName="first">
+        <mat-error>first name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" placeholder="Doe" formControlName="last">
+        <mat-error>last name is required</mat-error>
+      </mat-form-field>
+    </div>
+    <h2>Billing Address</h2>
+    <div formGroupName="address">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Street Address</mat-label>
+        <input matInput type="text" placeholder="123 Main St." formControlName="line1">
+        <mat-error>street address is required</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput type="text" placeholder="Unit 2" formControlName="line2">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>City</mat-label>
+        <input matInput type="text" placeholder="Los Angeles" formControlName="city">
+        <mat-error>city is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>State/Province</mat-label>
+        <input matInput type="text" placeholder="CA" formControlName="state">
+        <mat-error>state is required</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>ZIP/Postal Code</mat-label>
+        <input matInput type="text" placeholder="90210" formControlName="zip">
+        <mat-error>zip is required and can only contain numbers and dashes</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" placeholder="US" formControlName="country">
+        <mat-error>country is required and can only contain 2 characters</mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="accent" [disabled]="form.invalid">Subscribe</button>
+  </form>
+</mat-card>

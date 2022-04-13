@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing'
 import { TestingModule } from '../../testing/testing.module'
-
 import { UiService } from './ui.service'
 
 describe('UiService', () => {
@@ -39,6 +38,29 @@ describe('UiService', () => {
       service['dialog'].closeAll = jasmine.createSpy<any>()
       service.closeAllDialogs()
       expect(service['dialog'].closeAll).toHaveBeenCalled()
+    })
+  })
+
+  describe('upgradeToast()', () => {
+    it('should call snackbar.open()', () => {
+      // Arrange
+      service['snackbar'].open = jasmine.createSpy().and.returnValue({
+        onAction() {
+          return {
+            pipe() {
+              return {
+                subscribe() {},
+              }
+            },
+          }
+        },
+      })
+
+      // Act
+      service.upgradeToast()
+
+      // Assert
+      expect(service['snackbar'].open).toHaveBeenCalled()
     })
   })
 })

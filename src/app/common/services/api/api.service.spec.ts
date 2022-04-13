@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing'
-
 import { ApiService } from './api.service'
+import { TestBed } from '@angular/core/testing'
 import { TestingModule } from '../../testing/testing.module'
+import { yearsPerPage } from '@angular/material/datepicker'
 
 describe('ApiService', () => {
   let service: ApiService
@@ -38,6 +38,30 @@ describe('ApiService', () => {
     it('should call post()', () => {
       // Act
       service.signin('test', 'test')
+
+      // Assert
+      expect(service['http'].post).toHaveBeenCalled()
+    })
+  })
+
+  describe('upgrade()', () => {
+    it('should call post()', () => {
+      // Act
+      service.upgrade({
+        type: 'test',
+        card: 'test',
+        name: {
+          first: 'test',
+          last: 'test',
+        },
+        address: {
+          line1: 'test',
+          city: 'test',
+          state: 'CA',
+          zip: '12345',
+          country: 'US',
+        },
+      })
 
       // Assert
       expect(service['http'].post).toHaveBeenCalled()

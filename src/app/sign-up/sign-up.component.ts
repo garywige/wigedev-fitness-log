@@ -1,10 +1,10 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
-import { Component } from '@angular/core'
-import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component'
-import { Router } from '@angular/router'
-import { UiService } from '../common/services/ui/ui.service'
 import { ApiService } from '../common/services/api/api.service'
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { SignUpVerificationComponent } from './sign-up-verification/sign-up-verification.component'
+import { UiService } from '../common/services/ui/ui.service'
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +23,6 @@ export class SignUpComponent {
       Validators.pattern(/[^a-zA-Z0-9]+/),
     ]),
     confirm: new FormControl('', [Validators.required, Validators.minLength(8)]),
-    type: new FormControl('', Validators.required),
   })
 
   constructor(private uiService: UiService, private router: Router, private api: ApiService) {}
@@ -39,7 +38,7 @@ export class SignUpComponent {
     const input = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
-      accountType: this.form.get('type')?.value,
+      accountType: 'free',
     }
 
     this.api.signup(input?.email, input?.password, input?.accountType).subscribe((output) => {

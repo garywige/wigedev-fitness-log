@@ -61,10 +61,16 @@ img {
   border: solid white 1px;
 }
 
-.snackbar {
+.snackbar,
+.snackbar-upgrade {
   background: #8b6b61;
   border: solid white 1px;
   color: white;
+}
+
+.snackbar-upgrade {
+  color: black;
+  background: #80cbc4;
 }
 
 .mat-error {

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { combineLatest, filter, tap } from 'rxjs'
+
 import { AuthService } from '../common/services/auth/auth.service'
+import { Role } from '../common/services/auth/auth.enum'
+import { Router } from '@angular/router'
 import { UiService } from '../common/services/ui/ui.service'
 
 @Component({
@@ -37,6 +39,11 @@ export class SignInComponent {
         tap(([authStatus, user]) => {
           // display message on successful sign in
           this.uiService.toast('Welcome to WFL!')
+
+          // prompt to upgrade if free
+          if (authStatus.userRole === Role.Free) {
+            this.uiService.upgradeToast()
+          }
 
           // navigate to the workouts page
           this.router.navigate(['/free'])

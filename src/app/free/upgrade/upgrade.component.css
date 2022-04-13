@@ -1,0 +1,35 @@
+h1,
+h2 {
+  text-align: center;
+}
+
+p,
+li {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
+
+.form {
+  background-color: #8b6b61;
+  color: white;
+  border: solid white 1px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 16px;
+}
+
+.mat-radio-button {
+  margin: 16px;
+}
+
+#card-container {
+  margin: 16px 0;
+}

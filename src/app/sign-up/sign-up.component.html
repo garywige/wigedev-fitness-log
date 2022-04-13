@@ -17,11 +17,6 @@
       <input type="password" matInput formControlName="confirm">
       <mat-error>Must match password.</mat-error>
     </mat-form-field><br>
-    <p>Subscription:</p>
-    <mat-radio-group aria-label="Subscription" formControlName="type">
-      <mat-radio-button value="pro">WFL Pro ($1/month)</mat-radio-button><br>
-      <mat-radio-button value="free">WFL Free</mat-radio-button>
-    </mat-radio-group>
     <button mat-raised-button color="accent" [disabled]="form.invalid">Create Account</button>
   </form>
 </mat-card>

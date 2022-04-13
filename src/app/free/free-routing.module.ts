@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'
 import { AuthGuardService } from '../common/services/auth/auth-guard.service'
 import { NgModule } from '@angular/core'
 import { Role } from '../common/services/auth/auth.enum'
+import { UpgradeComponent } from './upgrade/upgrade.component'
 import { WorkoutsComponent } from './workouts/workouts.component'
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: { expectedRole: Role.Free },
   },
+  { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuardService], data: { expectedRole: Role.Free } },
 ]
 
 @NgModule({
