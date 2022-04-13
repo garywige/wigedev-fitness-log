@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/services/ui/ui.service';
 import { ApiService } from 'src/app/common/services/api/api.service';
-import { tap } from 'rxjs';
+import { filter, tap } from 'rxjs';
+import { AuthService } from 'src/app/common/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upgrade',
@@ -32,7 +34,7 @@ export class UpgradeComponent implements OnInit {
     })
   })
 
-  constructor(private uiService: UiService, private api: ApiService) { }
+  constructor(private uiService: UiService, private api: ApiService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if(!window.Square){
@@ -82,7 +84,15 @@ export class UpgradeComponent implements OnInit {
 
       this.api.upgrade(output as any).pipe(
         tap(output => {
-          console.log(JSON.stringify(output))
+          if(!output?.paidThrough){
+            this.uiService.toast('There was an error upgrading the subscription')
+          }
+        }),
+        filter(output => output?.paidThrough !== null),
+        tap(() => {
+          this.uiService.toast('Upgrade successful! Please login again.')
+          this.authService.logout(true)
+          this.router.navigate(['/signin'])
         })
       ).subscribe()
     })
