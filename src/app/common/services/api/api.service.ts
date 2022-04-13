@@ -40,9 +40,19 @@ export class ApiService {
     return this.http.put<VerifyEmailOutput>(url, reqBody)
   }
 
-  upgrade(body: {type: string, card: string, name: {first: string, last: string}, address: {
-    line1: string, line2?: string, city: string, state: string, zip: string, country: string
-  }}): Observable<UpgradeOutput>{
+  upgrade(body: {
+    type: string
+    card: string
+    name: { first: string; last: string }
+    address: {
+      line1: string
+      line2?: string
+      city: string
+      state: string
+      zip: string
+      country: string
+    }
+  }): Observable<UpgradeOutput> {
     const url = environment.apiurl + '/v1/upgrade'
 
     return this.http.post<UpgradeOutput>(url, body)
@@ -171,7 +181,7 @@ export interface VerifyEmailOutput {
 }
 
 export interface UpgradeOutput {
-  email: string,
+  email: string
   paidThrough: Date
 }
 

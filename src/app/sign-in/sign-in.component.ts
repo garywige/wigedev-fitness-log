@@ -41,7 +41,7 @@ export class SignInComponent {
           this.uiService.toast('Welcome to WFL!')
 
           // prompt to upgrade if free
-          if(authStatus.userRole === Role.Free){
+          if (authStatus.userRole === Role.Free) {
             this.uiService.upgradeToast()
           }
 

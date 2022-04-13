@@ -52,15 +52,15 @@ describe('ApiService', () => {
         card: 'test',
         name: {
           first: 'test',
-          last: 'test'
+          last: 'test',
         },
         address: {
           line1: 'test',
           city: 'test',
           state: 'CA',
           zip: '12345',
-          country: 'US'
-        }
+          country: 'US',
+        },
       })
 
       // Assert

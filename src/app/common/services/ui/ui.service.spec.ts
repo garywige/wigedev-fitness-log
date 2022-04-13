@@ -45,15 +45,15 @@ describe('UiService', () => {
     it('should call snackbar.open()', () => {
       // Arrange
       service['snackbar'].open = jasmine.createSpy().and.returnValue({
-        onAction(){
+        onAction() {
           return {
-            pipe(){
+            pipe() {
               return {
-                subscribe(){}
+                subscribe() {},
               }
-            }
+            },
           }
-        }
+        },
       })
 
       // Act

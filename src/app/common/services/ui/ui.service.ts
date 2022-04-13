@@ -30,11 +30,15 @@ export class UiService {
     this.dialog.closeAll()
   }
 
-  upgradeToast(){
-    this.snackbar.open('Upgrade to WFL Pro?', 'Upgrade', {duration: 10000, panelClass: 'snackbar-upgrade'}).onAction().pipe(
-      tap(() => {
-        this.router.navigate(['/free/upgrade'])
-      })
-    ).subscribe()
+  upgradeToast() {
+    this.snackbar
+      .open('Upgrade to WFL Pro?', 'Upgrade', { duration: 10000, panelClass: 'snackbar-upgrade' })
+      .onAction()
+      .pipe(
+        tap(() => {
+          this.router.navigate(['/free/upgrade'])
+        })
+      )
+      .subscribe()
   }
 }

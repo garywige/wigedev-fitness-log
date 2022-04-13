@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     data: { expectedRole: Role.Free },
   },
-  { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuardService], data: { expectedRole: Role.Free }}
+  { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuardService], data: { expectedRole: Role.Free } },
 ]
 
 @NgModule({

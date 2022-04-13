@@ -22,7 +22,7 @@ export class SignUpComponent {
       Validators.pattern(/[0-9]+/),
       Validators.pattern(/[^a-zA-Z0-9]+/),
     ]),
-    confirm: new FormControl('', [Validators.required, Validators.minLength(8)])
+    confirm: new FormControl('', [Validators.required, Validators.minLength(8)]),
   })
 
   constructor(private uiService: UiService, private router: Router, private api: ApiService) {}
@@ -38,7 +38,7 @@ export class SignUpComponent {
     const input = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
-      accountType: 'free'
+      accountType: 'free',
     }
 
     this.api.signup(input?.email, input?.password, input?.accountType).subscribe((output) => {
