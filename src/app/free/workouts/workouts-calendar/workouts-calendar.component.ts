@@ -136,6 +136,7 @@ export class WorkoutsCalendarComponent implements OnInit {
               unit: set?.unit,
               repsPrescribed: set?.reps,
               repsPerformed: set?.completed,
+              order: set?.order
             })
           })
 
