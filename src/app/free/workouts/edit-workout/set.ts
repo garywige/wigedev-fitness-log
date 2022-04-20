@@ -7,4 +7,5 @@ export interface Set {
   unit: string
   reps: number
   completed: number | null
+  order?: number
 }

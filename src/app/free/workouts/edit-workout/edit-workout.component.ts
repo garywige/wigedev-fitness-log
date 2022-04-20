@@ -145,4 +145,9 @@ export class EditWorkoutComponent implements OnInit {
 
     this.addSet(copy)
   }
+
+  addSetToOutput(set: Set){
+    set.order = this.output?.sets.length
+    this.output.sets.push(set)
+  }
 }
