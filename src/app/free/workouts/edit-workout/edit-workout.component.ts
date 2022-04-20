@@ -128,8 +128,8 @@ export class EditWorkoutComponent implements OnInit {
     this.output.date = this.date
 
     this.groups.forEach((group) => {
-      group.sets.forEach((set) => {
-        this.output?.sets.push(set)
+      group.sets.forEach(set => {
+        this.addSetToOutput(set)
       })
     })
   }
