@@ -116,4 +116,37 @@ describe('EditWorkoutComponent', () => {
       expect(spy).toHaveBeenCalled()
     })
   })
+
+  describe('addSetToOutput()', () => {
+
+    let set: Set
+
+    beforeEach(() => {
+      set = {
+        exercise: {
+          id: 'test',
+          name: 'test'
+        },
+        weight: 1,
+        unit: 'test',
+        reps: 1,
+        completed: null,
+        order: 1
+      }
+    })
+
+    it('should assign order value equal to sets array length prior to adding', () => {
+      for(let i = 0; i < 2; i++){
+        component.output.sets.push(set)
+      }
+      component.addSetToOutput(set)
+      expect(component.output?.sets[2].order).toEqual(2)
+    })
+
+    it('should call output.sets.push()', () => {
+      const spy = spyOn<any>(component.output.sets, 'push')
+      component.addSetToOutput(set)
+      expect(spy).toHaveBeenCalled()
+    })
+  })
 })
