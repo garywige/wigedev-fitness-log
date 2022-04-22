@@ -238,6 +238,7 @@ export interface WorkoutSet {
   unit: string
   repsPrescribed: number
   repsPerformed: number | null
+  order?: number
 }
 
 export interface WorkoutElement {

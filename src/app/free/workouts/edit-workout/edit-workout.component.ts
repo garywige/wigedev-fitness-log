@@ -129,7 +129,7 @@ export class EditWorkoutComponent implements OnInit {
 
     this.groups.forEach((group) => {
       group.sets.forEach((set) => {
-        this.output?.sets.push(set)
+        this.addSetToOutput(set)
       })
     })
   }
@@ -144,5 +144,10 @@ export class EditWorkoutComponent implements OnInit {
     }
 
     this.addSet(copy)
+  }
+
+  addSetToOutput(set: Set) {
+    set.order = this.output?.sets.length
+    this.output.sets.push(set)
   }
 }
