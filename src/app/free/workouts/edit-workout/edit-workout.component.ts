@@ -128,7 +128,7 @@ export class EditWorkoutComponent implements OnInit {
     this.output.date = this.date
 
     this.groups.forEach((group) => {
-      group.sets.forEach(set => {
+      group.sets.forEach((set) => {
         this.addSetToOutput(set)
       })
     })
@@ -146,7 +146,7 @@ export class EditWorkoutComponent implements OnInit {
     this.addSet(copy)
   }
 
-  addSetToOutput(set: Set){
+  addSetToOutput(set: Set) {
     set.order = this.output?.sets.length
     this.output.sets.push(set)
   }

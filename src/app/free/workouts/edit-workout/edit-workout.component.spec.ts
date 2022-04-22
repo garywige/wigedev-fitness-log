@@ -118,25 +118,24 @@ describe('EditWorkoutComponent', () => {
   })
 
   describe('addSetToOutput()', () => {
-
     let set: Set
 
     beforeEach(() => {
       set = {
         exercise: {
           id: 'test',
-          name: 'test'
+          name: 'test',
         },
         weight: 1,
         unit: 'test',
         reps: 1,
         completed: null,
-        order: 1
+        order: 1,
       }
     })
 
     it('should assign order value equal to sets array length prior to adding', () => {
-      for(let i = 0; i < 2; i++){
+      for (let i = 0; i < 2; i++) {
         component.output.sets.push(set)
       }
       component.addSetToOutput(set)
